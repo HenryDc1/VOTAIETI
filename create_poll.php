@@ -110,11 +110,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include 'header.php'; ?>
 
     <div class="containerCreatePoll">
-        <form class="createPoll" id="pollForm" method="post" action="create_poll.php">
+        <form class="createPoll" id="pollForm" method="post" action="create_poll.php" enctype="multipart/form-data">
             <h1 class="tituloCreatePoll">Crear Encuesta</h1>
             <div class="datosCreatePoll">
                 <input type="text" id="question" name="question" required>
                 <label for="question">Pregunta:</label>
+                <input type="file" id="questionImage" name="questionImage" accept="image/*">
             </div>
             <div class="datosCreatePoll">
                 <label id="numeroOpciones">Número de opciones:</label>
@@ -142,12 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $(document).ready(function () {
             var numOptions = 2;
             for (var i = 1; i <= numOptions; i++) {
-                $('#optionInputs').append('<label for="option' + i + '"></label><input placeholder="Option ' + i + '" type="text" id="option' + i + '" name="option' + i + '" required>');
+                $('#optionInputs').append('<label for="option' + i + '"></label><input placeholder="Option ' + i + '" type="text" id="option' + i + '" name="option' + i + '" required><input type="file" id="optionImage' + i + '" name="optionImage' + i + '" accept="image/*">');
             }
 
             $('#addOption').click(function () {
                 numOptions++;
-                $('#optionInputs').append('<label for="option' + numOptions + '"></label><input placeholder="Option ' + numOptions + '" type="text" id="option' + numOptions + '" name="option' + numOptions + '" required>');
+                $('#optionInputs').append('<label for="option' + numOptions + '"></label><input placeholder="Option ' + numOptions + '" type="text" id="option' + numOptions + '" name="option' + i + '" required><input type="file" id="optionImage' + numOptions + '" name="optionImage' + numOptions + '" accept="image/*">');
                 if (numOptions > 2) {
                     $('#removeOption').show();
                 }
@@ -156,6 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $('#removeOption').click(function () {
                 if (numOptions > 2) {
                     $('#option' + numOptions).remove();
+                    $('#optionImage' + numOptions).remove();
                     $('label[for="option' + numOptions + '"]').remove();
                     numOptions--;
                     if (numOptions <= 2) {
