@@ -13,22 +13,22 @@
         <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
         <title>Error 403 — Votaieti</title>
         <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
-        <link rel="stylesheet" href="../styles + scripts/styles.css">
+        <link rel="stylesheet" href="../styles.css">
     </head>
     
     <body class="bodyError403">    
         <div class="contenedorHeader">
-            <?php include 'header.php'; ?>
+            <?php include '../header.php'; ?>
         </div>
 
         <div class="containerError403">
-            <img src="error403.gif" alt="">
+            <img src="/errores/error403.gif" alt="">
             <p>¡Ups! No tienes permiso para acceder a esta página.<br>¿Qué intentabas hacer?</p>
             <a id="volverButton" href="../index.php">Vuelve al inicio</a>
         </div>
         
         <div class="contenedorFooter">
-            <?php include 'footer.php'; ?>
+            <?php include '../footer.php'; ?>
         </div>
     </body>
 </html>

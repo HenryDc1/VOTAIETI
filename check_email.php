@@ -1,26 +1,29 @@
 <?php
-$conn = new mysqli('localhost', 'root', 'P@ssw0rd', 'VOTE');
+    // Conexión a la base de datos
+    $db = new mysqli('localhost', 'root', 'P@ssw0rd', 'VOTE');
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    if ($db->connect_error) {
+        die("Connection failed: " . $db->connect_error);
+    }
 
-$email = $_POST['email'];
+    // Obtener el correo electrónico del POST request
+    $email = $_POST['email'];
 
-$stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$stmt->bind_result($count);
-$stmt->fetch();
+    // Preparar la consulta SQL
+    $stmt = $db->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
 
-if ($count > 0) {
-    echo 'exists';
-} else {
-    echo 'not exists';
-}
+    // Ejecutar la consulta
+    $stmt->execute();
 
-$stmt->close();
-$conn->close();
+    // Obtener los resultados
+    $result = $stmt->get_result();
 
+    // Si hay al menos un resultado, el correo electrónico ya existe
+    if ($result->num_rows > 0) {
+        echo 'exists';
+    }
 
+    $stmt->close();
+    $db->close();
 ?>

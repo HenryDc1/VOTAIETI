@@ -1,18 +1,20 @@
-
 <?php
-$conn = new mysqli('localhost', 'root', 'P@ssw0rd', 'VOTE');
+// Incluir el archivo de conexión
+// Conexión a la base de datos
+$db = new mysqli('localhost', 'root', 'P@ssw0rd', 'VOTE');
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
 }
 
 $telephone = $_POST['telephone'];
 
-$stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE phone_number = ?");
+// Consulta para contar el número de usuarios con el mismo número de teléfono
+$stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE phone_number = ?");
 $stmt->bind_param("s", $telephone);
 $stmt->execute();
-$stmt->bind_result($count);
-$stmt->fetch();
+$result = $stmt->get_result();
+$count = $result->fetch_array()[0];
 
 if ($count > 0) {
     echo 'exists';
@@ -20,6 +22,6 @@ if ($count > 0) {
     echo 'not exists';
 }
 
-$stmt->close();
-$conn->close();
+// Cerrar la conexión
+$db->close();
 ?>

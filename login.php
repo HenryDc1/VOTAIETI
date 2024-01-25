@@ -52,7 +52,7 @@
 
             <form class="iniciasesionLogin" method="post">
                 <h1>INICIA SESIÓN</h1>
-                <img class="logoLogin" src="logosinfondo.png" alt="">
+                <img class="logoLogin" src="imgs/logosinfondo.png" alt="">
                 <div class="datosUsuarioLogin">
                     <input class="inputLoginPHP" type="email" id="email" name="email" required>  
                     <label for="email">Correo electrónico</label>  

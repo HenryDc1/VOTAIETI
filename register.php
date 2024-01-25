@@ -43,11 +43,11 @@ if(!empty($_POST)){
     $city = $_POST['city'];
     $zipcode = $_POST['zipcode'];
 
-    $token = bin2hex(random_bytes(16)); // Genera un token aleatorio
+    //$token = bin2hex(random_bytes(16)); // Genera un token aleatorio
 
     // Preparar la sentencia SQL
-    $sql = "INSERT INTO users (user_name, email, password, phone_number, country, city, zipcode, token)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO users (user_name, email, password, phone_number, country, city, zipcode)
+    VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode, $token]);
