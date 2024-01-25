@@ -21,16 +21,11 @@ function handleScroll() {
 
 window.addEventListener("scroll", handleScroll);
 
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('tienescuentaBotonLogin').addEventListener('click', function() {
       window.location.href = 'register.php';
   });
 });
-
-
 
 // popup de error
 

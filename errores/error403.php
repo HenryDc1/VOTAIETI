@@ -10,7 +10,7 @@
         <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
         <meta property="og:image" content="../imgs/votaietilogo.png">
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
+        <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
         <title>Error 403 — Votaieti</title>
         <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
         <link rel="stylesheet" href="../styles.css">
@@ -18,7 +18,7 @@
     
     <body class="bodyError403">    
         <div class="contenedorHeader">
-            <?php include '../header.php'; ?>
+            <?php include("../header.php")?>
         </div>
 
         <div class="containerError403">
@@ -28,7 +28,11 @@
         </div>
         
         <div class="contenedorFooter">
-            <?php include '../footer.php'; ?>
+            <?php include("../footer.php")?>
         </div>
     </body>
+<?php 
+    header("Location: ./error403.php");
+    http_response_code(403);
+?>
 </html>

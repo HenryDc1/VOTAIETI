@@ -10,11 +10,10 @@
         <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
         <meta property="og:image" content="../imgs/votaietilogo.png">
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
+        <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
         <title>Votaieti</title>
         <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
         <link rel="stylesheet" href="styles.css">
-        <script src="../styles + scripts/script.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     </head>

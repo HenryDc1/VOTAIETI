@@ -1,15 +1,12 @@
-
 <?php
 session_start(); // Inicia una nueva sesión o reanuda la existente
 
 // Verifica si el usuario ha iniciado sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
-    header('Location: errores/error403.php');
-    exit;
-}
-?> 
-<!DOCTYPE html>
+    include('./errores/error403.php');
+} else {
+?><!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -21,11 +18,10 @@ if(!isset($_SESSION['email'])) {
         <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
         <meta property="og:image" content="../imgs/votaietilogo.png">
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
+        <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
         <title>Panel de control —Votaieti</title>
         <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
         <link rel="stylesheet" href="styles.css">
-        <script src="../styles + scripts/script.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     </head>
 
@@ -126,3 +122,6 @@ if(!isset($_SESSION['email'])) {
         </div>
     </body>
 </html>
+<?php
+}
+?>
