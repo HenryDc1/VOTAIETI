@@ -14,7 +14,6 @@ CREATE TABLE users (
     city VARCHAR(255) NOT NULL,
     zipcode varchar(255) NOT NULL
 );
-
 CREATE TABLE poll (
     poll_id INT AUTO_INCREMENT PRIMARY KEY,
     question VARCHAR(255) NOT NULL,
@@ -24,9 +23,10 @@ CREATE TABLE poll (
     poll_state ENUM('active','blocked','not_started','finished') ,
     question_visibility ENUM('public','private','hidden') ,
     results_visibility ENUM('public','private','hidden') ,
-    poll_link varchar(255) DEFAULT NULL,
+    poll_link varchar(255) ,
     path_image varchar(255) DEFAULT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    INDEX poll_id_poll_link_idx (poll_id, poll_link)  -- Añade este índice
 );
 
 
@@ -36,7 +36,7 @@ CREATE TABLE poll_options (
     poll_id INT NOT NULL,
     start_date DATETIME,
     end_date DATETIME,
-    path_image varchar(255) DEFAULT NULL,
+    path_image varchar(255) ,
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
 );
 
@@ -68,10 +68,10 @@ CREATE TABLE invitation (
     poll_id INT NOT NULL,
     guest_email VARCHAR(255),
     sent_date DATETIME,
+    poll_link VARCHAR(255),
     FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email),
-    FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
+    FOREIGN KEY (poll_id, poll_link) REFERENCES poll(poll_id, poll_link)
 );
-
 
 
 CREATE TABLE IF NOT EXISTS pais (
