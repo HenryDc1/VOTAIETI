@@ -9,14 +9,23 @@ if(isset($_GET['token'])) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$token]);
     if ($stmt->rowCount() > 0) {
-        // Marcar el correo electrónico como verificado
-        $sql = "UPDATE users SET email_verified = 1 WHERE token = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$token]);
-        
-        // Redirigir al usuario a la página de inicio de sesión
-        header("Location: login.php");
-        exit;
+        $user = $stmt->fetch();
+
+        // Verificar si el token ya ha sido aceptado
+        if ($user['token_accepted']) {
+            // Redirigir al usuario a la página de error 404
+            header("Location: errores/error404.php");
+            exit;
+        } else {
+            // Marcar el token como aceptado
+            $sql = "UPDATE users SET token_accepted = TRUE WHERE token = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$token]);
+
+            // Redirigir al usuario a la página de inicio de sesión
+            header("Location: login.php");
+            exit;
+        }
     } else {
         echo "Token inválido.";
     }

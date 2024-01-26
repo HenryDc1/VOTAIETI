@@ -60,7 +60,7 @@ if(!empty($_POST)){
     $mail = new PHPMailer();
     $mail->IsSMTP();
     $mail->Mailer = "smtp";
-    $mail->SMTPDebug  = 1;  
+    $mail->SMTPDebug  = 0;  
     $mail->SMTPAuth   = TRUE;
     $mail->SMTPSecure = "tls";
     $mail->Port       = 587;
@@ -71,13 +71,9 @@ if(!empty($_POST)){
     $mail->AddAddress($email, $username);
     $mail->SetFrom($senderEmail, "VOTAIETI");
     $mail->Subject = 'Verificación de correo electrónico';
-    $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify.php?token=' . $token . '">Verificar correo electrónico</a>');
+    $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify_token.php?token=' . $token . '">Verificar correo electrónico</a>');
 
-    if(!$mail->Send()) {
-        echo "Error en enviar el correo electrónico.";
-    } else {
-        echo "Correo electrónico enviado con éxito";
-    }
+   
     
   
 
@@ -110,7 +106,7 @@ if(!empty($_POST)){
                     });
                 }
                 window.onload = function () {
-                    showSuccesPopup('Usuario registrado con éxito');
+                    showSuccesPopup('Usuario registrado con éxito\nRecibirás un correo electrónico para validar tu cuenta.');
                 };
               </script>";
     }
