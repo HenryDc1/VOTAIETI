@@ -142,7 +142,7 @@ $(document).ready(function() {
             }
 
             // Check if the phone number has a minimum length of 11 and a maximum length of 15
-            if (telephone.length < 11 || telephone.length > 15) {
+            if (telephone.length < 9 || telephone.length > 15) {
                 showErrorPopup('Longitud del numero de teléfono incorrecta.');
                 return;
             }

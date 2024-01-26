@@ -183,8 +183,10 @@ $(document).ready(function() {
                                                                 
                                                                         // Check if the zipcode field contains exactly 5 digits
                                                                         if (/^\d{5}$/.test(zipcode)) {
-                                                                            // The zipcode is valid, append the register button
-                                                                            form.append('<button id="siguienteBotonRegister" type="submit">Registrar</button>');
+                                                                            // If the register button does not exist, append it
+                                                                            if (!$("#siguienteBotonRegister").length) {
+                                                                                form.append('<button id="siguienteBotonRegister" type="submit">Registrar</button>');
+                                                                            }
                                                                         } else {
                                                                             // Show an error message
                                                                             showErrorPopup('Por favor, introduce un código postal válido.');
@@ -272,8 +274,85 @@ $(document).ready(function() {
         }
     });
 
-    
+     // Cuando el campo de PASSWORD está vacío, borra de abajo 
+     form.on('input', '#password', function() {
+        if (!$(this).val()) {
+            $('#password').val('');
+           // $('#siguienteBotonRegisterPassword').remove(); // Elimina el botón Siguiente para el password
+            $('#confirmPassword').val('');
+            $('#confirmPassword').parent().remove(); // Elimina el campo de repetir password
+            //$('#siguienteBotonRegisterConfirmPassword').remove(); // Elimina el botón Siguiente del campo repetir password
+            $('#telephone').val('');
+            $('#telephone').parent().remove(); // Elimina el campo de tlf
+          //  $('#siguienteBotonRegisterTelephone').remove(); // Elimina el botón Siguiente del campo tlf
+            $('#country').val('');
+            $('#country').parent().remove(); // Elimina el campo de PAIS
+          //  $('#siguienteBotonRegisterCountry').remove(); // Elimina el botón Siguiente del campo PAIS
+            $('#city').val('');
+            $('#city').parent().remove(); // Elimina el campo de city
+           // $('#siguienteBotonRegisterCity').remove(); // Elimina el botón Siguiente del campo city
+            $('#zipcode').val('');
+            $('#zipcode').parent().remove(); // Elimina el campo de codigo postal
+           // $('#siguienteBotonRegister').remove(); // Elimina el botón Siguiente del campo REGISTRARSE
+           // form.append('<button id="siguienteBotonRegisterPassword" type="button">Siguiente</button>'); // Agrega el botón Siguiente para el username
+        }
+    });
 
+
+    // Cuando el campo de CONFIRM PASSWORD está vacío, borra de abajo 
+    form.on('input', '#confirmPassword', function() {
+        if (!$(this).val()) {
+            $('#confirmPassword').val('');
+          //  $('#siguienteBotonRegisterConfirmPassword').remove(); // Elimina el botón Siguiente del campo repetir password
+            $('#telephone').val('');
+            $('#telephone').parent().remove(); // Elimina el campo de tlf
+           // $('#siguienteBotonRegisterTelephone').remove(); // Elimina el botón Siguiente del campo tlf
+            $('#country').val('');
+            $('#country').parent().remove(); // Elimina el campo de PAIS
+           // $('#siguienteBotonRegisterCountry').remove(); // Elimina el botón Siguiente del campo PAIS
+            $('#city').val('');
+            $('#city').parent().remove(); // Elimina el campo de city
+            //$('#siguienteBotonRegisterCity').remove(); // Elimina el botón Siguiente del campo city
+            $('#zipcode').val('');
+            $('#zipcode').parent().remove(); // Elimina el campo de codigo postal
+           // $('#siguienteBotonRegister').remove(); // Elimina el botón Siguiente del campo REGISTRARSE
+            
+           // form.append('<button id="siguienteBotonRegisterConfirmPassword" type="button">Siguiente</button>'); // Agrega el botón Siguiente para el username
+        }
+        });
+
+        // Cuando el campo de TLF está vacío, borra de abajo 
+        form.on('input', '#telephone', function() {
+        if (!$(this).val()) {
+            $('#telephone').val('');
+            $('#siguienteBotonRegisterTelephone').remove(); // Elimina el botón Siguiente del campo tlf
+           // $('#country').val('');
+            //$('#country').parent().remove(); // Elimina el campo de PAIS
+            //$('#siguienteBotonRegisterCountry').remove(); // Elimina el botón Siguiente del campo PAIS
+            $('#city').val('');
+            $('#city').parent().remove(); // Elimina el campo de city
+           // $('#siguienteBotonRegisterCity').remove(); // Elimina el botón Siguiente del campo city
+            $('#zipcode').val('');
+            $('#zipcode').parent().remove(); // Elimina el campo de codigo postal
+          //  $('#siguienteBotonRegister').remove(); // Elimina el botón Siguiente del campo REGISTRARSE
+            
+          //  form.append('<button id="siguienteBotonRegisterTelephone" type="button">Siguiente</button>'); // Agrega el botón Siguiente para el TLF
+        }
+        });
+
+        
+        // Cuando el campo de CITY está vacío, borra de abajo 
+        form.on('input', '#city', function() {
+        if (!$(this).val()) {
+            $('#city').val('');
+           // $('#siguienteBotonRegisterCity').remove(); // Elimina el botón Siguiente del campo city
+            $('#zipcode').val('');
+            $('#zipcode').parent().remove(); // Elimina el campo de codigo postal
+           // $('#siguienteBotonRegister').remove(); // Elimina el botón Siguiente del campo REGISTRARSE
+            
+          //  form.append('<button id="siguienteBotonRegisterCity" type="button">Siguiente</button>'); // Agrega el botón Siguiente para el TLF
+        }
+        });
 
 });
 
