@@ -56,23 +56,31 @@ if(!empty($_POST)){
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode, $token]);
 
-    // Crear una nueva instancia de PHPMailer
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    $mail->Mailer = "smtp";
-    $mail->SMTPDebug  = 0;  
-    $mail->SMTPAuth   = TRUE;
-    $mail->SMTPSecure = "tls";
-    $mail->Port       = 587;
-    $mail->Host       = "smtp.gmail.com";
-    $mail->Username   = $senderEmail;
-    $mail->Password   = $passwordEmail;
-    $mail->IsHTML(true);
-    $mail->AddAddress($email, $username);
-    $mail->SetFrom($senderEmail, "VOTAIETI");
-    $mail->Subject = 'Verificación de correo electrónico';
-    $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify_token.php?token=' . $token . '">Verificar correo electrónico</a>');
+   // Crear una nueva instancia de PHPMailer
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Mailer = "smtp";
+$mail->SMTPDebug  = 0;  
+$mail->SMTPAuth   = TRUE;
+$mail->SMTPSecure = "tls";
+$mail->Port       = 587;
+$mail->Host       = "smtp.gmail.com";
+$mail->Username   = $senderEmail;
+$mail->Password   = $passwordEmail;
+$mail->IsHTML(true);
+$mail->CharSet = 'UTF-8'; 
+$mail->AddAddress($email, $username);
+$mail->SetFrom($senderEmail, "VOTAIETI");
+$mail->Subject = 'Verificación de correo electrónico';
+$mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify_token.php?token=' . $token . '">Verificar correo electrónico</a>');
 
+// Enviar el correo electrónico
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+}
    
     
   
@@ -106,7 +114,7 @@ if(!empty($_POST)){
                     });
                 }
                 window.onload = function () {
-                    showSuccesPopup('Usuario registrado con éxito\nRecibirás un correo electrónico para validar tu cuenta.');
+                    showSuccesPopup('Usuario registrado con éxito');
                 };
               </script>";
     }

@@ -13,8 +13,8 @@ if (isset($_SESSION['email'])) {
     echo '<li id="btnLogOut"class="liHeader"><a href="cerrar_sesion.php">Cerrar sesión</a></li>';
 
     // Si el nombre del usuario está establecido, mostrarlo
-    if (isset($_SESSION['nombre'])) {
-        echo '<li class="liHeader">Hola, ' . $_SESSION['nombre'] . '</li>';
+    if (isset($_SESSION['user_name'])) {
+        echo '<li class="liHeader">Hola, ' . $_SESSION['user_name'] . '</li>';
     }
 
     echo '</ul>
