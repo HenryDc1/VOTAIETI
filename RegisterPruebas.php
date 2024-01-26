@@ -1,5 +1,24 @@
 <?php
-  include 'db_connection.php'; 
+session_start();
+include 'db_connection.php'; 
+
+// Muestra el mensaje de error si existe
+if (isset($_SESSION['error'])) {
+    echo "<script>
+            window.onload = function () {
+                showErrorPopup('" . addslashes($_SESSION['error']) . "');
+            };
+          </script>";
+    unset($_SESSION['error']);
+}
+
+// Genera el HTML para el <select>
+$countrySelectHTML = '<div class="datosUsuarioRegister">' .
+    '<label for="country">País</label><br>' .
+    '<select class="inputRegisterPHP" id="country" name="country" required>';
+foreach ($countries as $country) {
+    $countrySelectHTML .= '<option value="' . htmlspecialchars($country['paisnombre']) . '" data-prefix="' . htmlspecialchars($country['paisprefijo']) . '">' . htmlspecialchars($country['paisnombre']) . '</option>';
+}
 if(!empty($_POST)){
 
     $username = $_POST['username'];
@@ -16,7 +35,8 @@ if(!empty($_POST)){
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$email]);
     if ($stmt->rowCount() > 0) {
-        echo "<script>alert('El correo electrónico ya existe');</script>";
+        $_SESSION['error'] = 'El correo electrónico ya existe';
+        header('Location: RegisterPruebas.php');
         exit;
     }
 
@@ -25,7 +45,8 @@ if(!empty($_POST)){
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$telephone]);
     if ($stmt->rowCount() > 0) {
-        echo "<script>alert('El teléfono ya existe');</script>";
+        $_SESSION['error'] = 'El teléfono ya existe';
+        header('Location: RegisterPruebas.php');
         exit;
     }
 
@@ -70,7 +91,11 @@ if(!empty($_POST)){
               </script>";
     }
 }
-?><!DOCTYPE html>
+?>
+<script>
+var countrySelectHTML = '<?= $countrySelectHTML ?>';
+</script>
+<!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">

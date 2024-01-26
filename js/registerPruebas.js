@@ -204,13 +204,13 @@ $(document).ready(function() {
                             });
                         } else {
                             // Si la validación falla, mostrar un mensaje de error
-                            alert('Por favor, introduce un correo electrónico válido.');
+                            showErrorPopup('Por favor, introduce un correo electrónico válido.');
                         }
                     }
                 });
             } else {
                 // Si la validación falla, mostrar un mensaje de error
-                alert('El nombre de usuario debe tener al menos 5 caracteres y contener mayúsculas y minúsculas.');
+                showErrorPopup('El nombre de usuario debe tener al menos 5 caracteres y contener mayúsculas y minúsculas.');
             }
         }
     });
