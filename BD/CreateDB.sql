@@ -12,7 +12,10 @@ CREATE TABLE users (
     phone_number VARCHAR(255) NOT NULL UNIQUE,
     country VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
-    zipcode varchar(255) NOT NULL
+    zipcode varchar(255) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    token_accepted BOOLEAN NOT NULL,
+    conditions_accepted BOOLEAN NOT NULL
 );
 CREATE TABLE poll (
     poll_id INT AUTO_INCREMENT PRIMARY KEY,

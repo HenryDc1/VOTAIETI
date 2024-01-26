@@ -7,8 +7,8 @@
         $email = $_POST["email"];  // Cambiado de "username" a "email"
         $contraseña = $_POST["password"];
         
-        // Cambiado "user_name" a "email"
-        $querystr = "SELECT email FROM users WHERE email = :email AND password = SHA2(:contrasena, 256)";
+        // Cambiado "user_name" a "email" y agregado "user_name" a la selección
+        $querystr = "SELECT email, user_name FROM users WHERE email = :email AND password = SHA2(:contrasena, 256)";
         $query = $pdo->prepare($querystr);
 
         $query->bindParam(':email', $email);  // Cambiado de ":usuario" a ":email"
@@ -18,20 +18,69 @@
         
         $filas = $query->rowCount();
         if ($filas > 0) {
-            // Iniciar la sesión y guardar el correo electrónico en la sesión
+            // Obtener el nombre de usuario
+            $fila = $query->fetch(PDO::FETCH_ASSOC);
+            $nombre = $fila['user_name'];
+
+            // Iniciar la sesión y guardar el correo electrónico y el nombre de usuario en la sesión
             $_SESSION['email'] = $email;
-            // Redirigir al usuario a index.php usando JavaScript
-            echo '<script type="text/javascript">window.location = "dashboard.php";</script>';
+            $_SESSION['nombre'] = $nombre;
+
+            // Mostrar el popup de aceptación de condiciones
+            echo "<script>
+                    function showTermsPopup() {
+                        // Crear la ventana flotante
+                        var termsPopup = $('<div/>', {
+                            id: 'termsPopup',
+                            text: 'Acepta las condiciones del portal',
+                            style: 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; color: black; padding: 20px; border-radius: 5px;'
+                        });
+
+                        // Crear el checkbox
+                        var termsCheckbox = $('<input/>', {
+                            type: 'checkbox',
+                            id: 'termsCheckbox',
+                            name: 'termsCheckbox'
+                        });
+
+                        // Crear la etiqueta para el checkbox
+                        var termsLabel = $('<label/>', {
+                            for: 'termsCheckbox',
+                            text: ' Acepto las condiciones'
+                        });
+
+                        // Crear el botón 'Siguiente'
+                        var nextButton = $('<button/>', {
+                            text: 'Siguiente',
+                            style: 'display: block; margin-top: 20px;',
+                            click: function () {
+                                if ($('#termsCheckbox').is(':checked')) {
+                                    // Si el checkbox está marcado, redirigir al dashboard
+                                    window.location.href = 'dashboard.php';
+                                } else {
+                                    alert('Debes aceptar las condiciones para continuar.');
+                                }
+                            }
+                        });
+
+                        // Añadir el checkbox, la etiqueta y el botón a la ventana flotante
+                        termsPopup.append(termsCheckbox, termsLabel, nextButton);
+
+                        // Añadir la ventana flotante al cuerpo del documento
+                        $('body').append(termsPopup);
+                    }
+                    window.onload = function () {
+                        showTermsPopup();
+                    };
+                  </script>";
             exit;
         } else {
             $error_message = "<script type='text/javascript'>$(document).ready(function() { showErrorPopup('Correo electrónico o contraseña incorrectos'); });</script>";
-
         }
         unset($pdo);
         unset($query);
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
     <head>

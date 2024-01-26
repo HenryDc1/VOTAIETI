@@ -1,6 +1,13 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require "vendor/autoload.php";
 session_start();
 include 'db_connection.php'; 
+
+// Correo electrónico del remitente (hardcodeado)
+$senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
+$passwordEmail = "";
 
 // Muestra el mensaje de error si existe
 if (isset($_SESSION['error'])) {
@@ -40,22 +47,39 @@ if(!empty($_POST)){
         exit;
     }
 
-    // Verificar si el teléfono ya existe
-    $sql = "SELECT * FROM users WHERE phone_number = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$telephone]);
-    if ($stmt->rowCount() > 0) {
-        $_SESSION['error'] = 'El teléfono ya existe';
-        header('Location: RegisterPruebas.php');
-        exit;
-    }
+    $token = bin2hex(random_bytes(50));
 
     // Preparar la sentencia SQL
-    $sql = "INSERT INTO users (user_name, email, password, phone_number, country, city, zipcode)
-    VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO users (user_name, email, password, phone_number, country, city, zipcode, token, token_accepted, conditions_accepted)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, FALSE, FALSE)";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode]);
+    $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode, $token]);
+
+    // Crear una nueva instancia de PHPMailer
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->Mailer = "smtp";
+    $mail->SMTPDebug  = 1;  
+    $mail->SMTPAuth   = TRUE;
+    $mail->SMTPSecure = "tls";
+    $mail->Port       = 587;
+    $mail->Host       = "smtp.gmail.com";
+    $mail->Username   = $senderEmail;
+    $mail->Password   = $passwordEmail;
+    $mail->IsHTML(true);
+    $mail->AddAddress($email, $username);
+    $mail->SetFrom($senderEmail, "VOTAIETI");
+    $mail->Subject = 'Verificación de correo electrónico';
+    $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify.php?token=' . $token . '">Verificar correo electrónico</a>');
+
+    if(!$mail->Send()) {
+        echo "Error en enviar el correo electrónico.";
+    } else {
+        echo "Correo electrónico enviado con éxito";
+    }
+    
+  
 
     // Comprobar si se insertó el registro
     if ($stmt->rowCount() > 0) {
