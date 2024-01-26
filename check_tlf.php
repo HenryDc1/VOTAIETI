@@ -1,7 +1,7 @@
 <?php
 // Incluir el archivo de conexión
 // Conexión a la base de datos
-$db = new mysqli('localhost', 'root', 'root', 'VOTE');
+$db = new mysqli('localhost', 'root', 'Kecuwa53', 'VOTE');
 
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);

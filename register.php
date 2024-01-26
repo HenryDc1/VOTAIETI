@@ -121,8 +121,8 @@ var countrySelectHTML = '<?= $countrySelectHTML ?>';
 
             <form class="creacuentaRegister" action="register.php" method="post">
                 <h1>REGÍSTRATE</h1>
-                <img class="logoLogin" src="logosinfondo.png" alt="">
-
+                <img class="logoLogin" src="/imgs/logosinfondo.png" alt="">
+    
         </div>
 
         <?php include 'footer.php'; ?>

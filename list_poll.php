@@ -54,18 +54,20 @@ include 'db_connection.php';
         
         if ($userId) {
             // Consulta para recuperar preguntas basadas en el user_id
-            $pollStmt = $pdo->prepare("SELECT question, start_date, end_date, poll_state FROM poll WHERE user_id = ?");
+            $pollStmt = $pdo->prepare("SELECT question, start_date, end_date, poll_state, question_visibility, results_visibility FROM poll WHERE user_id = ?");
             $pollStmt->execute([$userId]);
 
             // Mostrar las preguntas y el estado de la encuesta
             echo "<h1>Mis encuestas</h1>";
             echo "<table>";
-            echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th></tr></thead>";
+            echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th><th class='visibility-question-column'>Visibilidad Pregunta</th><th class='visibility-results-column'>Visibilidad Resultados </th></tr></thead>";
 
             echo "<tbody>";
             while ($row = $pollStmt->fetch(PDO::FETCH_ASSOC)) {
                 $question = $row['question'];
                 $pollState = $row['poll_state'];
+                $questionVisibility = $row['question_visibility'];
+                $resultsVisibility = $row['results_visibility'];
 
                 // Añadir clases CSS basadas en el valor de pollState
                 $class = '';
@@ -87,12 +89,19 @@ include 'db_connection.php';
                     'finished' => 'Finalizada',
                     'active' => 'Activa',
                 );
+                $visibilityTexts = array(
+                    'public' => 'Publico',
+                    'private' => 'Privado',
+                    'ocult' => 'Oculto',
+                );
 
                 // Obtener el texto correspondiente al estado actual
                 $stateText = isset($stateTexts[$pollState]) ? $stateTexts[$pollState] : $pollState;
+                $visibilityQestionText = isset($visibilityTexts[$questionVisibility]) ? $visibilityTexts[$questionVisibility] : $questionVisibility;
+                $visibilityResultsText = isset($visibilityTexts[$resultsVisibility]) ? $visibilityTexts[$resultsVisibility] : $resultsVisibility;
 
                 // Mostrar la pregunta y el estado de la encuesta en una fila de la tabla
-                echo "<tr><td>$question</td><td><span class='poll-state $class'>$stateText</span></td></tr>";
+                echo "<tr><td>$question</td><td><span class='poll-state $class'>$stateText</span></td><td>$visibilityQestionText</td><td>$visibilityResultsText</td></tr>"; 
             }
             echo "</tbody>";
             echo "</table>";
