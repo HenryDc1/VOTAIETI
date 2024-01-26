@@ -898,11 +898,17 @@ input:valid+label {
 
 
 .question-column {
-    width: 60%;
+    width: 40%;
 }
 
 .state-column {
-    width: 40%;
+    width: 20%;
+}
+.visibility-question-column {
+    width: 20%;
+}
+.visibility-results-column {
+    width: 20%;
 }
 /* Estilos generales de la tabla */
 table {
@@ -927,7 +933,9 @@ tr {
 th:first-child {
     font-weight: bold;
 }
-td:nth-child(2) {
+td:nth-child(2),
+td:nth-child(3),
+td:nth-child(4) {
     text-align: center;
 }
 /* Otros estilos CSS existentes */
