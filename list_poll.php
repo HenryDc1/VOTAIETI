@@ -62,7 +62,7 @@ include 'db_connection.php';
             // Mostrar las preguntas y el estado de la encuesta
             echo "<h1>Mis encuestas</h1>";
             echo "<table>";
-            echo "<thead><tr><th class='question-column'>Pregunta</th><th class=''>Estado</th><th class='visibility-column'>Visibilidad Pregunta</th><th class='options-column'>Visibilidad Opciones</th><th class='invite-column'>Invitar</th><th class='details-column'>Detalles</th></tr></thead>";
+            echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th><th class='visibility-column'>Visibilidad Pregunta</th><th class='options-column'>Visibilidad Opciones</th><th class='invite-column'>Invitar</th><th class='details-column'>Detalles</th></tr></thead>";
 
 
             echo "<tbody>";
