@@ -120,7 +120,7 @@ if(!$mail->send()) {
                     });
                 }
                 window.onload = function () {
-                    showSuccesPopup('Usuario registrado con éxito');
+                    showSuccesPopup('Usuario registrado con éxito. Te llegará un correo para validar tu cuenta');
                 };
               </script>";
     }

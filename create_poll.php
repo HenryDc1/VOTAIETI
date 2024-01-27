@@ -80,10 +80,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $pollState = "finished";
             }
 
+            // Generar un token único
+            $token = bin2hex(random_bytes(16));
+
             // Insertar la pregunta en la tabla de encuestas con el user_id
-            $stmt = $conn->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, poll_link, path_image) 
-            VALUES (?, ?, ?, ?, ?, NULL, NULL, NULL, ?)");
-            $stmt->bind_param("ssssss", $question, $userId, $startDate, $endDate, $pollState, $imagePath);
+            $stmt = $conn->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, poll_link, path_image, poll_token) 
+            VALUES (?, ?, ?, ?, ?, NULL, NULL, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $question, $userId, $startDate, $endDate, $pollState, $token, $imagePath, $token);
             $stmt->execute();
 
             // Obtener el ID de la encuesta que acabamos de insertar

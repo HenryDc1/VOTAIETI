@@ -1,4 +1,6 @@
 
+
+
 CREATE DATABASE VOTE;
 USE VOTE;
 
@@ -28,6 +30,7 @@ CREATE TABLE poll (
     results_visibility ENUM('public','private','hidden') ,
     poll_link varchar(255) ,
     path_image varchar(255) DEFAULT NULL,
+    poll_token VARCHAR(255) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     INDEX poll_id_poll_link_idx (poll_id, poll_link)  -- Añade este índice
 );

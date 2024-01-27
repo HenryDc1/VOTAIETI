@@ -51,7 +51,7 @@ if(!isset($_SESSION['email'])) {
         <?php if (!$conditions_accepted): ?>
         <div id="termsPopup">
             <form method="post" action="accept_terms.php">
-                <h2>Texto de Aceptación de Condiciones para la Página Web Votaieti:</h2>
+                <h2>Aceptación de Condiciones para la Página Web Votaieti:</h2>
                 <label for="acceptTerms">Al utilizar Votaieti, aceptas nuestra política de privacidad y seguridad. Comprometidos con tu confidencialidad, no compartimos tus datos sin consentimiento. Utiliza la plataforma de manera ética y legal, respetando derechos de propiedad intelectual. Aceptas recibir comunicaciones relacionadas con la plataforma. Nos reservamos el derecho de terminar cuentas por violaciones o actividades perjudiciales. ¡Gracias por ser parte de Votaieti!</label>
                 <br><br>
                 <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
