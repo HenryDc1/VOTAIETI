@@ -150,75 +150,118 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Encuesta ' . $pollId . '</title>
             <style>
-            body {
+            .bodyVota {
+                margin: 0;
+                padding: 0;
+            }
+
+            .bodyVota .imagenCabecera {
+                padding: 200px;
+                background-image: url("../imgs/votacion.jpg");
+            }
+
+            .imagenCabecera h1 {
+                margin-bottom: -30px;
+                font-family: "Playfair Display", serif;
+                font-size: 100px;
+                color: #EDF2F4;
+                text-align: center;
+            }
+            .vota {
                 text-align: center;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
+                padding-top: 100px;
+                padding-bottom: 100px;
                 margin: 0;
-                padding-top: 50px; /* Ajusta este valor para mover la encuesta hacia abajo */
+               
+               
             }
-            .options {
+
+           .vota .options {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                gap: 40px;
                 justify-items: center;
             }
-            .options div {
-                padding: 0 20px; /* Añade espacio lateral */
-            }
+
+            
             .options label {
-                font-size: 50px; /* Ajusta el tamaño del texto de las opciones */
+                font-size: 20px !important; /* Aumenta el tamaño del texto de las opciones */
             }
+
+            
             img {
                 width: 200px;
                 height: 200px;
+                padding-top: 10px;
+            }
+            .imgHeader {
+                width: 80px;
+                margin: 10px;
+                height: 75px;
+                transition-duration: 3s;
+            }
+
+            .logoimgFooter {
+                width: 60px;
+                height: 50px;
             }
             h1 {
                 margin-bottom: 50px; /* Añade espacio debajo de la pregunta */
-                font-family: \'Playfair Display\', serif; /* Añade el tipo de letra */
+                font-family: "Playfair Display", serif; /* Añade el tipo de letra */
             }
             button {
                 margin-top: 50px; /* Añade espacio encima del botón */
             }
             </style>
-        </head>
-
-        <body class="bodyIndex">
-
+            </head>
+       
+             <body class="bodyVota">
             <div class="contenedorHeader">
                 <?php include "../header.php"; ?>
             </div>
-            
+
+            <div class="contenedor">
+            <div class="imagenCabecera">
+                <h1>VOTAIETI</h1>
+                <h2>Tu elección, nuestro compromiso global</h2>
+            </div>
+
+            <div class="vota">
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
 
-        // Si la encuesta tiene una imagen, añádela
-        if ($imagePath) {
-            $phpContent .= '<img src="/'. $imagePath.'" alt="Imagen de la pregunta">';
-        }
-
-        $phpContent .= '<div class="options">';
-        // Añadir las opciones a la encuesta
-        for ($i = 1; $i <= $pollData['numOptions']; $i++) {
-            $phpContent .= '<div><input type="checkbox" id="option' . $i . '" name="option' . $i . '"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
-
-            // Obtener la ruta de la imagen de la opción de la base de datos
-            $stmt = $pdo->prepare("SELECT path_image FROM poll_options WHERE poll_id = ? AND option_text = ?");
-            $stmt->execute([$pollId, $pollData['option' . $i]]);
-            $optionImagePath = $stmt->fetchColumn();
-
-            // Si la opción tiene una imagen, añádela
-            if ($optionImagePath) {
-                $phpContent .= '<br><img src="/' . $optionImagePath . '" alt="Imagen de la opción ' . $i . '">';
+            // Si la encuesta tiene una imagen, añádela
+            if ($imagePath) {
+                $phpContent .= '<img src="/'. $imagePath.'" alt="Imagen de la pregunta">';
             }
+            $phpContent .= '<div class="vota">';
+            $phpContent .= '<div class="options">';
+            // Añadir las opciones a la encuesta
+            for ($i = 1; $i <= $pollData['numOptions']; $i++) {
+                $phpContent .= '<div><input type="checkbox" id="option' . $i . '" name="option' . $i . '"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
+            
+                // Obtener la ruta de la imagen de la opción de la base de datos
+                $stmt = $pdo->prepare("SELECT path_image FROM poll_options WHERE poll_id = ? AND option_text = ?");
+                $stmt->execute([$pollId, $pollData['option' . $i]]);
+                $optionImagePath = $stmt->fetchColumn();
+            
+                // Si la opción tiene una imagen, añádela
+                if ($optionImagePath) {
+                    $phpContent .= '<br><img src="/' . $optionImagePath . '" alt="Imagen de la opción ' . $i . '">';
+                }
+                $phpContent .= '</div>';
+            }
+            $phpContent .= '</div>'; // Cierre del div de las opciones
+            $phpContent .= '<button type="submit">Enviar</button></div>'; // Cierre del div de vota
             $phpContent .= '</div>';
-        }
-        $phpContent .= '</div><button type="submit">Enviar</button></body></html>';
-
-        // Ahora puedes generar el archivo PHP
-        file_put_contents('Poll/poll' . $pollId . '.php', $phpContent);
+            $phpContent .= '<div class="contenedorFooter">';
+            $phpContent .= '<?php include "../footer.php"; ?>';
+            $phpContent .= '</div>';
+            // Ahora puedes generar el archivo PHP
+            file_put_contents('Poll/poll' . $pollId . '.php', $phpContent);
                 
         
 
