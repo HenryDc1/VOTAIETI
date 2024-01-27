@@ -719,6 +719,44 @@ input:valid+label {
     color: #2B2D42;
 }
 
+
+
+/* ---------------------------------------------------- */
+/* TERMINOS Y CONDICIONES DEL DASHBOARD */
+
+#termsPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#termsPopup form {
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    background: white;
+    border: 2px solid rgba(43, 45, 66, 0.9)
+}
+
+#termsPopup label {
+    font-size: 16px;
+    text-align: center; /* Justifica el texto */
+
+}
+
+
+
+
+
+
+
 /* ---------------------------------------------------- */
 /* ERROR403.PHP*/
 .bodyError403 {

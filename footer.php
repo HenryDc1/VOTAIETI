@@ -1,7 +1,7 @@
 <?php
     echo '<footer>
         <div class="footer-section1"><strong>Arnau Mestre</strong><br>
-            <a href="mailto:amestre.cf@iesesteveterradas.cat">amestre.cf@iesesteveterradas.cat</a><br>
+            <a href="mailto:amestrevizcaino.cf@iesesteveterradas.cat">amestre.cf@iesesteveterradas.cat</a><br>
             <a href="https://github.com/cl6mh7">GitHub</a> |
             <a href="https://instagram.com">Instagram</a> | 
             <a href="https://twitter.com">Twitter</a> | 
@@ -19,7 +19,7 @@
         </div>
         
         <div class="footer-section3"><strong>Henry Doudo</strong><br>
-            <a href="mailto:hdoudo.cf@iesesteveterradas.cat">hdoudo.cf@iesesteveterradas.cat</a><br>
+            <a href="mailto:hdoudocaicedo.cf@iesesteveterradas.cat">hdoudo.cf@iesesteveterradas.cat</a><br>
             <a href="https://github.com/cl6mh7">GitHub</a> |
             <a href="https://instagram.com">Instagram</a> | 
             <a href="https://twitter.com">Twitter</a> | 
