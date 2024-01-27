@@ -897,6 +897,27 @@ input:valid+label {
     color: white;
 }
 
+/* Botón de añadir y quitar opción */
+#addOption, #removeOption {
+    background-color: #607D8B; /* Color de fondo azul gris */
+    border: 2px solid white; /* Borde blanco */
+    color: white; /* Color del texto */
+    padding: 8px 15px; /* Espaciado interno más pequeño */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin decoración de texto */
+    display: inline-block;
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    margin: 4px 2px; /* Margen */
+    cursor: pointer; /* Cambia el cursor a un puntero cuando se pasa por encima */
+    border-radius: 3px; /* Borde redondeado */
+}
+
+#removeOption {
+    background-color: #607D8B; /* Color de fondo azul gris */
+}
+
+
+
 /* ---------------------------------------------------- */
 /* LIST_POLL.PHP */
 .listPollContainer {
