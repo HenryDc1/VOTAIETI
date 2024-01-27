@@ -5,6 +5,7 @@ CREATE DATABASE VOTE;
 USE VOTE;
 
 
+select * from users;
 
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,6 +35,7 @@ CREATE TABLE poll (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     INDEX poll_id_poll_link_idx (poll_id, poll_link)  -- Añade este índice
 );
+
 
 
 CREATE TABLE poll_options (
