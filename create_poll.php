@@ -1,5 +1,12 @@
 <?php
 session_start(); // Iniciar la sesión
+// Verificar si la sesión 'email' está establecida
+if (!isset($_SESSION['email'])) {
+    // Redirigir al usuario a la página de inicio de sesión
+    header('Location: errores/error403.php');
+    exit();
+}
+
 $conn = new mysqli('localhost', 'root', 'root', 'VOTE');
 echo '<script src="js/script.js"></script>';
 
@@ -26,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar si la extensión del archivo es válida
         $validExtensions = array('jpg', 'jpeg', 'png', 'gif');
         if (!in_array($extension, $validExtensions)) {
-            echo 'El archivo subido no es una imagen válida. Solo se permiten archivos JPG, JPEG, PNG y GIF.';
+            $_SESSION['error'] = "Has subido un archivo no valido. Solo se permiten archivos JPG, JPEG, PNG y GIF..";
+            header('Location: create_poll.php');
             exit();
         }
 
@@ -61,12 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $currentDate = date("Y-m-d");
             $pollState = "";
         
-            // Validar que la fecha de inicio no sea anterior a la fecha actual
-            if ($startDate < $currentDate) {
-                echo "La fecha de inicio de la encuesta no puede ser anterior a la fecha actual.";
-                exit();
-                
-            }
+             // Validar que la fecha de inicio no sea anterior a la fecha actual
+ 
 
             if ($currentDate < $startDate) {
                 $pollState = "not_started";
@@ -112,8 +116,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $target_file = NULL;
                                     }
                                 } else {
-                                    echo "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
+                                    $_SESSION['error'] = "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
+                                    header('Location: create_poll.php');
                                     $target_file = NULL;
+                                    exit();
+                                    
                                 }
                             } else {
                                 echo "El archivo es demasiado grande.";
@@ -208,7 +215,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if($(this).val().trim() !== '') {
                     if(optionCount == 0) {
                         $('#pollForm').append('<div class="datosCreatePoll" id="optionsDiv"><label id="numeroOpciones">Opciones:</label><button type="button" id="removeOption" style="display: none;">-</button><button type="button" id="addOption">+</button><div id="optionInputs"></div></div>');
-                        $('#pollForm').append('<div class="datosCreatePoll" id="datesDiv"><input type="date" id="startDate" name="startDate" required><label for="startDate">Fecha de Inicio y Finalización:</label><input type="date" id="endDate" name="endDate" required><label for="endDate"></label></div>');
+                        var today = new Date().toISOString().split('T')[0];
+                        $('#pollForm').append('<div class="datosCreatePoll" id="datesDiv"><input type="date" id="startDate" name="startDate" min="' + today + '" required><label for="startDate">Fecha de Inicio y Finalización:</label><input type="date" id="endDate" name="endDate" required><label for="endDate"></label></div>');
                         $('#pollForm').append('<button class="btnCreatePoll"type="submit" id="submitBtn">Crear Encuesta</button>');
                         addOption();
                         addOption();
@@ -234,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         function addOption() {
             optionCount++;
             $('#optionInputs').append('<input placeholder="Opción '+optionCount+'" type="text" id="option'+optionCount+'" name="option'+optionCount+'" required>');
-            $('#optionInputs').append('<input type="file" id="optionImage'+optionCount+'" name="optionImage'+optionCount+'">');
+            $('#optionInputs').append('<input type="file" id="optionImage'+optionCount+'" name="optionImage'+optionCount+'" accept="image/*">');
             if(optionCount > 2) {
                 $('#removeOption').show();
             }
@@ -244,6 +252,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     });
     
     </script>
+
+    <script>
+        
+        $(document).ready(function() {
+           var error = "<?php echo $_SESSION['error']; ?>";
+             if (error) {
+            showErrorPopup(error);
+            <?php unset($_SESSION['error']); ?>
+            }
+        });
+        
+    </script>
+    
+ 
 </body>
 </html>
 
