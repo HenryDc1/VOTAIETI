@@ -2,6 +2,18 @@
 <?php
 session_start(); // Inicia una nueva sesión o reanuda la existente
 
+include 'db_connection.php';
+
+$email = $_SESSION['email'];
+
+$querystr = "SELECT conditions_accepted FROM users WHERE email = :email";
+$query = $pdo->prepare($querystr);
+$query->bindParam(':email', $email);
+$query->execute();
+
+$fila = $query->fetch(PDO::FETCH_ASSOC);
+$conditions_accepted = $fila['conditions_accepted'];
+
 // Verifica si el usuario ha iniciado sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
@@ -34,11 +46,26 @@ if(!isset($_SESSION['email'])) {
         <div class="contenedorHeader">
             <?php include 'header.php'; ?>
         </div>
+        
+        <!-- SI NO SE ACEPTAN LAS CONDICIONES NO PODRA ACER USO DEL DASBOARD  -->
+        <?php if (!$conditions_accepted): ?>
+        <div id="termsPopup">
+            <form method="post" action="accept_terms.php">
+                <h2>Aceptación de Condiciones para la Página Web Votaieti:</h2>
+                <label for="acceptTerms">Al utilizar Votaieti, aceptas nuestra política de privacidad y seguridad. Comprometidos con tu confidencialidad, no compartimos tus datos sin consentimiento. Utiliza la plataforma de manera ética y legal, respetando derechos de propiedad intelectual. Aceptas recibir comunicaciones relacionadas con la plataforma. Nos reservamos el derecho de terminar cuentas por violaciones o actividades perjudiciales. ¡Gracias por ser parte de Votaieti!</label>
+                <br><br>
+                <input type="checkbox" id="acceptTerms" name="acceptTerms" required>
+                <label for="acceptTerms">Acepto los términos y condiciones    </label>
+                <button type="submit">Aceptar</button>
+            </form>
+        </div>
+    <?php endif; ?>
 
         <div class="imagenCabecera">
             <h1>VOTAIETI</h1>
             <h2>Panel de control</h2>
         </div>
+       
 
         <div class="dashboardContenedor">
             
