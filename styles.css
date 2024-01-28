@@ -1002,9 +1002,10 @@ td:nth-child(2) {
 
 .inviteContainer {
     margin: 50px auto; /* Esto agrega espacio alrededor y centra el contenedor */
-    padding: 100px; /* Esto agrega espacio dentro del contenedor */
     width: 50%; /* Esto define el ancho del contenedor */
     box-sizing: border-box; /* Esto asegura que el padding y el borde se incluyan en el ancho total del contenedor */
+    margin-bottom: 150px;
+    margin-top: 150px;
 }
 
 

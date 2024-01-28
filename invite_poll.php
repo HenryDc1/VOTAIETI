@@ -4,25 +4,33 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require "vendor/autoload.php";
-if (isset($_POST['poll_id'])) {
-    $pollId = $_POST['poll_id'];
-    // Ahora puedes usar $pollId en tu código
-}
+
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
     header('Location: errores/error403.php');
     exit;
 }
+
+if (isset($_POST['poll_id'])) {
+    $pollId = $_POST['poll_id'];
+    error_log("Poll ID: " . $pollId); // Debug line
+}
+
 // Incluir el archivo de conexión
 include 'db_connection.php';
 
 // Obtener el poll_token de la encuesta seleccionada
 $query = "SELECT poll_token FROM poll WHERE poll_id = :pollId";
-$stmt = $conn->prepare($query);
+$stmt = $pdo->prepare($query);
 $stmt->bindParam(':pollId', $pollId, PDO::PARAM_INT);
+
 $stmt->execute();
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-$pollToken = $row['poll_token'];
+if ($stmt->rowCount() > 0) {
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $pollToken = $row['poll_token'];
+
+}
+
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
 $passwordEmail = "";
@@ -57,8 +65,7 @@ if(isset($_POST['emails'])) {
             $mail->SetFrom($senderEmail, "VOTAIETI");
             $mail->Subject = 'Invitacion para votar en una encuesta';
             $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
-            $mail->MsgHTML('Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href="http://localhost:3000/accept_invitation.php?token=' . $pollToken . '">Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src="cid:logo_img">');
-
+            $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='http://localhost:3000/accept_invitation.php?poll_token=" . $pollToken . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
             // Enviar el correo electrónico
             if(!$mail->send()) {
                 echo 'Message could not be sent.';
@@ -69,7 +76,7 @@ if(isset($_POST['emails'])) {
         }
 
         // Esperar 5 minutos antes de enviar el próximo paquete
-        sleep(300);
+        
     }
 }
 ?>
@@ -101,16 +108,23 @@ if(isset($_POST['emails'])) {
 
     <div class="imagenCabecera">
         <h1>VOTAIETI</h1>
-        <h2>Invita a votar</h2>
+        <h2>Panel de Invitación</h2>
     </div>
  
     <div class="inviteContainer">
-            <p>Invita a tus amigos a participar en la encuesta. Solo necesitas introducir sus direcciones de correo electrónico, separadas por comas. Cada destinatario recibirá un enlace para votar en la encuesta seleccionada. Ten en cuenta que los correos electrónicos se enviarán en paquetes de 5 cada 5 minutos para evitar el spam. Nosotros nos encargaremos del resto.</p>        <form action="send_invites.php" method="post">
+            <p>Invita a tus amigos a participar en la encuesta. Solo necesitas introducir sus direcciones de correo electrónico, separadas por comas. Cada destinatario recibirá un enlace para votar en la encuesta seleccionada. Ten en cuenta que los correos electrónicos se enviarán en paquetes de 5 cada 5 minutos para evitar el spam. Nosotros nos encargaremos del resto.</p>        <form action="invite_poll.php" method="post">
             <br><br>
             <label for="emails">Correos electrónicos (separados por comas):</label>
             <textarea id="emails" name="emails" rows="10"></textarea>
             <input type="submit" value="Invitar" class="submit-button">
         </form>
+
+        </form>
+        <?php
+            // Assuming $pollId and $pollToken are available in this scope
+            echo "Poll ID: " . $pollId . "<br>";
+            echo "Poll Token: " . $pollToken . "<br>";
+        ?>
     </div>
     
 
