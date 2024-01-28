@@ -126,63 +126,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php include 'footer.php'; ?>
     </div>
     <script>
-        $(document).ready(function() {
-            // Variable para verificar si el elemento newOptionSet ya se creó
-            var isNewOptionSetCreated = false;
-            // Variable para verificar si el elemento newDateSet ya se creó
-            var isNewDateSetCreated = false;
+       $(document).ready(function() {
+    // Restablecer las banderas al inicio
+    var isNewOptionSetCreated = false;
+    var isNewDateSetCreated = false;
+    var isNewButtonCreated = false;
 
-            var isNewButtonCreated = false;
+    setupOptionEvents(); // Configurar eventos para el conjunto inicial de campos de opciones
 
-            // Configurar eventos para el conjunto inicial de campos de opciones
+    $('#question').on('input', function() {
+        // Restablecer todas las banderas y eliminar elementos si la pregunta está vacía
+        if ($('#question').val().trim() === '') {
+            $('#optionSet').remove();
+            $('#dateStartSet').remove();
+            $('#dateEndSet').remove();
+            $('#btnCreatePoll').remove();
+            isNewOptionSetCreated = false;
+            isNewDateSetCreated = false;
+            isNewButtonCreated = false;
+        }
+    });
+
+    $('#question').on('keydown', function(e) {
+        if ((e.which === 9 || e.which === 13) && !isNewOptionSetCreated) {
+            e.preventDefault();
+            var questionValue = $('#question').val();
+            if (questionValue.trim() === '') {
+                return;
+            }
+            const newOptionSet = $('<div class="datosCreatePoll" id="optionSet">' +
+                '<label id="numeroOpciones">Número de opciones:</label>' +
+                '<button type="button" id="addOption">+</button>' +
+                '<button type="button" id="removeOption" style="display: none;">-</button>' +
+                '<div id="optionInputs"></div>' +
+                '</div>');
+            $('#pollForm').append(newOptionSet);
             setupOptionEvents();
-
-            // Manejar cambios en el campo de pregunta para borrar #optionSet si está vacío
-            $('#question').on('input', function() {
-                if ($('#question').val().trim() === '') {
-                    $('#optionSet').remove();
-                    $('#dateStartSet').remove();
-                    $('#dateEndSet').remove();
-                    $('#btnCratePoll').remove();
-                    isNewOptionSetCreated = false; // Restablecer la bandera
-                    isNewDateSetCreated = false; // Restablecer la bandera
-                    isNewButtonCreated = false;
-
-                }
-            });
-
-            // Manejar la pulsación de tecla en el campo de pregunta
-            $('#question').on('keydown', function(e) {
-                if (e.which === 9 || e.which === 13 && !isNewOptionSetCreated) { // TAB key code y verificar si aún no se ha creado
-                    e.preventDefault();
-
-                    // Obtener el valor del campo de pregunta
-                    var questionValue = $('#question').val();
-
-                    // Verificar si el campo de pregunta está vacío
-                    if (questionValue.trim() === '') {
-                        return;
-                    }
-
-                    // Crear el elemento y agregarlo al contenedor
-                    const newOptionSet = $(
-                        '<div class="datosCreatePoll" id="optionSet">' +
-                        '<label id="numeroOpciones">Número de opciones:</label>' +
-                        '<button type="button" id="addOption">+</button>' +
-                        '<button type="button" id="removeOption" style="display: none;">-</button>' +
-                        '<div id="optionInputs"></div>' +
-                        '</div>'
-                    );
-
-                    $('#pollForm').append(newOptionSet);
-
-                    // Configurar eventos para el nuevo conjunto de campos de opciones
-                    setupOptionEvents();
-
-                    // Marcar que el elemento newOptionSet ya se creó
-                    isNewOptionSetCreated = true;
-                }
-            });
+            isNewOptionSetCreated = true;
+            
+            // Restablecer la bandera isNewDateSetCreated
+            isNewDateSetCreated = false;
+        }
+    });
 
             function setupOptionEvents() {
                 var numOptions = 2;
@@ -223,34 +208,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             $(document).on('keydown', '#optionInputs input[type="text"]', function(e) {
-                if (e.which === 9 || e.which === 13 &&  !isNewDateSetCreated) { // TAB key code y verificar si aún no se ha creado
-                    e.preventDefault();
-
-                    // Obtener el valor de los campos de opciones
-                    var option1Value = $('#option1').val();
-                    var option2Value = $('#option2').val();
-
-                    // Verificar si ambos campos de opciones están llenos
-                    if (option1Value.trim() !== '' && option2Value.trim() !== '') {
-                        // Crear el elemento de fecha y agregarlo al contenedor
-                        const newDateSet = $(
-                            '<div class="datosCreatePoll" id="dateStartSet">' +
-                            '<input type="date" id="startDate" name="startDate" required>' +
-                            '<label for="startDate">Fecha de Inicio:</label>' +
-                            '</div>' +
-                            '<div class="datosCreatePoll" id="dateEndSet">' +
-                            '<input type="date" id="endDate" name="endDate" required>' +
-                            '<label for="endDate">Fecha de Finalización:</label>' +
-                            '</div>'
-                        );
-
-                        $('#pollForm').append(newDateSet);
-
-                        // Marcar que el elemento newDateSet ya se creó
-                        isNewDateSetCreated = true;
-                    }
-                }
-            });
+        if ((e.which === 9 || e.which === 13) && !isNewDateSetCreated) {
+            e.preventDefault();
+            var option1Value = $('#option1').val();
+            var option2Value = $('#option2').val();
+            if (option1Value.trim() !== '' && option2Value.trim() !== '') {
+                const newDateSet = $('<div class="datosCreatePoll" id="dateStartSet">' +
+                    '<input type="date" id="startDate" name="startDate" required>' +
+                    '<label for="startDate">Fecha de Inicio:</label>' +
+                    '</div>' +
+                    '<div class="datosCreatePoll" id="dateEndSet">' +
+                    '<input type="date" id="endDate" name="endDate" required>' +
+                    '<label for="endDate">Fecha de Finalización:</label>' +
+                    '</div>');
+                $('#pollForm').append(newDateSet);
+                isNewDateSetCreated = true;
+                
+                // Restablecer la bandera isNewButtonCreated
+                isNewButtonCreated = false;
+            }
+        }
+    });
 
             $(document).on('input change', '#optionInputs input[type="text"], #startDate, #endDate', function() {
                 var option1Value = $('#option1').val();
