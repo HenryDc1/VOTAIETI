@@ -14,10 +14,13 @@ if(!isset($_SESSION['email'])) {
 if (isset($_POST['poll_id'])) {
     $pollId = $_POST['poll_id'];
     error_log("Poll ID: " . $pollId); // Debug line
+} else {
+    error_log("Poll ID not set in POST data");
 }
 
 // Incluir el archivo de conexión
 include 'db_connection.php';
+$pollToken = null; // Define $pollToken before the query
 
 // Obtener el poll_token de la encuesta seleccionada
 $query = "SELECT poll_token FROM poll WHERE poll_id = :pollId";
@@ -28,7 +31,9 @@ $stmt->execute();
 if ($stmt->rowCount() > 0) {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $pollToken = $row['poll_token'];
-
+    error_log("Poll token: " . $pollToken); // Debug line
+} else {
+    error_log("No poll found with the provided ID");
 }
 
 
@@ -65,8 +70,8 @@ if(isset($_POST['emails'])) {
             $mail->SetFrom($senderEmail, "VOTAIETI");
             $mail->Subject = 'Invitacion para votar en una encuesta';
             $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
+            error_log("Poll token before sending mail: " . $pollToken); // Debug line
             $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='http://localhost:3000/accept_invitation.php?poll_token=" . $pollToken . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
-            // Enviar el correo electrónico
             if(!$mail->send()) {
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
@@ -76,7 +81,6 @@ if(isset($_POST['emails'])) {
         }
 
         // Esperar 5 minutos antes de enviar el próximo paquete
-        
     }
 }
 ?>
