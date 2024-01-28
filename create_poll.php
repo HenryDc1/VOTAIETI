@@ -134,12 +134,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
+
+        // GENERAR EL ARCHIVO PHP DE LA ENCUESTA //
+
         $pollData = $_POST;
 
         // Obtener la ruta de la imagen de la base de datos
         $stmt = $pdo->prepare("SELECT path_image FROM poll WHERE poll_id = ?");
         $stmt->execute([$pollId]);
         $imagePath = $stmt->fetchColumn();
+        
+
         
         $phpContent = '
         <!DOCTYPE html>
@@ -216,6 +221,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             button {
                 margin-top: 50px; /* Añade espacio encima del botón */
             }
+            #botonEnviar {
+                padding: 10px 20px;
+                border-radius: 5px;
+                background: linear-gradient(45deg, #EF233C 50%, #D80032 50%);
+                background-size: 200% 200%;
+                background-position: 100%;
+                border: none;
+                border-radius: 10px;
+                font-family: "Lato", sans-serif;
+                font-size: 15px;
+                color: #EDF2F4;
+                cursor: pointer;
+                transition: background-position 1s, color 1s;
+            }
             </style>
             </head>
        
@@ -231,6 +250,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="vota">
+            
+
+
+            
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
 
             // Si la encuesta tiene una imagen, añádela
@@ -255,7 +278,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $phpContent .= '</div>';
             }
             $phpContent .= '</div>'; // Cierre del div de las opciones
-            $phpContent .= '<button type="submit">Enviar</button></div>'; // Cierre del div de vota
+            $phpContent .= '<button type="submit" id="botonEnviar">Enviar</button></div>'; // Cierre del div de vota
             $phpContent .= '</div>';
             $phpContent .= '<div class="contenedorFooter">';
             $phpContent .= '<?php include "../footer.php"; ?>';
@@ -265,7 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
         
 
-
+            //////////////////////////////////////////////////////////////////
 
 
             echo "<script>
