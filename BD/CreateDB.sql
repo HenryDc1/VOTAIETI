@@ -1,11 +1,8 @@
 
 
-
 CREATE DATABASE VOTE;
 USE VOTE;
 
-
-select * from users;
 
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -20,6 +17,7 @@ CREATE TABLE users (
     token_accepted BOOLEAN NOT NULL,
     conditions_accepted BOOLEAN NOT NULL
 );
+
 CREATE TABLE poll (
     poll_id INT AUTO_INCREMENT PRIMARY KEY,
     question VARCHAR(255) NOT NULL,
@@ -29,14 +27,11 @@ CREATE TABLE poll (
     poll_state ENUM('active','blocked','not_started','finished') ,
     question_visibility ENUM('public','private','hidden') ,
     results_visibility ENUM('public','private','hidden') ,
-    poll_link varchar(255) ,
     path_image varchar(255) DEFAULT NULL,
     poll_token VARCHAR(255) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    INDEX poll_id_poll_link_idx (poll_id, poll_link)  -- Añade este índice
+    INDEX poll_token_index (poll_token)  -- Añade este índice
 );
-
-
 
 CREATE TABLE poll_options (
     option_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -48,13 +43,9 @@ CREATE TABLE poll_options (
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
 );
 
-
-
 CREATE TABLE user_guest (
     guest_email VARCHAR(255) PRIMARY KEY
 );
-
-
 
 CREATE TABLE user_vote (
     vote_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -69,18 +60,17 @@ CREATE TABLE user_vote (
     FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email)
 );
 
-
-
 CREATE TABLE invitation (
     invitation_id INT AUTO_INCREMENT PRIMARY KEY,
     poll_id INT NOT NULL,
     guest_email VARCHAR(255),
     sent_date DATETIME,
-    poll_link VARCHAR(255),
+    poll_token varchar(255) not null,
+    token_accepted BOOLEAN NOT NULL,
     FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email),
-    FOREIGN KEY (poll_id, poll_link) REFERENCES poll(poll_id, poll_link)
+    FOREIGN KEY (poll_id) REFERENCES poll(poll_id),
+    FOREIGN KEY (poll_token) REFERENCES poll(poll_token)
 );
-
 CREATE TABLE IF NOT EXISTS pais (
   id int(11) NOT NULL AUTO_INCREMENT,
   paisnombre varchar(250) COLLATE utf8_unicode_ci NOT NULL,

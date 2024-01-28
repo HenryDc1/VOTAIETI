@@ -1,5 +1,9 @@
 <?php
 session_start(); // Iniciar la sesión
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require "vendor/autoload.php";
 if (isset($_POST['poll_id'])) {
     $pollId = $_POST['poll_id'];
     // Ahora puedes usar $pollId en tu código
@@ -12,6 +16,62 @@ if(!isset($_SESSION['email'])) {
 // Incluir el archivo de conexión
 include 'db_connection.php';
 
+// Obtener el poll_token de la encuesta seleccionada
+$query = "SELECT poll_token FROM poll WHERE poll_id = :pollId";
+$stmt = $conn->prepare($query);
+$stmt->bindParam(':pollId', $pollId, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$pollToken = $row['poll_token'];
+
+$senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
+$passwordEmail = "";
+
+if(isset($_POST['emails'])) {
+    $emails = array_unique(array_map('trim', explode(',', $_POST['emails']))); // Divide los correos en un array y elimina duplicados y espacios en blanco
+
+    // Validar los correos electrónicos
+    $emails = array_filter($emails, function($email) {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    });
+
+    // Dividir los correos electrónicos en paquetes de 5
+    $emailChunks = array_chunk($emails, 5);
+
+    foreach($emailChunks as $chunk) {
+        foreach($chunk as $email) {
+            // Crear una nueva instancia de PHPMailer
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->Mailer = "smtp";
+            $mail->SMTPDebug  = 0;  
+            $mail->SMTPAuth   = TRUE;
+            $mail->SMTPSecure = "tls";
+            $mail->Port       = 587;
+            $mail->Host       = "smtp.gmail.com";
+            $mail->Username   = $senderEmail;
+            $mail->Password   = $passwordEmail;
+            $mail->IsHTML(true);
+            $mail->CharSet = 'UTF-8'; 
+            $mail->AddAddress($email);
+            $mail->SetFrom($senderEmail, "VOTAIETI");
+            $mail->Subject = 'Invitacion para votar en una encuesta';
+            $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
+            $mail->MsgHTML('Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href="http://localhost:3000/accept_invitation.php?token=' . $pollToken . '">Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src="cid:logo_img">');
+
+            // Enviar el correo electrónico
+            if(!$mail->send()) {
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                echo 'Message has been sent';
+            }
+        }
+
+        // Esperar 5 minutos antes de enviar el próximo paquete
+        sleep(300);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +86,7 @@ include 'db_connection.php';
     <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
     <meta property="og:image" content="../imgs/votaietilogo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
+    <meta name="author" content="Arnau Mestre, Alejandro Soldado y Henry Doudo">
     <title>Panel de Invitación — Votaieti</title>
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
     <link rel="stylesheet" href="styles.css">
@@ -52,6 +112,8 @@ include 'db_connection.php';
             <input type="submit" value="Invitar" class="submit-button">
         </form>
     </div>
+    
+
     
 
     <div class="contenedorFooter">
