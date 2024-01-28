@@ -1,6 +1,13 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require "vendor/autoload.php";
 session_start();
 include 'db_connection.php'; 
+
+// Correo electrónico del remitente (hardcodeado)
+$senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
+$passwordEmail = "";
 
 // Muestra el mensaje de error si existe
 if (isset($_SESSION['error'])) {
@@ -40,22 +47,49 @@ if(!empty($_POST)){
         exit;
     }
 
-    // Verificar si el teléfono ya existe
-    $sql = "SELECT * FROM users WHERE phone_number = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$telephone]);
-    if ($stmt->rowCount() > 0) {
-        $_SESSION['error'] = 'El teléfono ya existe';
-        header('Location: RegisterPruebas.php');
-        exit;
-    }
+    $token = bin2hex(random_bytes(50));
 
     // Preparar la sentencia SQL
-    $sql = "INSERT INTO users (user_name, email, password, phone_number, country, city, zipcode)
-    VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO users (user_name, email, password, phone_number, country, city, zipcode, token, token_accepted, conditions_accepted)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, FALSE, FALSE)";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode]);
+    $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode, $token]);
+
+   // Crear una nueva instancia de PHPMailer
+   
+   $mail = new PHPMailer();
+   $mail->IsSMTP();
+   $mail->Mailer = "smtp";
+   $mail->SMTPDebug  = 0;  
+   $mail->SMTPAuth   = TRUE;
+   $mail->SMTPSecure = "tls";
+   $mail->Port       = 587;
+   $mail->Host       = "smtp.gmail.com";
+   $mail->Username   = $senderEmail;
+   $mail->Password   = $passwordEmail;
+   $mail->IsHTML(true);
+   $mail->CharSet = 'UTF-8'; 
+   $mail->AddAddress($email, $username);
+   $mail->SetFrom($senderEmail, "VOTAIETI");
+   $mail->Subject = 'Verificación de correo electrónico';
+   
+   
+   $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
+   
+   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
+   
+
+// Enviar el correo electrónico
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+}
+   
+    
+  
 
     // Comprobar si se insertó el registro
     if ($stmt->rowCount() > 0) {
@@ -65,7 +99,7 @@ if(!empty($_POST)){
                     var successPopup = $('<div/>', {
                         id: 'successPopup',
                         text: message,
-                        style: 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
+                        style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
                     });
 
                     // Crear el botón 'X'
@@ -86,7 +120,7 @@ if(!empty($_POST)){
                     });
                 }
                 window.onload = function () {
-                    showSuccesPopup('Usuario registrado con éxito');
+                    showSuccesPopup('Usuario registrado con éxito. Te llegará un correo para validar tu cuenta');
                 };
               </script>";
     }
@@ -121,66 +155,10 @@ var countrySelectHTML = '<?= $countrySelectHTML ?>';
 
             <form class="creacuentaRegister" action="register.php" method="post">
                 <h1>REGÍSTRATE</h1>
-                <img class="logoLogin" src="/imgs/logosinfondo.png" alt="">
-    
+                <img class="logoLogin" src="logosinfondo.png" alt="">
+
         </div>
 
         <?php include 'footer.php'; ?>
     </body>
 </html>
-<?php
-
-if(!empty($_POST)){
-
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = hash('sha256', $_POST['password']); // Encripta la contraseña con SHA-256
-    $telephone = $_POST['telephone'];
-    $country = $_POST['country'];
-    $city = $_POST['city'];
-    $zipcode = $_POST['zipcode'];
-
-    //$token = bin2hex(random_bytes(16)); // Genera un token aleatorio
-
-    // Preparar la sentencia SQL
-    $sql = "INSERT INTO users (user_name, email, password, phone_number, country, city, zipcode)
-    VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode, $token]);
-
-    // Comprobar si se insertó el registro
-    if ($stmt->rowCount() > 0) {
-        echo "<script>
-                function showSuccesPopup(message) {
-                    // Crear la ventana flotante
-                    var successPopup = $('<div/>', {
-                        id: 'successPopup',
-                        text: message,
-                        style: 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
-                    });
-
-                    // Crear el botón 'X'
-                    var closeButton = $('<button/>', {
-                        text: 'X',
-                        style: 'position: absolute; top: 0; right: 0; background-color: transparent; color: white; border: none; font-size: 20px; cursor: pointer;'
-                    });
-
-                    // Añadir el botón 'X' a la ventana flotante
-                    successPopup.append(closeButton);
-
-                    // Añadir la ventana flotante al cuerpo del documento
-                    $('body').append(successPopup);
-
-                    // Manejador de eventos para el botón 'X'
-                    closeButton.click(function () {
-                        successPopup.remove();
-                    });
-                }
-                window.onload = function () {
-                    showSuccesPopup('Usuario registrado con éxito');
-                };
-              </script>";
-    }
-}
-?>
