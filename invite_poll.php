@@ -38,7 +38,7 @@ if ($stmt->rowCount() > 0) {
 
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "";
+$passwordEmail = "ArnauMestre169";
 
 if(isset($_POST['emails'])) {
     $emails = array_unique(array_map('trim', explode(',', $_POST['emails']))); // Divide los correos en un array y elimina duplicados y espacios en blanco
@@ -131,6 +131,7 @@ if(isset($_POST['emails'])) {
         }
 
         // Esperar 5 minutos antes de enviar el próximo paquete
+
     }
 }
 ?>

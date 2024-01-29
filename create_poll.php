@@ -1,5 +1,6 @@
 <?php
 session_start(); // Iniciar la sesión
+include 'log_function.php';
 // Verificar si la sesión 'email' está establecida
 if (!isset($_SESSION['email'])) {
     // Redirigir al usuario a la página de inicio de sesión
@@ -9,7 +10,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
 
 echo '<script src="js/script.js"></script>';
 
