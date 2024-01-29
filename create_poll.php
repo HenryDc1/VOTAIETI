@@ -1,5 +1,6 @@
 <?php
 session_start(); // Iniciar la sesión
+include 'log_function.php';
 // Verificar si la sesión 'email' está establecida
 if (!isset($_SESSION['email'])) {
     // Redirigir al usuario a la página de inicio de sesión
@@ -9,7 +10,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', '');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
 
 echo '<script src="js/script.js"></script>';
 
@@ -85,9 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $token = bin2hex(random_bytes(16));
 
     // Insertar la pregunta en la tabla de encuestas con el user_id
-    $stmt = $pdo->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, path_image, poll_token) 
-    VALUES (?, ?, ?, ?, ?, NULL, NULL, ?, ?)");
-    $stmt->execute([$question, $userId, $startDate, $endDate, $pollState, $imagePath, $token]);
+    $stmt = $pdo->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, path_image) 
+    VALUES (?, ?, ?, ?, ?, NULL, NULL, ?)");
+    $stmt->execute([$question, $userId, $startDate, $endDate, $pollState, $imagePath]);
     custom_log('Creacion de encuesta', "Se ha creado una encuesta correctamente");
 
 

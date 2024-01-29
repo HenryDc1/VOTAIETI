@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'db_connection.php';
+include 'log_function.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["acceptTerms"])) {
