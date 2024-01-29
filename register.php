@@ -4,6 +4,8 @@ use PHPMailer\PHPMailer\Exception;
 require "vendor/autoload.php";
 session_start();
 include 'db_connection.php'; 
+include 'logs/log_function.php';
+
 
 // Correo electrónico del remitente (hardcodeado)
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
