@@ -96,7 +96,37 @@ if(isset($_POST['emails'])) {
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
             } else {
-                echo 'Message has been sent';
+                echo   "<script>
+                function showSuccesPopup(message) {
+                    // Crear la ventana flotante
+                    var successPopup = $('<div/>', {
+                        id: 'successPopup',
+                        text: message,
+                        style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
+                    });
+
+                    // Crear el botón 'X'
+                    var closeButton = $('<button/>', {
+                        text: 'X',
+                        style: 'position: absolute; top: 0; right: 0; background-color: transparent; color: white; border: none; font-size: 20px; cursor: pointer;'
+                    });
+
+                    // Añadir el botón 'X' a la ventana flotante
+                    successPopup.append(closeButton);
+
+                    // Añadir la ventana flotante al cuerpo del documento
+                    $('body').append(successPopup);
+
+                    // Manejador de eventos para el botón 'X'
+                    closeButton.click(function () {
+                        successPopup.remove();
+                    });
+                }
+                window.onload = function () {
+                    showSuccesPopup('La encuesta ha sido enviada con éxito');
+                };
+              </script>";
+
             }
         }
 
