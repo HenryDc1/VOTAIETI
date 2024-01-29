@@ -7,7 +7,7 @@ include 'db_connection.php';
 
 // Correo electrónico del remitente (hardcodeado)
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "";
+$passwordEmail = "ArnauMestre169";
 
 // Muestra el mensaje de error si existe
 if (isset($_SESSION['error'])) {
@@ -120,7 +120,7 @@ if(!$mail->send()) {
                     });
                 }
                 window.onload = function () {
-                    showSuccesPopup('Usuario registrado con éxito');
+                    showSuccesPopup('Usuario registrado con éxito. Te llegará un correo para validar tu cuenta');
                 };
               </script>";
     }
