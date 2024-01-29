@@ -53,6 +53,26 @@ if(isset($_POST['emails'])) {
 
     foreach($emailChunks as $chunk) {
         foreach($chunk as $email) {
+
+        // Generar un token único
+        $token = bin2hex(random_bytes(16));
+
+        
+
+        // Insertar el correo electrónico del invitado en la tabla user_guest
+        $query = "INSERT IGNORE INTO user_guest (guest_email) VALUES (:email)";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Insertar el token en la tabla de invitaciones
+        $query = "INSERT INTO invitation (poll_id, guest_email, sent_date, token, token_accepted) VALUES (:pollId, :email, NOW(), :token, 0)";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':pollId', $pollId, PDO::PARAM_INT);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+        $stmt->execute();
+
             // Crear una nueva instancia de PHPMailer
             $mail = new PHPMailer();
             $mail->IsSMTP();
@@ -71,8 +91,8 @@ if(isset($_POST['emails'])) {
             $mail->Subject = 'Invitacion para votar en una encuesta';
             $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
             error_log("Poll token before sending mail: " . $pollToken); // Debug line
-            $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='http://localhost:3000/accept_invitation.php?poll_token=" . $pollToken . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
-            if(!$mail->send()) {
+            $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='http://localhost:3000/accept_invitation.php?token=" . $token . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
+                if(!$mail->send()) {
                 echo 'Message could not be sent.';
                 echo 'Mailer Error: ' . $mail->ErrorInfo;
             } else {
