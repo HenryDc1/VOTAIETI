@@ -965,7 +965,54 @@ td:nth-child(4) {
 
 
 
+/* ---------------------------------------------------- */
+/* INVITE_POLL.PHP */
 
+
+.inviteContainer {
+    margin: 50px auto; /* Esto agrega espacio alrededor y centra el contenedor */
+    width: 50%; /* Esto define el ancho del contenedor */
+    box-sizing: border-box; /* Esto asegura que el padding y el borde se incluyan en el ancho total del contenedor */
+    margin-bottom: 150px;
+    margin-top: 150px;
+}
+
+
+.inviteContainer p {
+    text-align: justify;
+    font-size: 18px; /* Cambia el tamaño de la fuente */
+    color: #333; /* Cambia el color del texto */
+    margin-bottom: 20px; /* Agrega espacio debajo del párrafo */
+    line-height: 1.6; /* Cambia el espacio entre las líneas de texto */
+}
+#emails {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+
+.submit-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #EF233C 50%, #D80032 50%);
+    background-size: 200% 200%;
+    background-position: 100%;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: #EDF2F4;
+    cursor: pointer;
+    transition: background-position 1s, color 1s;
+}
+.submit-button:hover {
+    background-position: 0%;
+    color: white;
+}
 
 /* ---------------------------------------------------- */
 /* FOOTER.PHP */

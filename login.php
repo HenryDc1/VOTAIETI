@@ -1,7 +1,7 @@
 <?php
     session_start();
     include 'db_connection.php';
-    
+    require 'log_function.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
@@ -13,6 +13,7 @@
 
         $query->bindParam(':email', $email);
         $query->bindParam(':contrasena', $contraseña);
+        
 
         $query->execute();
         
@@ -20,16 +21,21 @@
         if ($fila) {
             if ($fila['token_accepted'] == 0) {
                 $error_message = "<script type='text/javascript'>$(document).ready(function() { showErrorPopup('Todavía no has validado el email. Revisa la bandeja de entrada'); });</script>";
-           
+                custom_log('Login fallido', "El usuario $email intentó iniciar sesión pero no ha validado el email");
+
             } else {
                 $_SESSION['email'] = $email;
                 $_SESSION['user_name'] = $fila['user_name'];
                 echo '<script type="text/javascript">window.location = "dashboard.php";</script>';
+                custom_log('Login exitoso', "El usuario $email ha iniciado sesión correctamente");
+
                 exit;
             }
         } else {
             $error_message = "<script type='text/javascript'>$(document).ready(function() { showErrorPopup('Correo electrónico o contraseña incorrectos'); });</script>";
-        }
+            custom_log('Login fallido', "El usuario $email intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos");
+
+        }   
         unset($pdo);
         unset($query);
     }
