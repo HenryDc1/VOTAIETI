@@ -38,7 +38,7 @@ if ($stmt->rowCount() > 0) {
 
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "ArnauMestre169";
+$passwordEmail = "";
 
 if(isset($_POST['emails'])) {
     $emails = array_unique(array_map('trim', explode(',', $_POST['emails']))); // Divide los correos en un array y elimina duplicados y espacios en blanco
