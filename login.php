@@ -1,32 +1,41 @@
 <?php
     session_start();
     include 'db_connection.php';
-    
+    require 'log_function.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST["email"];  // Cambiado de "username" a "email"
+        $email = $_POST["email"];
         $contraseña = $_POST["password"];
         
-        // Cambiado "user_name" a "email"
-        $querystr = "SELECT email FROM users WHERE email = :email AND password = SHA2(:contrasena, 256)";
+        $querystr = "SELECT user_name, email, token_accepted, conditions_accepted FROM users WHERE email = :email AND password = SHA2(:contrasena, 256)";
+
         $query = $pdo->prepare($querystr);
 
-        $query->bindParam(':email', $email);  // Cambiado de ":usuario" a ":email"
+        $query->bindParam(':email', $email);
         $query->bindParam(':contrasena', $contraseña);
+        
 
         $query->execute();
         
-        $filas = $query->rowCount();
-        if ($filas > 0) {
-            // Iniciar la sesión y guardar el correo electrónico en la sesión
-            $_SESSION['email'] = $email;
-            // Redirigir al usuario a index.php usando JavaScript
-            echo '<script type="text/javascript">window.location = "dashboard.php";</script>';
-            exit;
+        $fila = $query->fetch(PDO::FETCH_ASSOC);
+        if ($fila) {
+            if ($fila['token_accepted'] == 0) {
+                $error_message = "<script type='text/javascript'>$(document).ready(function() { showErrorPopup('Todavía no has validado el email. Revisa la bandeja de entrada'); });</script>";
+                custom_log('Login fallido', "El usuario $email intentó iniciar sesión pero no ha validado el email");
+
+            } else {
+                $_SESSION['email'] = $email;
+                $_SESSION['user_name'] = $fila['user_name'];
+                echo '<script type="text/javascript">window.location = "dashboard.php";</script>';
+                custom_log('Login exitoso', "El usuario $email ha iniciado sesión correctamente");
+
+                exit;
+            }
         } else {
             $error_message = "<script type='text/javascript'>$(document).ready(function() { showErrorPopup('Correo electrónico o contraseña incorrectos'); });</script>";
+            custom_log('Login fallido', "El usuario $email intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos");
 
-        }
+        }   
         unset($pdo);
         unset($query);
     }
@@ -48,6 +57,9 @@
 
         <div class="containerLogin">
 
+
+        
+
             <form class="iniciasesionLogin" method="post">
                 <h1>INICIA SESIÓN</h1>
                 <img class="logoLogin" src="imgs/logosinfondo.png" alt="">
@@ -66,6 +78,7 @@
                 <button id="siguienteBotonLogin" type="submit">Siguiente</button>        
             </form>
         </div>
+        
 
         <?php include 'footer.php'; ?>
         <?php if (isset($error_message)) echo $error_message; ?>

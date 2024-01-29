@@ -12,13 +12,13 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
         <title>Error 403 — Votaieti</title>
-        <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
+        <link rel="shortcut icon" href="logosinfondo.png" />
         <link rel="stylesheet" href="../styles.css">
     </head>
     
     <body class="bodyError403">    
         <div class="contenedorHeader">
-            <?php include("../header.php")?>
+            <?php include '../header.php'; ?>
         </div>
 
         <div class="containerError403">
@@ -28,11 +28,7 @@
         </div>
         
         <div class="contenedorFooter">
-            <?php include("../footer.php")?>
+            <?php include '../footer.php'; ?>
         </div>
     </body>
-<?php 
-    header("Location: ./error403.php");
-    http_response_code(403);
-?>
 </html>
