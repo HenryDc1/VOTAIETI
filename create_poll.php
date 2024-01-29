@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
 
 echo '<script src="js/script.js"></script>';
 
@@ -156,10 +156,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagePath = $stmt->fetchColumn();
         
 
-        
+       
         $phpContent = '
-        <!DOCTYPE html>
+        <!DOCTYPE html>';
+        $phpContent = '  session_start();
+            $guest_email = $_SESSION["guest_email"];';
+        $phpContent = '
         <html lang="en">
+        
         <head>
             <link rel="stylesheet" href="../styles.css">
             <meta charset="UTF-8">
@@ -263,10 +267,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="vota">
             
 
-
+            
             
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
-
+           
             // Si la encuesta tiene una imagen, añádela
             if ($imagePath) {
                 $phpContent .= '<img src="/'. $imagePath.'" alt="Imagen de la pregunta">';
@@ -274,9 +278,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $phpContent .= '<div class="vota">';
             $phpContent .= '<div class="options">';
             // Añadir las opciones a la encuesta
+           
+            // $phpContent .= '<form method="post" action="proces_vote.php">';
+
             for ($i = 1; $i <= $pollData['numOptions']; $i++) {
                 $phpContent .= '<div><input type="radio" id="option' . $i . '" name="option' . $i . '"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
-            
+               
                 // Obtener la ruta de la imagen de la opción de la base de datos
                 $stmt = $pdo->prepare("SELECT path_image FROM poll_options WHERE poll_id = ? AND option_text = ?");
                 $stmt->execute([$pollId, $pollData['option' . $i]]);
