@@ -858,6 +858,29 @@ input:valid+label {
     background-position: 0%;
     color: white;
 }
+input[type="file"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: none;
+    font-size: inherit;
+
+    background: none;
+    cursor: pointer;
+    /* Añadir estilos personalizados */
+    /* ... */
+}/* Estilos para ocultar el texto en el input file */
+.input-file {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
 
 /* ---------------------------------------------------- */
 /* LIST_POLL.PHP */
