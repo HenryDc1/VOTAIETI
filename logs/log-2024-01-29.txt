@@ -2,3 +2,9 @@
 [2024-01-29 15:44:35] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
 [2024-01-29 15:49:07] Creacion de encuesta: Se ha creado una encuesta correctamente
 [2024-01-29 15:49:07] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-01-29 16:23:21] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-29 17:48:03] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-29 17:48:19] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-29 17:48:19] Encuesta Creada: Se ha creado el archivo poll2.php con exito
+[2024-01-29 17:53:47] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-29 18:13:28] Error 403: El usuario  ha intentado acceder a la página create_poll.php sin iniciar sesión
