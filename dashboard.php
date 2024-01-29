@@ -17,6 +17,8 @@ $conditions_accepted = $fila['conditions_accepted'];
 // Verifica si el usuario ha iniciado sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
+    custom_log('Error 403', "Se ha intentado acceder a la página de dashboard sin registrarse o iniciar sesión");
+
     header('Location: errores/error403.php');
     exit;
 }
@@ -34,7 +36,7 @@ if(!isset($_SESSION['email'])) {
         <meta property="og:image" content="../imgs/votaietilogo.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
-        <title>Panel de control —Votaieti</title>
+        <title>Panel de control — Votaieti</title>
         <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
         <link rel="stylesheet" href="styles.css">
         <script src="../styles + scripts/script.js"></script>
