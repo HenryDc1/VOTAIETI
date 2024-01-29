@@ -10,6 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = $pdo->prepare($querystr);
         $query->bindParam(':email', $email);
         $query->execute();
+        custom_log('Treminos y Condiciones aceptadas', "El usuario $email ha aceptado los terminos y condiciones");
+
 
         header('Location: dashboard.php');
         exit;

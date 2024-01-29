@@ -1,18 +1,23 @@
 <?php
 include 'db_connection.php'; 
 
-if(isset($_GET['poll_token'])) {
-    $pollToken = $_GET['poll_token'];
+if(isset($_GET['token'])) {
+    $token = $_GET['token'];
 
-    // Search for the token in the poll table
-    $sql = "SELECT poll_id FROM poll WHERE poll_token = ?";
+    // Search for the token in the invitation table
+    $sql = "SELECT poll_id FROM invitation WHERE token = ?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$pollToken]);
+    $stmt->execute([$token]);
     if ($stmt->rowCount() > 0) {
-        $poll = $stmt->fetch();
+        $invitation = $stmt->fetch();
 
-        // Redirect the user to the poll page
-        header("Location: poll" . $poll['poll_id'] . ".php");
+        // Update the token_accepted field in the invitation table
+        $sql = "UPDATE invitation SET token_accepted = 1 WHERE token = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$token]);
+
+        // Redirect the user to the poll page in the Poll folder
+        header("Location: Poll/poll" . $invitation['poll_id'] . ".php");
         exit;
     } else {
         echo "Invalid token.";

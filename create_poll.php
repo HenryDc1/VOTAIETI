@@ -1,13 +1,16 @@
 <?php
 session_start(); // Iniciar la sesión
+include 'log_function.php';
 // Verificar si la sesión 'email' está establecida
 if (!isset($_SESSION['email'])) {
     // Redirigir al usuario a la página de inicio de sesión
     header('Location: errores/error403.php');
+    custom_log('Error 403', "El usuario $email ha intentado acceder a la página create_poll.php sin iniciar sesión");
+
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
 
 echo '<script src="js/script.js"></script>';
 
@@ -35,6 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $validExtensions = array('jpg', 'jpeg', 'png', 'gif');
         if (!in_array($extension, $validExtensions)) {
             $_SESSION['error'] = "Has subido un archivo no valido. Solo se permiten archivos JPG, JPEG, PNG y GIF..";
+            custom_log('Error subida imagen', "El usuario $email ha intentado subir un fichero no valido");
+
             header('Location: create_poll.php');
             exit();
         }
@@ -46,6 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES['questionImage']['tmp_name'], $uploadDir . $filename)) {
             // Si el archivo se movió con éxito, guardar la ruta en la base de datos
             $imagePath = $uploadDir . $filename;
+            custom_log('Subida Imagen', "Se ha guarado la imagen en el directorio uploads con el nombre $filename");
+
         } else {
             echo 'Hubo un error al mover el archivo al directorio de destino.';
         }
@@ -75,12 +82,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pollState = "finished";
     }
 
-   
+    // Generar un token único
+    $token = bin2hex(random_bytes(16));
 
     // Insertar la pregunta en la tabla de encuestas con el user_id
-    $stmt = $pdo->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, path_image) 
-    VALUES (?, ?, ?, ?, ?, NULL, NULL, ?)");
+    $stmt = $pdo->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, path_image, poll_token) 
+    VALUES (?, ?, ?, ?, ?, NULL, NULL, ?, ?)");
     $stmt->execute([$question, $userId, $startDate, $endDate, $pollState, $imagePath, $token]);
+    custom_log('Creacion de encuesta', "Se ha creado una encuesta correctamente");
+
 
     $pollId = $pdo->lastInsertId();
         
@@ -114,6 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 }
                             } else {
                                 $_SESSION['error'] = "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
+                                custom_log('Error subida imagen', "El usuario $email ha intentado subir un fichero no valido");
+
                                 header('Location: create_poll.php');
                                 $target_file = NULL;
                                 exit();
@@ -284,6 +296,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $phpContent .= '</div>';
             // Ahora puedes generar el archivo PHP
             file_put_contents('Poll/poll' . $pollId . '.php', $phpContent);
+            custom_log('Encuesta Creada', "Se ha creado el archivo poll$pollId.php con exito");
+
                 
         
 
