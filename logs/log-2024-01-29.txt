@@ -1,0 +1,4 @@
+[2024-01-29 15:44:06] Usuario creado: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34671123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-01-29 15:44:35] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-29 15:49:07] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-29 15:49:07] Encuesta Creada: Se ha creado el archivo poll1.php con exito

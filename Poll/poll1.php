@@ -106,4 +106,4 @@
 
 
             
-            <h1 >asasasd</h1><div class="vota"><div class="options"><div><input type="checkbox" id="option1" name="option1"><label for="option1">adasdasd</label></div><div><input type="checkbox" id="option2" name="option2"><label for="option2">asdasdasd</label></div></div><button type="submit" id="botonEnviar">Enviar</button></div></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+            <h1 >ascdscdscsdv</h1><div class="vota"><div class="options"><div><input type="checkbox" id="option1" name="option1"><label for="option1">csdcdscdsc</label></div><div><input type="checkbox" id="option2" name="option2"><label for="option2">sdcdscdscsdcsc</label></div></div><button type="submit" id="botonEnviar">Enviar</button></div></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
