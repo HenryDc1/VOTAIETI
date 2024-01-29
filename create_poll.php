@@ -35,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $validExtensions = array('jpg', 'jpeg', 'png', 'gif');
         if (!in_array($extension, $validExtensions)) {
             $_SESSION['error'] = "Has subido un archivo no valido. Solo se permiten archivos JPG, JPEG, PNG y GIF..";
+            custom_log('Error subida imageb', "El usuario $email ha intentado subir un fichero no valido");
+
             header('Location: create_poll.php');
             exit();
         }
@@ -82,6 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $pdo->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, path_image, poll_token) 
     VALUES (?, ?, ?, ?, ?, NULL, NULL, ?, ?)");
     $stmt->execute([$question, $userId, $startDate, $endDate, $pollState, $imagePath, $token]);
+    custom_log('Creacion de encuesta', "Se ha creado una encuesta correctamente");
+
 
     $pollId = $pdo->lastInsertId();
         
@@ -115,6 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 }
                             } else {
                                 $_SESSION['error'] = "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
+                                custom_log('Error subida imageb', "El usuario $email ha intentado subir un fichero no valido");
+
                                 header('Location: create_poll.php');
                                 $target_file = NULL;
                                 exit();
