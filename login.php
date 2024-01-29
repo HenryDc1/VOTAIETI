@@ -1,7 +1,7 @@
 <?php
     session_start();
     include 'db_connection.php';
-    require 'logs/log_function.php';
+    require 'log_function.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
@@ -13,6 +13,7 @@
 
         $query->bindParam(':email', $email);
         $query->bindParam(':contrasena', $contraseña);
+        
 
         $query->execute();
         
@@ -32,7 +33,9 @@
             }
         } else {
             $error_message = "<script type='text/javascript'>$(document).ready(function() { showErrorPopup('Correo electrónico o contraseña incorrectos'); });</script>";
-        }
+            custom_log('Login fallido', "El usuario $email intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos");
+
+        }   
         unset($pdo);
         unset($query);
     }
