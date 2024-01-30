@@ -280,11 +280,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
             // Añadir las opciones a la encuesta
-           
-            $phpContent .= '<form method="post" action="proces_vote.php" class="options">';
-
-            for ($i = 1; $i <= $pollData['numOptions']; $i++) {
-                $phpContent .= '<div><input type="radio" id="option' . $i . '" name="option' . $i . '"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
+        $phpContent .= '<form method="post" action="proces_vote.php" class="options">';
+        for ($i = 1; $i <= $pollData['numOptions']; $i++) {
+            $phpContent .= '<div><input type="radio" id="option' . $i . '" name="pollOption"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
                
                 // Obtener la ruta de la imagen de la opción de la base de datos
                 $stmt = $pdo->prepare("SELECT path_image FROM poll_options WHERE poll_id = ? AND option_text = ?");
