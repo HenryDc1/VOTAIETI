@@ -1,4 +1,3 @@
-
 <?php
 session_start(); // Inicia una nueva sesión o reanuda la existente
 
@@ -22,8 +21,7 @@ if(!isset($_SESSION['email'])) {
     header('Location: errores/error403.php');
     exit;
 }
-?> 
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -102,7 +100,7 @@ if(!isset($_SESSION['email'])) {
                 </div>
 
                 <div class="verVotos">
-                    <a href="#paginaVerVotos">
+                    <a href="showVotes.php">
                         <div class="imagenConTexto">
                             <img src="../imgs/aura3.jpg" alt="La imagen que me has enviado es un fondo abstracto con un degradado suave y fluido. Los colores predominantes son tonos de rosa, rojo y naranja que se mezclan armoniosamente. No hay objetos o elementos distintivos en la imagen; es puramente una mezcla colorida y etérea de tonos cálidos. La textura parece suave, sin líneas duras o bordes definidos, creando una sensación calmante.">
                             <p><strong>Ver mis votos</strong></p>
