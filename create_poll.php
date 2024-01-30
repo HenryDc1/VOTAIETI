@@ -250,6 +250,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 cursor: pointer;
                 transition: background-position 1s, color 1s;
             }
+            .vota button {
+                align-self: center;
+            }
             </style>
             </head>
        
@@ -275,11 +278,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($imagePath) {
                 $phpContent .= '<img src="/'. $imagePath.'" alt="Imagen de la pregunta">';
             }
-            $phpContent .= '<div class="vota">';
-            $phpContent .= '<div class="options">';
+            
             // Añadir las opciones a la encuesta
            
-            // $phpContent .= '<form method="post" action="proces_vote.php">';
+            $phpContent .= '<form method="post" action="proces_vote.php" class="options">';
 
             for ($i = 1; $i <= $pollData['numOptions']; $i++) {
                 $phpContent .= '<div><input type="radio" id="option' . $i . '" name="option' . $i . '"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
@@ -295,8 +297,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 $phpContent .= '</div>';
             }
-            $phpContent .= '</div>'; // Cierre del div de las opciones
-            $phpContent .= '<button type="submit" id="botonEnviar">Enviar</button></div>'; // Cierre del div de vota
+            //$phpContent .= '</div>'; // Cierre del div de las opciones
+            $phpContent .= '<div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form>'; // Cierre del div de vota
             $phpContent .= '</div>';
             $phpContent .= '<div class="contenedorFooter">';
             $phpContent .= '<?php include "../footer.php"; ?>';
