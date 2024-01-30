@@ -47,7 +47,7 @@ if(!empty($_POST)){
         $_SESSION['error'] = 'El correo electrónico ya existe';
         custom_log("Intento de registro fallido", "Correo electrónico: $email ya existe");
 
-        header('Location: RegisterPruebas.php');
+        header('Location: Register.php');
         exit;
     }
 
@@ -58,7 +58,7 @@ if(!empty($_POST)){
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El número de teléfono ya existe';
         custom_log("Intento de registro fallido", "Número de teléfono: $telephone ya existe");
-        header('Location: RegisterPruebas.php');
+        header('Location: register.php');
         exit;
     }
 

@@ -1,7 +1,5 @@
 <?php
 session_start(); // Iniciar la sesión
-
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -15,8 +13,6 @@ if(!isset($_SESSION['email'])) {
 
 if (isset($_POST['poll_id'])) {
     $pollId = $_POST['poll_id'];
-    $_SESSION['pollId'] = $pollId; // Guardar el pollId en la sesión
-
     error_log("Poll ID: " . $pollId); // Debug line
 } else {
     error_log("Poll ID not set in POST data");
@@ -24,9 +20,21 @@ if (isset($_POST['poll_id'])) {
 
 // Incluir el archivo de conexión
 include 'db_connection.php';
+$pollToken = null; // Define $pollToken before the query
 
+// Obtener el poll_token de la encuesta seleccionada
+$query = "SELECT poll_token FROM poll WHERE poll_id = :pollId";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(':pollId', $pollId, PDO::PARAM_INT);
 
-
+$stmt->execute();
+if ($stmt->rowCount() > 0) {
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $pollToken = $row['poll_token'];
+    error_log("Poll token: " . $pollToken); // Debug line
+} else {
+    error_log("No poll found with the provided ID");
+}
 
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
@@ -60,7 +68,7 @@ if(isset($_POST['emails'])) {
         // Insertar el token en la tabla de invitaciones
         $query = "INSERT INTO invitation (poll_id, guest_email, sent_date, token, token_accepted) VALUES (:pollId, :email, NOW(), :token, 0)";
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':pollId', $_SESSION['pollId'], PDO::PARAM_INT);
+        $stmt->bindParam(':pollId', $pollId, PDO::PARAM_INT);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':token', $token, PDO::PARAM_STR);
         $stmt->execute();
@@ -123,7 +131,6 @@ if(isset($_POST['emails'])) {
         }
 
         // Esperar 5 minutos antes de enviar el próximo paquete
-
     }
 }
 ?>
@@ -166,10 +173,11 @@ if(isset($_POST['emails'])) {
             <input type="submit" value="Invitar" class="submit-button">
         </form>
 
-       
+        </form>
         <?php
             // Assuming $pollId and $pollToken are available in this scope
             echo "Poll ID: " . $pollId . "<br>";
+            echo "Poll Token: " . $pollToken . "<br>";
         ?>
     </div>
     
