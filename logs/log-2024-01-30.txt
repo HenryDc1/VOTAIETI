@@ -1,0 +1,7 @@
+[2024-01-30 00:08:18] Login exitoso: El usuario prueba3@hotmail.com ha iniciado sesión correctamente
+[2024-01-30 00:10:42] Login exitoso: El usuario preuba1@hotmail.com ha iniciado sesión correctamente
+[2024-01-30 00:10:45] Treminos y Condiciones aceptadas: El usuario preuba1@hotmail.com ha aceptado los terminos y condiciones
+[2024-01-30 00:11:22] Login fallido: El usuario prueba1@hotmail.com intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-01-30 00:11:35] Login exitoso: El usuario prueba3@hotmail.com ha iniciado sesión correctamente
+[2024-01-30 01:53:34] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 01:53:34] Encuesta Creada: Se ha creado el archivo poll4.php con exito

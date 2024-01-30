@@ -967,12 +967,28 @@ td:nth-child(4) {
 /* details_page.PHP */
 #chart_div{
     margin-top: 100px;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+}
+.contenedorPreguntaChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px 0 100px 0;
+    justify-content: center;
+    height: 100vh;
 }
 
+.pregunta {
+    margin-bottom: 20px;
+}
+
+#chart_div {
+    width: 80%;
+    margin: auto;
+}
 
 /* ---------------------------------------------------- */
 /* INVITE_POLL.PHP */

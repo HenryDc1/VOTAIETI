@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', '');
 
 echo '<script src="js/script.js"></script>';
 
@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 }
                             } else {
                                 $_SESSION['error'] = "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
-                                custom_log('Error subida imageb', "El usuario $email ha intentado subir un fichero no valido");
+                                custom_log('Error subida imagen', "El usuario $email ha intentado subir un fichero no valido");
 
                                 header('Location: create_poll.php');
                                 $target_file = NULL;
@@ -156,10 +156,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagePath = $stmt->fetchColumn();
         
 
-        
+       
         $phpContent = '
-        <!DOCTYPE html>
+        <!DOCTYPE html>';
+        $phpContent = '  session_start();
+            $guest_email = $_SESSION["guest_email"];';
+        $phpContent = '
         <html lang="en">
+        
         <head>
             <link rel="stylesheet" href="../styles.css">
             <meta charset="UTF-8">
@@ -263,10 +267,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="vota">
             
 
-
+            
             
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
-
+           
             // Si la encuesta tiene una imagen, añádela
             if ($imagePath) {
                 $phpContent .= '<img src="/'. $imagePath.'" alt="Imagen de la pregunta">';
@@ -274,9 +278,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $phpContent .= '<div class="vota">';
             $phpContent .= '<div class="options">';
             // Añadir las opciones a la encuesta
+           
+            // $phpContent .= '<form method="post" action="proces_vote.php">';
+
             for ($i = 1; $i <= $pollData['numOptions']; $i++) {
-                $phpContent .= '<div><input type="checkbox" id="option' . $i . '" name="option' . $i . '"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
-            
+                $phpContent .= '<div><input type="radio" id="option' . $i . '" name="option' . $i . '"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
+               
                 // Obtener la ruta de la imagen de la opción de la base de datos
                 $stmt = $pdo->prepare("SELECT path_image FROM poll_options WHERE poll_id = ? AND option_text = ?");
                 $stmt->execute([$pollId, $pollData['option' . $i]]);
@@ -344,7 +351,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?><!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -353,18 +359,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="createPollBody">
     <?php include 'header.php'; ?>
 
     <div class="containerCreatePoll">
     <form class="createPoll" id="pollForm" method="post" action="create_poll.php" enctype="multipart/form-data">
     <h1 class="tituloCreatePoll">Crear Encuesta</h1>
-    <div class="datosCreatePoll" id="questionContainer">
-                <input type="text" id="question" name="question" required>
-                <label for="question">Pregunta:</label>
-                <input type="file" id="questionImage" name="questionImage" accept="image/*">
-            </div>
     <!-- Campo oculto para almacenar el número de opciones -->
     <input type="hidden" id="numOptions" name="numOptions" value="0">
     </form>
@@ -373,195 +373,88 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php include 'footer.php'; ?>
         </div>
     <script>
-       $(document).ready(function() {
-    // Restablecer las banderas al inicio
-    var isNewOptionSetCreated = false;
-    var isNewDateSetCreated = false;
-    var isNewButtonCreated = false;
+$(document).ready(function() {
+    var optionCount = 0;
+    var datesAdded = false;
 
-    setupOptionEvents(); // Configurar eventos para el conjunto inicial de campos de opciones
-
-    $('#question').on('input', function() {
-        // Restablecer todas las banderas y eliminar elementos si la pregunta está vacía
-        if ($('#question').val().trim() === '') {
-            $('#optionSet').remove();
-            $('#dateStartSet').remove();
-            $('#dateEndSet').remove();
-            $('#btnCreatePoll').remove();
-            isNewOptionSetCreated = false;
-            isNewDateSetCreated = false;
-            isNewButtonCreated = false;
-        }
-    });
+    // Generar el campo de "Pregunta" dinámicamente
+    $('#pollForm').append('<div class="datosCreatePoll"><input type="text" id="question" name="question" required><label for="question">Pregunta:</label><input type="file" id="questionImage" name="questionImage"></div>');
 
     $('#question').on('keydown', function(e) {
-        if ((e.which === 9 || e.which === 13) && !isNewOptionSetCreated) {
-            e.preventDefault();
-            var questionValue = $('#question').val();
-            if (questionValue.trim() === '') {
-                return;
-            }
-            const newOptionSet = $('<div class="datosCreatePoll" id="optionSet">' +
-                '<label id="numeroOpciones">Número de opciones:</label>' +
-                '<button type="button" id="addOption">+</button>' +
-                '<button type="button" id="removeOption" style="display: none;">-</button>' +
-                '<div id="optionInputs"></div>' +
-                '</div>');
-            $('#pollForm').append(newOptionSet);
-            setupOptionEvents();
-            isNewOptionSetCreated = true;
-            
-            // Restablecer la bandera isNewDateSetCreated
-            isNewDateSetCreated = false;
-        }
-    });
-
-            function setupOptionEvents() {
-                var numOptions = 2;
-
-                $('#optionInputs').empty(); // Limpiar los campos de opciones existentes
-
-                for (var i = 1; i <= numOptions; i++) {
-                    $('#optionInputs').append(
-                        '<label for="option' + i + '"></label>' +
-                        '<input placeholder="Option ' + i + '" type="text" id="option' + i + '" name="option' + i + '" required>' +
-                        '<input type="file" id="optionImage' + i + '" name="optionImage' + i + '" accept="image/*">'
-                    );
-                }
-
-                $('#addOption').click(function() {
-                    numOptions++;
-                    $('#optionInputs').append(
-                        '<label for="option' + numOptions + '"></label>' +
-                        '<input placeholder="Option ' + numOptions + '" type="text" id="option' + numOptions + '" name="option' + numOptions + '" required>' +
-                        '<input type="file" id="optionImage' + numOptions + '" name="optionImage' + numOptions + '" accept="image/*">'
-                    );
-                    if (numOptions > 2) {
-                        $('#removeOption').show();
-                    }
-                });
-
-                $('#removeOption').click(function() {
-                    if (numOptions > 2) {
-                        $('#option' + numOptions).remove();
-                        $('#optionImage' + numOptions).remove();
-                        $('label[for="option' + numOptions + '"]').remove();
-                        numOptions--;
-                        if (numOptions <= 2) {
-                            $('#removeOption').hide();
+        if(e.which == 13 || e.which == 9) {
+            if($(this).val().trim() !== '') {
+                if(optionCount == 0) {
+                    $('#pollForm').append('<div class="datosCreatePoll" id="optionsDiv"><label id="numeroOpciones">Opciones:</label><button type="button" id="removeOption" style="display: none;">-</button><button type="button" id="addOption">+</button><div id="optionInputs"></div></div>');
+                    addOption();
+                    addOption();
+                    $('#addOption').click(function() {
+                        addOption();
+                    });
+                    $('#removeOption').click(function() {
+                        if(optionCount > 2) {
+                            $('#option'+optionCount).remove();
+                            $('#optionImage'+optionCount).remove(); // Agregado para eliminar el último botón de subida de archivo
+                            optionCount--;
+                            if(optionCount == 2) {
+                                $('#removeOption').hide();
+                            }
                         }
-                    }
-                });
-            }
-
-            $(document).on('keydown', '#optionInputs input[type="text"]', function(e) {
-        if ((e.which === 9 || e.which === 13) && !isNewDateSetCreated) {
-            e.preventDefault();
-            var option1Value = $('#option1').val();
-            var option2Value = $('#option2').val();
-            if (option1Value.trim() !== '' && option2Value.trim() !== '') {
-                const newDateSet = $('<div class="datosCreatePoll" id="dateStartSet">' +
-                    '<input type="date" id="startDate" name="startDate" required>' +
-                    '<label for="startDate">Fecha de Inicio:</label>' +
-                    '</div>' +
-                    '<div class="datosCreatePoll" id="dateEndSet">' +
-                    '<input type="date" id="endDate" name="endDate" required>' +
-                    '<label for="endDate">Fecha de Finalización:</label>' +
-                    '</div>');
-                $('#pollForm').append(newDateSet);
-                isNewDateSetCreated = true;
-                
-                // Restablecer la bandera isNewButtonCreated
-                isNewButtonCreated = false;
+                        // Actualizar el valor de 'numOptions'
+                        $('#numOptions').val(optionCount);
+                    });
+                }
             }
         }
     });
 
-            $(document).on('input change', '#optionInputs input[type="text"], #startDate, #endDate', function() {
-                var option1Value = $('#option1').val();
-                var option2Value = $('#option2').val();
-                var startDateValue = $('#startDate').val();
-                var endDateValue = $('#endDate').val();
+    // Agregar controlador de eventos 'input' al campo de entrada de la pregunta
+    $('#question').on('input', function() {
+        if($(this).val().trim() === '') {
+            $('#optionsDiv').remove();
+            $('#datesDiv').remove();
+            $('#submitBtn').remove();
+            optionCount = 0;
+            datesAdded = false;
+        }
+    });
 
-                if (option1Value.trim() === '' && option2Value.trim() === '' && startDateValue.trim() === '' && endDateValue.trim() === '') {
-                    $('#dateStartSet').remove();
-                    $('#dateEndSet').remove();
-                    $('#btnCreatePoll').remove();
-                    isNewDateSetCreated = false;
-                    isNewButtonCreated = false;
-                } else if (startDateValue.trim() === '' || endDateValue.trim() === '') {
-                    $('#btnCreatePoll').remove();
-                    isNewButtonCreated = false;
+    function addOption() {
+        optionCount++;
+        $('#optionInputs').append('<input placeholder="Opción '+optionCount+'" type="text" id="option'+optionCount+'" name="option'+optionCount+'" required>');
+        $('#optionInputs').append('<input type="file" id="optionImage'+optionCount+'" name="optionImage'+optionCount+'" accept="image/*">');
+        if(optionCount > 2) {
+            $('#removeOption').show();
+        }
+        // Actualizar el valor de 'numOptions'
+        $('#numOptions').val(optionCount);
+
+        // Agregar controlador de eventos 'keydown' al input de la opción
+        $('#option'+optionCount).on('keydown', function(e) {
+            if(e.which == 13 || e.which == 9) {
+                if($(this).val().trim() !== '' && !datesAdded) {
+                    var today = new Date().toISOString().split('T')[0];
+                    $('#pollForm').append('<div class="datosCreatePoll" id="datesDiv"><input type="date" id="startDate" name="startDate" min="' + today + '" required><label for="startDate">Fecha de Inicio y Finalización:</label><input type="date" id="endDate" name="endDate" required><label for="endDate"></label></div>');
+                    $('#pollForm').append('<button class="btnCreatePoll"type="submit" id="submitBtn">Crear Encuesta</button>');
+                    datesAdded = true;
                 }
-            });
-
-            // Crear el botón al cambiar el valor de endDate
-            $(document).on('change', '#startDate', function() {
-                var startDateValue = $('#startDate').val();
-                var endDateValue = $('#endDate').val();
-
-                // Verificar si el campo de fecha de inicio está vacío
-                if (startDateValue.trim() !== '' && endDateValue.trim() !== '' && !isNewButtonCreated) {
-                    
-                    // Crear el elemento del botón y agregarlo al contenedor
-                    const newButton = $('<button class="btnCreatePoll" id="btnCreatePoll" type="submit">Crear Encuesta</button>');
-
-                    $('#pollForm').append(newButton);
-
-                    // Marcar que el elemento newButton ya se creó
-                    isNewButtonCreated = true;
-                    /*
-                    if(endDateValue<startDateValue){
-                        alert('Error la fecha de finalizacion es mayor que la de inicio')
-                        $('#btnCreatePoll').remove();
-                        return;
-                    }
-                    */
-                }
-                
-            });
-
-            // Crear el botón al cambiar el valor de endDate
-            $(document).on('change', '#endDate', function() {
-                if (!isNewButtonCreated) {
-                    // Obtener el valor del campo de fecha de finalización
-                    var endDateValue = $('#endDate').val();
-                    var startDateValue = $('#startDate').val();
-                    console.log('-----> '+ endDate)
-
-                if (startDateValue.trim() !== '' && endDateValue.trim() !== '' && !isNewButtonCreated) {
-                    
-                    // Crear el elemento del botón y agregarlo al contenedor
-                    const newButton = $('<button class="btnCreatePoll" id="btnCreatePoll" type="submit">Crear Encuesta</button>');
-
-                    $('#pollForm').append(newButton);
-
-                    // Marcar que el elemento newButton ya se creó
-                    isNewButtonCreated = true;
-                    /*
-                    if(endDateValue<startDateValue){
-                        alert('Error la fecha de finalizacion es mayor que la de inicio')
-                        $('#btnCreatePoll').remove();
-                        return;
-                    }
-                    */
-                }
-                    /*
-                    else if(endDateValue<startDateValue){
-                        alert('Error la fecha de finalizacion es mayor que la de inicio')
-                        $('#btnCreatePoll').remove();
-                        return;
-                    }
-                    */
-                    // Crear el elemento del botón y agregarlo al contenedor
-                
-                }
-            });
+            }
         });
+    }
+});
+    </script>
+
+    <script>
+        
+        $(document).ready(function() {
+           var error = "<?php echo $_SESSION['error']; ?>";
+             if (error) {
+            showErrorPopup(error);
+            <?php unset($_SESSION['error']); ?>
+            }
+        });
+        
     </script>
     
  
 </body>
-
 </html>
-
