@@ -122,7 +122,7 @@ if(isset($_POST['emails'])) {
     }
     
     // Esperar 5 minutos antes de enviar el siguiente paquete de correos electrónicos
-    sleep(5 * 60);
+   // sleep(5 * 60);
 }
 }
 ?>

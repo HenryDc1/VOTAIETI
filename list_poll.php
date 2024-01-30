@@ -23,7 +23,7 @@ include 'db_connection.php';
     <meta property="og:image" content="../imgs/votaietilogo.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
-    <title>Panel de control — Votaieti</title>
+    <title>Listado de encuestas — Votaieti</title>
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
     <link rel="stylesheet" href="styles.css">
     <script src="../styles + scripts/script.js"></script> 
@@ -111,7 +111,7 @@ include 'db_connection.php';
              $visibilityText = isset($visibilityTexts[$questionVisibility]) ? $visibilityTexts[$questionVisibility] : $questionVisibility;
 
              // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-             echo "<tr><td>$pollId - $question</td><td><span class='poll-state $class'>$stateText</span></td><td><select class='question-visibility'><option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option><option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option><option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option></select></td><td><select class='options-visibility'><option value='public'>Publica</option><option value='private'>Privada</option><option value='hidden'>Oculta</option></select></td><td><form method='POST' action='invite_poll.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Invitar</button></form></td><td><button onclick=\"location.href='details_page.php'\">Detalles</button></td></tr>";
+             echo "<tr><td>$question</td><td><span class='poll-state $class'>$stateText</span></td><td><select class='question-visibility'><option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option><option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option><option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option></select></td><td><select class='options-visibility'><option value='public'>Publica</option><option value='private'>Privada</option><option value='hidden'>Oculta</option></select></td><td><form method='POST' action='invite_poll.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Invitar</button></form></td><td><button onclick=\"location.href='details_page.php'\">Detalles</button></td></tr>";
 
 
 

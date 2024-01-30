@@ -17,11 +17,19 @@
         <script src="../styles + scripts/script.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+        
     </head>
     <body class="bodyIndex">
         <?php
-
+        
         session_start();
+        if (isset($_SESSION['message'])) {
+            echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>";
+            echo "<script src='js/script.js'></script>";
+            echo "<script type='text/javascript'>showSuccesPopup('" . $_SESSION['message'] . "');</script>";
+            // Borra el mensaje después de mostrarlo
+            unset($_SESSION['message']);
+        }
         $link = "register.php";
         if(isset($_SESSION['email'])) {
             $link = "dashboard.php";

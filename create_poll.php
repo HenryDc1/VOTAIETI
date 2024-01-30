@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
 
 echo '<script src="js/script.js"></script>';
 
@@ -156,9 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagePath = $stmt->fetchColumn();
         
 
-        $phpContent .= '<?php  session_start();
-        $guest_email = $_SESSION["guest_email"]; ?>';
-       
+        
+        $guestEmail = $_SESSION["guest_email"];
      
        
         $phpContent .= '
@@ -270,7 +269,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="vota">
-            
+            <?php  session_start();
+            $guest_email = $_SESSION["guest_email"]; ?>
 
             
             
@@ -283,23 +283,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
             // Añadir las opciones a la encuesta
-        $phpContent .= '<form method="post" action="proces_vote.php" class="options">';
-        for ($i = 1; $i <= $pollData['numOptions']; $i++) {
-            $phpContent .= '<div><input type="radio" id="option' . $i . '" name="pollOption"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
-               
-                // Obtener la ruta de la imagen de la opción de la base de datos
-                $stmt = $pdo->prepare("SELECT path_image FROM poll_options WHERE poll_id = ? AND option_text = ?");
-                $stmt->execute([$pollId, $pollData['option' . $i]]);
-                $optionImagePath = $stmt->fetchColumn();
-            
+            $phpContent .= '<form method="post" action="../proces_votes.php" class="options">';
+            $phpContent .= '<input type="hidden" name="poll_id" value="' . $pollId . '">';
+
+            // Obtener todas las opciones de la encuesta de la base de datos
+            $stmt = $pdo->prepare("SELECT * FROM poll_options WHERE poll_id = ?");
+            $stmt->execute([$pollId]);
+            $options = $stmt->fetchAll();
+
+            foreach ($options as $option) {
+                $phpContent .= '<div><input type="radio" id="option' . $option['option_id'] . '" name="pollOption" value="' . $option['option_id'] . '">';
+                $phpContent .= '<label for="option' . $option['option_id'] . '">' . htmlspecialchars($option['option_text']) . '</label></div>';
+
                 // Si la opción tiene una imagen, añádela
-                if ($optionImagePath) {
-                    $phpContent .= '<br><img src="/' . $optionImagePath . '" alt="Imagen de la opción ' . $i . '">';
+                if ($option['path_image']) {
+                    $phpContent .= '<br><img src="/' . $option['path_image'] . '" alt="Imagen de la opción ' . $option['option_id'] . '">';
                 }
-                $phpContent .= '</div>';
             }
-            //$phpContent .= '</div>'; // Cierre del div de las opciones
-            $phpContent .= '<div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form>'; // Cierre del div de vota
+            $phpContent .= '<div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form>';
             $phpContent .= '</div>';
             $phpContent .= '<div class="contenedorFooter">';
             $phpContent .= '<?php include "../footer.php"; ?>';
@@ -357,7 +358,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Encuesta</title>
+    <title>Crear Encuesta — Votaieti</title>
     <!-- Asegúrate de incluir la biblioteca jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="styles.css">
