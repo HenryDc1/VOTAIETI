@@ -156,13 +156,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagePath = $stmt->fetchColumn();
         
 
+        $phpContent .= '<?php  session_start();
+        $guest_email = $_SESSION["guest_email"]; ?>';
        
-        $phpContent = '
-        <!DOCTYPE html>';
-        $phpContent = '  session_start();
-            $guest_email = $_SESSION["guest_email"];';
-        $phpContent = '
+     
+       
+        $phpContent .= '
+        <!DOCTYPE html>
         <html lang="en">
+       
         
         <head>
             <link rel="stylesheet" href="../styles.css">
@@ -255,7 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             </style>
             </head>
-       
+            
              <body class="bodyVota">
             <div class="contenedorHeader">
                 <?php include "../header.php"; ?>
@@ -273,6 +275,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
+           
            
             // Si la encuesta tiene una imagen, añádela
             if ($imagePath) {
