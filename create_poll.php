@@ -438,6 +438,12 @@ $(document).ready(function() {
                     $('#pollForm').append('<div class="datosCreatePoll" id="datesDiv"><input type="date" id="startDate" name="startDate" min="' + today + '" required><label for="startDate">Fecha de Inicio y Finalización:</label><input type="date" id="endDate" name="endDate" required><label for="endDate"></label></div>');
                     $('#pollForm').append('<button class="btnCreatePoll"type="submit" id="submitBtn">Crear Encuesta</button>');
                     datesAdded = true;
+
+                    // Asegurarse de que la fecha de finalización no sea menor que la fecha de inicio
+                    $('#startDate').on('change', function() {
+                        var startDate = $(this).val();
+                        $('#endDate').attr('min', startDate);
+                    });
                 }
             }
         });
