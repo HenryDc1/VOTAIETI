@@ -45,7 +45,6 @@ if(isset($_POST['emails'])) {
 
     // Dividir los correos electrónicos en paquetes de 5
     $emailChunks = array_chunk($emails, 5);
-
     foreach($emailChunks as $chunk) {
         foreach($chunk as $email) {
 

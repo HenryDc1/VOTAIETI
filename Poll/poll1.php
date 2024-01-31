@@ -53,7 +53,7 @@
 
             
             img {
-                width: 200px;
+                width: 300px;
                 height: 200px;
                 padding-top: 10px;
             }
@@ -112,4 +112,4 @@
 
             
             
-            <h1 >Enceusta 1</h1><img src="/uploads/65b9474529c9e.png" alt="Imagen de la pregunta"><form method="post" action="../proces_votes.php" class="options"><input type="hidden" name="poll_id" value="1"><div><input type="radio" id="option1" name="pollOption" value="1"><label for="option1">Opcion 1</label></div><div><input type="radio" id="option2" name="pollOption" value="2"><label for="option2">Opcion 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+            <h1 >Pregunta 1</h1><img src="/uploads/65ba6d204dd23.png" alt="Imagen de la pregunta"><form method="post" action="../proces_votes.php" class="options"><input type="hidden" name="poll_id" value="1"><div><input type="radio" id="option1" name="pollOption" value="1"><label for="option1">OPCION 1</label></div><div><input type="radio" id="option2" name="pollOption" value="2"><label for="option2">OPCION 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>

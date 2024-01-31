@@ -53,7 +53,7 @@
 
             
             img {
-                width: 200px;
+                width: 300px;
                 height: 200px;
                 padding-top: 10px;
             }
@@ -112,4 +112,4 @@
 
             
             
-            <h1 >preuntaaaaa</h1><form method="post" action="../proces_votes.php" class="options"><input type="hidden" name="poll_id" value="3"><div><input type="radio" id="option5" name="pollOption" value="5"><label for="option5">OCPIONN NNN</label></div><div><input type="radio" id="option6" name="pollOption" value="6"><label for="option6">OPCION 2222</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+            <h1 >Pregunta 3</h1><form method="post" action="../proces_votes.php" class="options"><input type="hidden" name="poll_id" value="3"><div><input type="radio" id="option5" name="pollOption" value="5"><label for="option5">opcion 1</label></div><div><input type="radio" id="option6" name="pollOption" value="6"><label for="option6">Opcion 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
