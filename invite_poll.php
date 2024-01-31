@@ -12,6 +12,8 @@ include 'log_function.php';
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
     header('Location: errores/error403.php');
+    custom_log('Permiso Denegado', "Se ha itnentado acceder a la página de invitación sin iniciar sesión");
+
     exit;
 }
 
@@ -81,11 +83,13 @@ if(isset($_POST['emails'])) {
         $mail->SetFrom($senderEmail, "VOTAIETI");
         $mail->Subject = 'Invitacion para votar en una encuesta';
         $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
-        error_log("Poll token before sending mail: " . $pollToken); // Debug line
+        //error_log("Poll token before sending mail: " . $pollToken); // Debug line
         $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='http://localhost:3000/accept_invitation.php?token=" . $token . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
             if(!$mail->send()) {
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
+            custom_log('Invitación Enviada', "Invitación enviada correctamente a $email");
+
         } else {
             echo   "<script>
             function showSuccesPopup(message) {
