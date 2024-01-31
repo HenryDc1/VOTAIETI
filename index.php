@@ -31,9 +31,9 @@
             unset($_SESSION['message']);
         }
         $link = "
-        register.php";
+        https://aws21.ieti.site/register.php";
         if(isset($_SESSION['email'])) {
-            $link = "dashboard.php";
+            $link = "https://aws21.ieti.site/dashboard.php";
         }
             /* include 'db_connection.php';
 
