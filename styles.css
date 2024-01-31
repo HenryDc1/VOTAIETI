@@ -1118,19 +1118,96 @@ footer a:hover {
 /* ---------------------------------------------------- */
 /* SHOWVOTES.PHP */
 
-.listPollContainer {
+.listVotesContainer {
     width: 80%; /* Ajusta el ancho de la tabla al 80% del contenedor */
     margin: 0 auto; /* Centra la tabla horizontalmente */
 }
 
-.listPollContainer table {
+.listVotesContainer table {
     width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+    margin-bottom: 50px;
 }
 
-.question-column {
+.columnQuestion{
     width: 60%; /* Ajusta el ancho de la columna de la pregunta */
+    text-align: center;
 }
 
-.option-text {
-    width: 40%; /* Ajusta el ancho de la columna de la opción */
+.textOption {
+    width: 40%; /* Ajusta el ancho de la columna de la opciÃ³n */
+    text-align: center;
+}
+
+.state-poll {
+    width: 40%; /* Ajusta el ancho de la columna de la estado */
+    text-align: center;
+}
+
+.state-poll.not-started {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color:orange ;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.state-poll.finished {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color:red;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.state-poll.active {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color: green ;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+
+ /* ---------------------------------------------------- /
+/ details_page.PHP */
+#chart_div{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.contenedorPreguntaChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 120px 0 100px 0;
+    justify-content: center;
+    height: 100vh;
+}
+
+.pregunta {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#chart_div {
+    width: 80%;
+    margin: auto;
+}
+#imgDetailsPage{
+    width: 200px;
+    height: 200px; 
+    justify-content: center;
+    align-items: center;
+}
+#divImgDetailsPage{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#divH1{
+    width: 900px;
 }
