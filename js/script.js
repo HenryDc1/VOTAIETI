@@ -62,6 +62,7 @@ function showErrorPopup(message) {
   });
 }
 
+<<<<<<< HEAD
 
 function showSuccesPopup(message) {
   // Crear la ventana flotante
@@ -88,3 +89,5 @@ function showSuccesPopup(message) {
       successPopup.remove();
   });
 }
+=======
+>>>>>>> Int

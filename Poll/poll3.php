@@ -1,8 +1,11 @@
 
         <!DOCTYPE html>
         <html lang="en">
+<<<<<<< HEAD
        
         
+=======
+>>>>>>> Int
         <head>
             <link rel="stylesheet" href="../styles.css">
             <meta charset="UTF-8">
@@ -53,7 +56,11 @@
 
             
             img {
+<<<<<<< HEAD
                 width: 300px;
+=======
+                width: 200px;
+>>>>>>> Int
                 height: 200px;
                 padding-top: 10px;
             }
@@ -89,12 +96,18 @@
                 cursor: pointer;
                 transition: background-position 1s, color 1s;
             }
+<<<<<<< HEAD
             .vota button {
                 align-self: center;
             }
             </style>
             </head>
             
+=======
+            </style>
+            </head>
+       
+>>>>>>> Int
              <body class="bodyVota">
             <div class="contenedorHeader">
                 <?php include "../header.php"; ?>
@@ -107,9 +120,17 @@
             </div>
 
             <div class="vota">
+<<<<<<< HEAD
             <?php  session_start();
             $guest_email = $_SESSION["guest_email"]; ?>
 
             
             
             <h1 >Pregunta 3</h1><form method="post" action="../proces_votes.php" class="options"><input type="hidden" name="poll_id" value="3"><div><input type="radio" id="option5" name="pollOption" value="5"><label for="option5">opcion 1</label></div><div><input type="radio" id="option6" name="pollOption" value="6"><label for="option6">Opcion 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+=======
+            
+
+
+            
+            <h1 >asasdasd</h1><div class="vota"><div class="options"><div><input type="checkbox" id="option1" name="option1"><label for="option1">asdasdas</label></div><div><input type="checkbox" id="option2" name="option2"><label for="option2">dasdasdasd</label></div></div><button type="submit" id="botonEnviar">Enviar</button></div></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+>>>>>>> Int

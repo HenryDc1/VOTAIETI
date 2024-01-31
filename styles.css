@@ -719,6 +719,44 @@ input:valid+label {
     color: #2B2D42;
 }
 
+
+
+/* ---------------------------------------------------- */
+/* TERMINOS Y CONDICIONES DEL DASHBOARD */
+
+#termsPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#termsPopup form {
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    background: white;
+    border: 2px solid rgba(43, 45, 66, 0.9)
+}
+
+#termsPopup label {
+    font-size: 16px;
+    text-align: center; /* Justifica el texto */
+
+}
+
+
+
+
+
+
+
 /* ---------------------------------------------------- */
 /* ERROR403.PHP*/
 .bodyError403 {
@@ -805,7 +843,7 @@ input:valid+label {
 
 .datosCreatePoll input:focus,
 input:valid {
-    border-bottom-color: #EDF2F4;
+    border-bottom-color: #8D99AE;
 }
 
 #numeroOpciones {
@@ -881,6 +919,30 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
 }
+
+/* Botón de añadir y quitar opción */
+#addOption, #removeOption {
+    background-color: #607D8B; /* Color de fondo azul gris */
+    border: 2px solid white; /* Borde blanco */
+    color: white; /* Color del texto */
+    padding: 8px 15px; /* Espaciado interno más pequeño */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin decoración de texto */
+    display: inline-block;
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    margin: 4px 2px; /* Margen */
+    cursor: pointer; /* Cambia el cursor a un puntero cuando se pasa por encima */
+    border-radius: 3px; /* Borde redondeado */
+}
+
+#removeOption {
+    background-color: #607D8B; /* Color de fondo azul gris */
+}
+
+
+
+
+
 
 /* ---------------------------------------------------- */
 /* LIST_POLL.PHP */
@@ -1010,6 +1072,7 @@ td:nth-child(4) {
 /* INVITE_POLL.PHP */
 
 
+<<<<<<< HEAD
 .inviteContainer {
     margin: 50px auto; /* Esto agrega espacio alrededor y centra el contenedor */
     width: 50%; /* Esto define el ancho del contenedor */
@@ -1019,6 +1082,21 @@ td:nth-child(4) {
 }
 
 
+=======
+/* ---------------------------------------------------- */
+/* INVITE_POLL.PHP */
+
+
+.inviteContainer {
+    margin: 50px auto; /* Esto agrega espacio alrededor y centra el contenedor */
+    width: 50%; /* Esto define el ancho del contenedor */
+    box-sizing: border-box; /* Esto asegura que el padding y el borde se incluyan en el ancho total del contenedor */
+    margin-bottom: 150px;
+    margin-top: 150px;
+}
+
+
+>>>>>>> Int
 .inviteContainer p {
     text-align: justify;
     font-size: 18px; /* Cambia el tamaño de la fuente */

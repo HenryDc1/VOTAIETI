@@ -47,7 +47,11 @@ if(!empty($_POST)){
         $_SESSION['error'] = 'El correo electrónico ya existe';
         custom_log("Intento de registro fallido", "Correo electrónico: $email ya existe");
 
+<<<<<<< HEAD
         header('Location: Register.php');
+=======
+        header('Location: RegisterPruebas.php');
+>>>>>>> Int
         exit;
     }
 
@@ -58,7 +62,11 @@ if(!empty($_POST)){
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El número de teléfono ya existe';
         custom_log("Intento de registro fallido", "Número de teléfono: $telephone ya existe");
+<<<<<<< HEAD
         header('Location: register.php');
+=======
+        header('Location: RegisterPruebas.php');
+>>>>>>> Int
         exit;
     }
 
@@ -180,4 +188,8 @@ var countrySelectHTML = '<?= $countrySelectHTML ?>';
 
         <?php include 'footer.php'; ?>
     </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> Int

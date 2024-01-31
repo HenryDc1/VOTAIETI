@@ -2,7 +2,11 @@
 session_start();
 if (isset($_SESSION['email'])) {
     echo '<div class="contenedorHeader">
+<<<<<<< HEAD
             <a href="index.php"><img class="imgHeader" src="../imgs/logosinfondo.png" alt="Logo de Votaieti. Se trata de un círculo azul no muy oscuro con el nombre en fuente sans serif azul oscuro debajo. El fondo es blanco."></a>
+=======
+            <a href="index.php"><img class="imgHeader" src="/imgs/logosinfondo.png" alt="Logo de Votaieti. Se trata de un círculo azul no muy oscuro con el nombre en fuente sans serif azul oscuro debajo. El fondo es blanco."></a>
+>>>>>>> Int
         
             <div class="textoHeader">
                 <h1 class="h1Header"><strong>VOTAIETI</strong></h1>
@@ -10,13 +14,21 @@ if (isset($_SESSION['email'])) {
                     <li class="liHeader"><a href="../index.php">Inicio</a></li>
                     <li class="liHeader"><a href="../dashboard.php">Panel de control</a></li>';
 
+<<<<<<< HEAD
+=======
+    echo '<li id="btnLogOut"class="liHeader"><a href="../cerrar_sesion.php">Cerrar sesión</a></li>';
+
+>>>>>>> Int
     // Si el nombre del usuario está establecido, mostrarlo
     if (isset($_SESSION['user_name'])) {
         echo '<li class="liHeader">Hola, ' . $_SESSION['user_name'] . '</li>';
     }
 
+<<<<<<< HEAD
     echo '<li id="btnLogOut" class="liHeader"><a href="../cerrar_sesion.php">Cerrar sesión</a></li>';
 
+=======
+>>>>>>> Int
     echo '</ul>
             </div>
         </div>';
