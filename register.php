@@ -58,7 +58,7 @@ if(!empty($_POST)){
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El número de teléfono ya existe';
         custom_log("Intento de registro fallido", "Número de teléfono: $telephone ya existe");
-        header('Location: RegisterPruebas.php');
+        header('Location: https://aws21.ieti.site/register.php');
         exit;
     }
 
@@ -96,7 +96,7 @@ if(!empty($_POST)){
    
    $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
    
-   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
+   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="https://aws21.ieti.site/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
    
 
 // Enviar el correo electrónico
@@ -172,7 +172,7 @@ var countrySelectHTML = '<?= $countrySelectHTML ?>';
         
         <div class="containerRegister">
 
-            <form class="creacuentaRegister" action="register.php" method="post">
+            <form class="creacuentaRegister" action="https://aws21.ieti.site/register.php" method="post">
                 <h1>REGÍSTRATE</h1>
                 <img class="logoLogin" src="logosinfondo.png" alt="">
 

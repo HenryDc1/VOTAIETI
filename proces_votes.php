@@ -36,6 +36,6 @@ if ($user) {
 $_SESSION['message'] = "Su voto ha sido enviado con éxito.";
 
 // Redirige al usuario a index.php
-header("Location: index.php");
+header("Location: https://aws21.ieti.site/index.php");
 exit;
 ?>
