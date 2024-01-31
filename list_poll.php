@@ -1,5 +1,7 @@
 <?php
+
 session_start(); // Iniciar la sesión
+include 'log_function.php';
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
     header('Location: errores/error403.php');
@@ -48,6 +50,8 @@ include 'db_connection.php';
     <?php   
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
+        custom_log('Listar Encuestas', "Se ha listado las encuestas del usuario $email");
+
 
         // Consulta para obtener el user_id
         $selectStmt = $pdo->prepare("SELECT user_id FROM users WHERE email = ?");
@@ -124,6 +128,9 @@ include 'db_connection.php';
             $pollStmt->closeCursor();
         } else {
             echo "No se encontró el user_id para el correo electrónico proporcionado.";
+            custom_log('Error list_poll.php', "No se encontró el user_id para el correo electrónico proporcionado");
+
+            header('Location: https://aws21.ieti.site/dashboard.php');
         }
     } else {
         echo "La variable de sesión 'email' no está definida.";

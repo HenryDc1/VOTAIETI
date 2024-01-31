@@ -1,7 +1,7 @@
 
 <?php
 session_start(); // Inicia una nueva sesión o reanuda la existente
-
+include 'log_function.php';
 include 'db_connection.php';
 
 $email = $_SESSION['email'];

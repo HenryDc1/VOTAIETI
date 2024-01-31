@@ -1,9 +1,11 @@
 <?php
-
+include 'log_function.php';
 session_start(); // Iniciar la sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
     header('Location: errores/error403.php');
+    custom_log('Acceso Denegado', "Se ha intentado acceder a la página de listado de votos sin iniciar sesión");
+
     exit;
 }
 // Incluir el archivo de conexión
