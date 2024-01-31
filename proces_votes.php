@@ -2,6 +2,17 @@
 session_start();
 include 'db_connection.php'; // Incluye tu script de conexión a la base de datos
 
+include 'log_function.php';
+// Verifica si la sesión de correo electrónico está iniciada
+if (!isset($_SESSION['guest_email']) || empty($_SESSION['guest_email'])) {
+    // Redirige al usuario a la página de error
+    header("Location: errores/error403.php");
+    custom_log('Permiso Denegado', "Se ha intentado acceder a la página de procesar los votos");
+
+    exit;
+}
+
+
 $pollId = $_POST['poll_id']; // Obtiene el id de la encuesta
 $pollOption = $_POST['pollOption']; // Obtiene la opción seleccionada de la encuesta
 $guestEmail = $_SESSION['guest_email']; // Obtiene el correo electrónico del invitado de la sesión

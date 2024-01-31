@@ -7,7 +7,7 @@
             <link rel="stylesheet" href="../styles.css">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Encuesta 1</title>
+            <title>Encuesta 4</title>
             <style>
             .bodyVota {
                 margin: 0;
@@ -112,4 +112,4 @@
 
             
             
-            <h1 >Pregunta 1</h1><img src="/uploads/65ba6d204dd23.png" alt="Imagen de la pregunta"><form method="post" action="../proces_votes.php" class="options"><input type="hidden" name="poll_id" value="1"><div><input type="radio" id="option1" name="pollOption" value="1"><label for="option1">OPCION 1</label></div><div><input type="radio" id="option2" name="pollOption" value="2"><label for="option2">OPCION 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+            <h1 >enceusta 4</h1><form method="post" action="../proces_votes.php" class="options"><input type="hidden" name="poll_id" value="4"><div><input type="radio" id="option7" name="pollOption" value="7"><label for="option7">ocpion 1</label></div><div><input type="radio" id="option8" name="pollOption" value="8"><label for="option8">ocpion 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>

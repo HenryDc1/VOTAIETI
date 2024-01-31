@@ -58,7 +58,9 @@ include 'db_connection.php';
             
             if ($poll_ID){
                 // Consulta para recuperar preguntas basadas en el user_id
-                $pollStmt = $pdo->prepare("SELECT p.poll_id, p.question, o.option_id, o.option_text FROM poll p INNER JOIN poll_options o ON p.poll_id = o.poll_id WHERE p.user_id = :UserID OR p.poll_id = :PollID");
+               // $pollStmt = $pdo->prepare("SELECT p.poll_id, p.question, o.option_id, o.option_text FROM poll p INNER JOIN poll_options o ON p.poll_id = o.poll_id WHERE p.user_id = :UserID OR p.poll_id = :PollID");
+                $pollStmt = $pdo->prepare(" SELECT p.poll_id, p.question, o.option_id, s.option_text FROM poll p INNER JOIN user_vote o ON p.poll_id = o.poll_id inner join poll_options s on o.option_id = s.option_id WHERE p.user_id = :UserID OR p.poll_id = :PollID");
+
                 //$pollStmt = $pdo->prepare("SELECT p.poll_id, p.question, o.option_id, o.option_text FROM poll p INNER JOIN poll_options o ON p.poll_id = o.poll_id WHERE p.user_id = :UserID");
                 //$pollStmt = $pdo->prepare("SELECT p.poll_id, p.question, o.option_id, o.option_text FROM poll p INNER JOIN poll_options o ON p.poll_id = o.poll_id WHERE p.poll_id = :PollID");
                 $pollStmt->bindParam(':UserID', $userId);
@@ -81,7 +83,7 @@ include 'db_connection.php';
 
                     
                     // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-                    echo "<tr><td>$pollId - $question</td><td><span class='optionText'>$optionText</span></td></tr>";
+                    echo "<tr><td> $question</td><td><span class='optionText'>$optionText</span></td></tr>";
                 }
 
                 echo "</tbody>";
@@ -104,7 +106,7 @@ include 'db_connection.php';
                 
                 echo "<div id='polls_invitation'>";
                 echo "<table>";
-                echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th><th class='start-date'>Fecha de Inicio</th><th class='end-date'>Fecha de Cierre</th></tr></thead>";
+                echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th></tr></thead>";
     
                 echo "<tbody>";
                 while ($row = $pollInvitationStmt->fetch(PDO::FETCH_ASSOC)) {
@@ -140,7 +142,7 @@ include 'db_connection.php';
                     $stateText = isset($stateTexts[$pollState]) ? $stateTexts[$pollState] : $pollState;
 
                     // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-                    echo "<tr><td>$pollId - $question</td><td><span class='poll-state $class'>$stateText</span></td><td></td></tr>";
+                    echo "<tr><td>$pollId - $question</td><td><span class='poll-state $class'>$stateText</span></td></tr>";
                 }
                 echo "</tbody>";
                 echo "</table>";
