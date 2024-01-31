@@ -94,7 +94,7 @@ if(!isset($_SESSION['email'])) {
                 <div id="invitarAmigos">
                     <div class="imagenConTexto">
                         <img src="../imgs/aura2.jpg" alt="La imagen que me has enviado es un fondo abstracto con un suave degradado de colores. Los colores predominantes son tonos de rosa, rojo y naranja que se mezclan armoniosamente. No hay objetos o elementos distintivos en la imagen; es puramente una mezcla colorida y etérea de tonos cálidos. La textura parece suave, sin líneas duras o bordes definidos, creando una sensación calmante.">
-                        <p><strong>Invita a tus amigos a votar</strong></p>
+                        <p><strong>Encuestas publicas</strong></p>
                         <p><em>Haz que tus amigos se unan a la fiesta de opiniones</em></p>
                     </div>
                 </div>

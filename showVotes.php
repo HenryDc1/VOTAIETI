@@ -1,5 +1,5 @@
 <?php
-/*
+
 session_start(); // Iniciar la sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
@@ -8,7 +8,7 @@ if(!isset($_SESSION['email'])) {
 }
 // Incluir el archivo de conexión
 include 'db_connection.php';
-*/
+
 ?><!DOCTYPE html>
 <html lang="es">
 <head>
@@ -52,7 +52,7 @@ include 'db_connection.php';
         $userId = $selectStmt->fetchColumn();
         
         if ($userId) {
-            $pollDone = $pdo-prepare("SELECT poll_id FROM invitation WHERE guest_email = ? AND token_accepted = 1");
+            $pollDone = $pdo->prepare("SELECT poll_id FROM invitation WHERE guest_email = ? AND token_accepted = 1");
             $pollDone->execute([$email]);
             $poll_ID = $pollDone->fetchColumn();
             
