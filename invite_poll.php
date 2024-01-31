@@ -4,10 +4,14 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require "vendor/autoload.php";
+include 'db_connection.php'; // Incluir el archivo de conexión
+include 'log_function.php';
 
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
     header('Location: errores/error403.php');
+    custom_log('Permiso Denegado', "Se ha itnentado acceder a la página de invitación sin iniciar sesión");
+
     exit;
 }
 
@@ -39,7 +43,6 @@ if ($stmt->rowCount() > 0) {
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
 $passwordEmail = "";
-
 if(isset($_POST['emails'])) {
     $emails = array_unique(array_map('trim', explode(',', $_POST['emails']))); // Divide los correos en un array y elimina duplicados y espacios en blanco
 
@@ -50,14 +53,11 @@ if(isset($_POST['emails'])) {
 
     // Dividir los correos electrónicos en paquetes de 5
     $emailChunks = array_chunk($emails, 5);
-
     foreach($emailChunks as $chunk) {
         foreach($chunk as $email) {
 
         // Generar un token único
         $token = bin2hex(random_bytes(16));
-
-        
 
         // Insertar el correo electrónico del invitado en la tabla user_guest
         $query = "INSERT IGNORE INTO user_guest (guest_email) VALUES (:email)";
@@ -72,66 +72,71 @@ if(isset($_POST['emails'])) {
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':token', $token, PDO::PARAM_STR);
         $stmt->execute();
+        custom_log('Inserción de datos', "Se han insertado los datos de la invitación en la base de datos");
 
-            // Crear una nueva instancia de PHPMailer
-            $mail = new PHPMailer();
-            $mail->IsSMTP();
-            $mail->Mailer = "smtp";
-            $mail->SMTPDebug  = 0;  
-            $mail->SMTPAuth   = TRUE;
-            $mail->SMTPSecure = "tls";
-            $mail->Port       = 587;
-            $mail->Host       = "smtp.gmail.com";
-            $mail->Username   = $senderEmail;
-            $mail->Password   = $passwordEmail;
-            $mail->IsHTML(true);
-            $mail->CharSet = 'UTF-8'; 
-            $mail->AddAddress($email);
-            $mail->SetFrom($senderEmail, "VOTAIETI");
-            $mail->Subject = 'Invitacion para votar en una encuesta';
-            $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
-            error_log("Poll token before sending mail: " . $pollToken); // Debug line
-            $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='http://localhost:3000/accept_invitation.php?token=" . $token . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
-                if(!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            } else {
-                echo   "<script>
-                function showSuccesPopup(message) {
-                    // Crear la ventana flotante
-                    var successPopup = $('<div/>', {
-                        id: 'successPopup',
-                        text: message,
-                        style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
-                    });
 
-                    // Crear el botón 'X'
-                    var closeButton = $('<button/>', {
-                        text: 'X',
-                        style: 'position: absolute; top: 0; right: 0; background-color: transparent; color: white; border: none; font-size: 20px; cursor: pointer;'
-                    });
+        // Crear una nueva instancia de PHPMailer
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->Mailer = "smtp";
+        $mail->SMTPDebug  = 0;  
+        $mail->SMTPAuth   = TRUE;
+        $mail->SMTPSecure = "tls";
+        $mail->Port       = 587;
+        $mail->Host       = "smtp.gmail.com";
+        $mail->Username   = $senderEmail;
+        $mail->Password   = $passwordEmail;
+        $mail->IsHTML(true);
+        $mail->CharSet = 'UTF-8'; 
+        $mail->AddAddress($email);
+        $mail->SetFrom($senderEmail, "VOTAIETI");
+        $mail->Subject = 'Invitacion para votar en una encuesta';
+        $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
+        //error_log("Poll token before sending mail: " . $pollToken); // Debug line
+        $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='http://localhost:3000/accept_invitation.php?token=" . $token . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
+            if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            custom_log('Invitación Enviada', "Invitación enviada correctamente a $email");
 
-                    // Añadir el botón 'X' a la ventana flotante
-                    successPopup.append(closeButton);
+        } else {
+            echo   "<script>
+            function showSuccesPopup(message) {
+                // Crear la ventana flotante
+                var successPopup = $('<div/>', {
+                    id: 'successPopup',
+                    text: message,
+                    style: 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
+                });
 
-                    // Añadir la ventana flotante al cuerpo del documento
-                    $('body').append(successPopup);
+                // Crear el botón 'X'
+                var closeButton = $('<button/>', {
+                    text: 'X',
+                    style: 'position: absolute; top: 0; right: 0; background-color: transparent; color: white; border: none; font-size: 20px; cursor: pointer;'
+                });
 
-                    // Manejador de eventos para el botón 'X'
-                    closeButton.click(function () {
-                        successPopup.remove();
-                    });
-                }
-                window.onload = function () {
-                    showSuccesPopup('La encuesta ha sido enviada con éxito');
-                };
-              </script>";
+                // Añadir el botón 'X' a la ventana flotante
+                successPopup.append(closeButton);
 
+                // Añadir la ventana flotante al cuerpo del documento
+                $('body').append(successPopup);
+
+                // Manejador de eventos para el botón 'X'
+                closeButton.click(function () {
+                    successPopup.remove();
+                });
             }
-        }
+            window.onload = function () {
+                showSuccesPopup('La encuesta ha sido enviada con éxito');
+            };
+          </script>";
 
-        // Esperar 5 minutos antes de enviar el próximo paquete
+        }
     }
+    
+    // Esperar 5 minutos antes de enviar el siguiente paquete de correos electrónicos
+   // sleep(5 * 60);
+}
 }
 ?>
 
@@ -152,6 +157,8 @@ if(isset($_POST['emails'])) {
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
     <link rel="stylesheet" href="styles.css">
     <script src="../styles + scripts/script.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 
@@ -173,16 +180,44 @@ if(isset($_POST['emails'])) {
             <input type="submit" value="Invitar" class="submit-button">
         </form>
 
-        </form>
-        <?php
-            // Assuming $pollId and $pollToken are available in this scope
-            echo "Poll ID: " . $pollId . "<br>";
-            echo "Poll Token: " . $pollToken . "<br>";
-        ?>
+       
+       
     </div>
     
 
-    
+    <script>
+        function showSuccesPopup(message) {
+            // Crear la ventana flotante
+            var successPopup = $('<div/>', {
+                id: 'successPopup',
+                text: message,
+                style: 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
+            });
+
+            // Crear el botón 'X'
+            var closeButton = $('<button/>', {
+                text: 'X',
+                style: 'position: absolute; top: 0; right: 0; background-color: transparent; color: white; border: none; font-size: 20px; cursor: pointer;'
+            });
+
+            // Añadir el botón 'X' a la ventana flotante
+            successPopup.append(closeButton);
+
+            // Añadir la ventana flotante al cuerpo del documento
+            $('body').append(successPopup);
+
+            // Manejador de eventos para el botón 'X'
+            closeButton.click(function () {
+                successPopup.remove();
+            });
+        }
+
+            <?php if($mail->send()): ?>
+                window.onload = function () {
+                    showSuccesPopup('La encuesta ha sido enviada con éxito');
+                };
+        <?php endif; ?>
+    </script>
 
     <div class="contenedorFooter">
         <?php include 'footer.php'; ?>

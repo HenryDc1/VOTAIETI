@@ -1,7 +1,178 @@
-[2024-01-30 00:08:18] Login exitoso: El usuario prueba3@hotmail.com ha iniciado sesión correctamente
-[2024-01-30 00:10:42] Login exitoso: El usuario preuba1@hotmail.com ha iniciado sesión correctamente
-[2024-01-30 00:10:45] Treminos y Condiciones aceptadas: El usuario preuba1@hotmail.com ha aceptado los terminos y condiciones
-[2024-01-30 00:11:22] Login fallido: El usuario prueba1@hotmail.com intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
-[2024-01-30 00:11:35] Login exitoso: El usuario prueba3@hotmail.com ha iniciado sesión correctamente
-[2024-01-30 01:53:34] Creacion de encuesta: Se ha creado una encuesta correctamente
-[2024-01-30 01:53:34] Encuesta Creada: Se ha creado el archivo poll4.php con exito
+[2024-01-30 15:32:09] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-30 15:34:47] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-30 15:36:16] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 15:36:16] Encuesta Creada: Se ha creado el archivo poll3.php con exito
+[2024-01-30 15:50:09] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 15:50:09] Encuesta Creada: Se ha creado el archivo poll4.php con exito
+[2024-01-30 15:54:28] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 15:54:28] Encuesta Creada: Se ha creado el archivo poll5.php con exito
+[2024-01-30 16:04:56] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 16:04:56] Encuesta Creada: Se ha creado el archivo poll6.php con exito
+[2024-01-30 16:07:52] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 16:07:52] Encuesta Creada: Se ha creado el archivo poll7.php con exito
+[2024-01-30 16:16:53] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 16:16:53] Encuesta Creada: Se ha creado el archivo poll8.php con exito
+[2024-01-30 16:22:17] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 16:22:17] Encuesta Creada: Se ha creado el archivo poll9.php con exito
+[2024-01-30 16:34:44] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 16:34:44] Encuesta Creada: Se ha creado el archivo poll10.php con exito
+[2024-01-30 16:45:36] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 16:45:36] Encuesta Creada: Se ha creado el archivo poll11.php con exito
+[2024-01-30 16:53:53] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 16:53:53] Encuesta Creada: Se ha creado el archivo poll12.php con exito
+[2024-01-30 17:09:37] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 17:09:37] Encuesta Creada: Se ha creado el archivo poll13.php con exito
+[2024-01-30 17:37:33] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 17:37:33] Encuesta Creada: Se ha creado el archivo poll14.php con exito
+[2024-01-30 17:41:02] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:26] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:28] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:29] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:30] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:33] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:41:43] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 17:42:01] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-30 17:42:02] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-30 18:17:38] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-30 18:20:55] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 18:20:55] Encuesta Creada: Se ha creado el archivo poll15.php con exito
+[2024-01-30 18:25:51] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 18:25:51] Encuesta Creada: Se ha creado el archivo poll16.php con exito
+[2024-01-30 19:58:55] Usuario creado: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34670123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-01-30 19:59:28] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-30 19:59:30] Treminos y Condiciones aceptadas: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha aceptado los terminos y condiciones
+[2024-01-30 20:00:21] Subida Imagen: Se ha guarado la imagen en el directorio uploads con el nombre 65b9474529c9e.png
+[2024-01-30 20:00:21] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 20:00:21] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-01-30 20:21:03] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 20:21:03] Encuesta Creada: Se ha creado el archivo poll2.php con exito
+[2024-01-30 20:22:53] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 20:22:53] Encuesta Creada: Se ha creado el archivo poll3.php con exito
+[2024-01-30 20:25:13] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 20:25:13] Encuesta Creada: Se ha creado el archivo poll4.php con exito
+[2024-01-30 20:27:01] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-30 20:27:01] Encuesta Creada: Se ha creado el archivo poll5.php con exito
+[2024-01-30 20:42:02] Login fallido: El usuario amestrevizcaino.cf@iesesteveterrardas.cat intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-01-30 20:42:11] Login fallido: El usuario amestrevizcaino.cf@iesesteveterrardas.cat intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-01-30 20:42:19] Login fallido: El usuario amestrevizcaino.cf@iesesteveterrardas.cat intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-01-30 20:42:50] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente

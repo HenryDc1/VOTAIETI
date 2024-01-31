@@ -157,9 +157,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
         
-        $phpContent = '
+        $guestEmail = $_SESSION["guest_email"];
+     
+       
+        $phpContent .= '
         <!DOCTYPE html>
         <html lang="en">
+       
+        
         <head>
             <link rel="stylesheet" href="../styles.css">
             <meta charset="UTF-8">
@@ -210,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             
             img {
-                width: 200px;
+                width: 300px;
                 height: 200px;
                 padding-top: 10px;
             }
@@ -246,9 +251,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 cursor: pointer;
                 transition: background-position 1s, color 1s;
             }
+            .vota button {
+                align-self: center;
+            }
             </style>
             </head>
-       
+            
              <body class="bodyVota">
             <div class="contenedorHeader">
                 <?php include "../header.php"; ?>
@@ -261,37 +269,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="vota">
+            <?php  session_start();
+            $guest_email = $_SESSION["guest_email"]; ?>
+
             
-
-
             
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
-
+           
+           
             // Si la encuesta tiene una imagen, añádela
             if ($imagePath) {
                 $phpContent .= '<img src="/'. $imagePath.'" alt="Imagen de la pregunta">';
             }
-            $phpContent .= '<form action="procesar_voto.php" method="post">';  // Cambiar 'procesar_voto.php' al nombre de tu script de procesamiento
-            $phpContent .= '<div class="vota">';
-            $phpContent .= '<div class="options">';
+            
             // Añadir las opciones a la encuesta
-            for ($i = 1; $i <= $pollData['numOptions']; $i++) {
-                $phpContent .= '<div><input type="checkbox" id="option' . $i . '" name="options[]" value="' . $i . '"><label for="option' . $i . '">' . htmlspecialchars($pollData['option' . $i]) . '</label>';
-            
-                // Obtener la ruta de la imagen de la opción de la base de datos
-                $stmt = $pdo->prepare("SELECT path_image FROM poll_options WHERE poll_id = ? AND option_text = ?");
-                $stmt->execute([$pollId, $pollData['option' . $i]]);
-                $optionImagePath = $stmt->fetchColumn();
-            
+            $phpContent .= '<form method="post" action="../proces_votes.php" class="options">';
+            $phpContent .= '<input type="hidden" name="poll_id" value="' . $pollId . '">';
+
+            // Obtener todas las opciones de la encuesta de la base de datos
+            $stmt = $pdo->prepare("SELECT * FROM poll_options WHERE poll_id = ?");
+            $stmt->execute([$pollId]);
+            $options = $stmt->fetchAll();
+
+            foreach ($options as $option) {
+                $phpContent .= '<div><input type="radio" id="option' . $option['option_id'] . '" name="pollOption" value="' . $option['option_id'] . '">';
+                $phpContent .= '<label for="option' . $option['option_id'] . '">' . htmlspecialchars($option['option_text']) . '</label></div>';
+
                 // Si la opción tiene una imagen, añádela
-                if ($optionImagePath) {
-                    $phpContent .= '<br><img src="/' . $optionImagePath . '" alt="Imagen de la opción ' . $i . '">';
+                if ($option['path_image']) {
+                    $phpContent .= '<br><br><img src="/' . $option['path_image'] . '" alt="Imagen de la opción ' . $option['option_id'] . '">';
                 }
-                $phpContent .= '</div>';
             }
             $phpContent .= '</div>'; // Cierre del div de las opciones
             $phpContent .= '<button type="submit" id="botonEnviar">Enviar</button></div>'; // Cierre del div de vota
-            $phpContent .= '</form>'; // Cierre del formulario
+            $phpContent .= '</div>';
             $phpContent .= '<div class="contenedorFooter">';
             $phpContent .= '<?php include "../footer.php"; ?>';
             $phpContent .= '</div>';
@@ -348,7 +359,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Encuesta</title>
+    <title>Crear Encuesta — Votaieti</title>
     <!-- Asegúrate de incluir la biblioteca jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -367,53 +378,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php include 'footer.php'; ?>
         </div>
     <script>
-    $(document).ready(function() {
-        var optionCount = 0;
+$(document).ready(function() {
+    var optionCount = 0;
+    var datesAdded = false;
 
-        // Generar el campo de "Pregunta" dinámicamente
-        $('#pollForm').append('<div class="datosCreatePoll"><input type="text" id="question" name="question" required><label for="question">Pregunta:</label><input type="file" id="questionImage" name="questionImage"></div>');
+    // Generar el campo de "Pregunta" dinámicamente
+    $('#pollForm').append('<div class="datosCreatePoll"><input type="text" id="question" name="question" required><label for="question">Pregunta:</label><input type="file" id="questionImage" name="questionImage"></div>');
 
-        $('#question').on('keydown', function(e) {
-            if(e.which == 13 || e.which == 9) {
-                if($(this).val().trim() !== '') {
-                    if(optionCount == 0) {
-                        $('#pollForm').append('<div class="datosCreatePoll" id="optionsDiv"><label id="numeroOpciones">Opciones:</label><button type="button" id="removeOption" style="display: none;">-</button><button type="button" id="addOption">+</button><div id="optionInputs"></div></div>');
-                        var today = new Date().toISOString().split('T')[0];
-                        $('#pollForm').append('<div class="datosCreatePoll" id="datesDiv"><input type="date" id="startDate" name="startDate" min="' + today + '" required><label for="startDate">Fecha de Inicio y Finalización:</label><input type="date" id="endDate" name="endDate" required><label for="endDate"></label></div>');
-                        $('#pollForm').append('<button class="btnCreatePoll"type="submit" id="submitBtn">Crear Encuesta</button>');
+    $('#question').on('keydown', function(e) {
+        if(e.which == 13 || e.which == 9) {
+            if($(this).val().trim() !== '') {
+                if(optionCount == 0) {
+                    $('#pollForm').append('<div class="datosCreatePoll" id="optionsDiv"><label id="numeroOpciones">Opciones:</label><button type="button" id="removeOption" style="display: none;">-</button><button type="button" id="addOption">+</button><div id="optionInputs"></div></div>');
+                    addOption();
+                    addOption();
+                    $('#addOption').click(function() {
                         addOption();
-                        addOption();
-                        $('#addOption').click(function() {
-                            addOption();
-                        });
-                        $('#removeOption').click(function() {
-                            if(optionCount > 2) {
-                                $('#option'+optionCount).remove();
-                                optionCount--;
-                                if(optionCount == 2) {
-                                    $('#removeOption').hide();
-                                }
+                    });
+                    $('#removeOption').click(function() {
+                        if(optionCount > 2) {
+                            $('#option'+optionCount).remove();
+                            $('#optionImage'+optionCount).remove(); // Agregado para eliminar el último botón de subida de archivo
+                            optionCount--;
+                            if(optionCount == 2) {
+                                $('#removeOption').hide();
                             }
-                            // Actualizar el valor de 'numOptions'
-                            $('#numOptions').val(optionCount);
-                        });
-                    }
+                        }
+                        // Actualizar el valor de 'numOptions'
+                        $('#numOptions').val(optionCount);
+                    });
+                }
+            }
+        }
+    });
+
+    // Agregar controlador de eventos 'input' al campo de entrada de la pregunta
+    $('#question').on('input', function() {
+        if($(this).val().trim() === '') {
+            $('#optionsDiv').remove();
+            $('#datesDiv').remove();
+            $('#submitBtn').remove();
+            optionCount = 0;
+            datesAdded = false;
+        }
+    });
+
+    function addOption() {
+        optionCount++;
+        $('#optionInputs').append('<input placeholder="Opción '+optionCount+'" type="text" id="option'+optionCount+'" name="option'+optionCount+'" required>');
+        $('#optionInputs').append('<input type="file" id="optionImage'+optionCount+'" name="optionImage'+optionCount+'" accept="image/*">');
+        if(optionCount > 2) {
+            $('#removeOption').show();
+        }
+        // Actualizar el valor de 'numOptions'
+        $('#numOptions').val(optionCount);
+
+        // Agregar controlador de eventos 'keydown' al input de la opción
+        $('#option'+optionCount).on('keydown', function(e) {
+            if(e.which == 13 || e.which == 9) {
+                if($(this).val().trim() !== '' && !datesAdded) {
+                    var today = new Date().toISOString().split('T')[0];
+                    $('#pollForm').append('<div class="datosCreatePoll" id="datesDiv"><input type="date" id="startDate" name="startDate" min="' + today + '" required><label for="startDate">Fecha de Inicio y Finalización:</label><input type="date" id="endDate" name="endDate" required><label for="endDate"></label></div>');
+                    $('#pollForm').append('<button class="btnCreatePoll"type="submit" id="submitBtn">Crear Encuesta</button>');
+                    datesAdded = true;
                 }
             }
         });
-
-        function addOption() {
-            optionCount++;
-            $('#optionInputs').append('<input placeholder="Opción '+optionCount+'" type="text" id="option'+optionCount+'" name="option'+optionCount+'" required>');
-            $('#optionInputs').append('<input type="file" id="optionImage'+optionCount+'" name="optionImage'+optionCount+'" accept="image/*">');
-            if(optionCount > 2) {
-                $('#removeOption').show();
-            }
-            // Actualizar el valor de 'numOptions'
-            $('#numOptions').val(optionCount);
-        }
-    });
-    
+    }
+});
     </script>
 
     <script>

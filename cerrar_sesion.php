@@ -1,4 +1,5 @@
 <?php
+include 'log_function.php';
 // Inicia la sesión (necesario para cerrarla)
 session_start();
 

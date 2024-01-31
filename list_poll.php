@@ -23,7 +23,7 @@ include 'db_connection.php';
     <meta property="og:image" content="../imgs/votaietilogo.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
-    <title>Panel de control — Votaieti</title>
+    <title>Listado de encuestas — Votaieti</title>
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
     <link rel="stylesheet" href="styles.css">
     <script src="../styles + scripts/script.js"></script> 
