@@ -24,8 +24,10 @@ include 'db_connection.php';
     <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
     <title>Panel de control | Votos — Votaieti</title>
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="../styles + scripts/script.js"></script> 
+    <script src="js/script.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 
@@ -83,7 +85,7 @@ include 'db_connection.php';
 
                     
                     // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-                    echo "<tr><td> $question</td><td><span class='textOption'>$optionText</span></td></tr>";
+                    echo "<tr><td> $question</td><td><span class='textOption complete'>$optionText</span><span class='textOption more'>Spoiler</span></td></tr>";
                 }
 
                 echo "</tbody>";

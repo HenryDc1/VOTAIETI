@@ -1166,7 +1166,15 @@ footer a:hover {
     padding: 0.25rem;
     border-radius: 9999px;
 }
+.more {
+    cursor: pointer;
+    background-color: #ccf;
+    margin-left: 10px;
+}
 
+.complete {
+    display: none;
+}
 
  /* ---------------------------------------------------- /
 / details_page.PHP */
