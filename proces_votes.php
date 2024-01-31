@@ -34,6 +34,8 @@ if ($user) {
 
 // Almacena el mensaje de éxito en una variable de sesión
 $_SESSION['message'] = "Su voto ha sido enviado con éxito.";
+custom_log('Voto Envviado', "Se ha enviado el voto con éxito");
+
 
 // Redirige al usuario a index.php
 header("Location: https://aws21.ieti.site/index.php");
