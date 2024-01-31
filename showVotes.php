@@ -118,7 +118,7 @@ include 'db_connection.php';
                 echo "No se encontró el poll_id para el correo electrónico proporcionado.";
             }
 
-            $pollInvitation = $pdo-prepare("SELECT poll_id FROM invitation WHERE guest_email = ? AND token_accepted = 0");
+            $pollInvitation = $pdo->prepare("SELECT poll_id FROM invitation WHERE guest_email = ? AND token_accepted = 0");
             $pollInvitation->execute([$email]);
             $poll_ID = $pollInvitation->fetchColumn();
 
