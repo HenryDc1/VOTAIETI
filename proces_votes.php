@@ -7,7 +7,7 @@ include 'log_function.php';
 if (!isset($_SESSION['guest_email']) || empty($_SESSION['guest_email'])) {
     // Redirige al usuario a la página de error
     header("Location: errores/error403.php");
-    custom_log('Permiso Denegado', "Se ha itnentado acceder a la página de procesar los votos");
+    custom_log('Permiso Denegado', "Se ha intentado acceder a la página de procesar los votos");
 
     exit;
 }
