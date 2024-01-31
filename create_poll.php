@@ -53,9 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $imagePath = $uploadDir . $filename;
             custom_log('Subida Imagen', "Se ha guarado la imagen en el directorio uploads con el nombre $filename");
 
-        } else {
-            echo 'Hubo un error al mover el archivo al directorio de destino.';
-        }
+        } 
     } 
 
     // Obtener el email de la sesión

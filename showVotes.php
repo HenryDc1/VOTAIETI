@@ -153,13 +153,13 @@ include 'db_connection.php';
                 // Cerrar la consulta preparada
                 $pollStmt->closeCursor();
             } else {
-                echo "No se encontró el poll_id para el correo electrónico proporcionado.";
+               // echo "No se encontró el poll_id para el correo electrónico proporcionado.";
             }
         } else {
-            echo "No se encontró el user_id para el correo electrónico proporcionado.";
+           // echo "No se encontró el user_id para el correo electrónico proporcionado.";
         }
     } else {
-        echo "La variable de sesión 'email' no está definida.";
+       // echo "La variable de sesión 'email' no está definida.";
     }
     ?>
     </div>
