@@ -9,7 +9,7 @@ include 'log_function.php';
 
 // Correo electrónico del remitente (hardcodeado)
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "ArnauMestre169";
+$passwordEmail = "";
 
 // Muestra el mensaje de error si existe
 if (isset($_SESSION['error'])) {
