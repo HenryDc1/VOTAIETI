@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'db_connection.php'; // Incluye tu script de conexión a la base de datos
+
 include 'log_function.php';
 // Verifica si la sesión de correo electrónico está iniciada
 if (!isset($_SESSION['guest_email']) || empty($_SESSION['guest_email'])) {
@@ -10,7 +12,6 @@ if (!isset($_SESSION['guest_email']) || empty($_SESSION['guest_email'])) {
     exit;
 }
 
-include 'db_connection.php'; // Incluye tu script de conexión a la base de datos
 
 $pollId = $_POST['poll_id']; // Obtiene el id de la encuesta
 $pollOption = $_POST['pollOption']; // Obtiene la opción seleccionada de la encuesta
