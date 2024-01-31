@@ -58,7 +58,9 @@ include 'db_connection.php';
             
             if ($poll_ID){
                 // Consulta para recuperar preguntas basadas en el user_id
-                $pollStmt = $pdo->prepare("SELECT p.poll_id, p.question, p.poll_state, o.option_id, o.option_text FROM poll p INNER JOIN poll_options o ON p.poll_id = o.poll_id WHERE p.user_id = :UserID OR p.poll_id = :PollID");
+                $pollStmt = $pdo->prepare("SELECT p.poll_id, p.question, o.option_id, o.option_text FROM poll p INNER JOIN poll_options o ON p.poll_id = o.poll_id WHERE p.user_id = :UserID OR p.poll_id = :PollID");
+                //$pollStmt = $pdo->prepare("SELECT p.poll_id, p.question, o.option_id, o.option_text FROM poll p INNER JOIN poll_options o ON p.poll_id = o.poll_id WHERE p.user_id = :UserID");
+                //$pollStmt = $pdo->prepare("SELECT p.poll_id, p.question, o.option_id, o.option_text FROM poll p INNER JOIN poll_options o ON p.poll_id = o.poll_id WHERE p.poll_id = :PollID");
                 $pollStmt->bindParam(':UserID', $userId);
                 $pollStmt->bindParam(':PollID', $poll_ID);
                 $pollStmt->execute();
@@ -67,45 +69,19 @@ include 'db_connection.php';
                 echo "<h1>Mis encuestas</h1>";
                 echo "<div id='polls_done'>";
                 echo "<table>";
-                echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th><th class='option-text'>Opcion Seleccionada</th></tr></thead>";
+                echo "<thead><tr><th class='question-column'>Pregunta</th><th class='option-text'>Opcion Seleccionada</th></tr></thead>";
 
 
                 echo "<tbody>";
                 while ($row = $pollStmt->fetch(PDO::FETCH_ASSOC)) {
                     $question = $row['question'];
-                    $pollState = $row['poll_state'];
                     $pollId = $row['poll_id'];
                     $optionText = $row['option_text'];
                     $optionID = $row['option_id'];
 
-
-                    // Añadir clases CSS basadas en el valor de pollState
-                    $class = '';
-                    switch ($pollState) {
-                        case 'not_started':
-                            $class = 'not-started';
-                            break;
-                        case 'finished':
-                            $class = 'finished';
-                            break;
-                        case 'active':
-                            $class = 'active';
-                            break;
-                    }
-
-                    // Mapear los valores de estado a sus correspondientes 
-                
-                    $stateTexts = array(
-                        'not_started' => 'No Iniciada',
-                        'finished' => 'Finalizada',
-                        'active' => 'Activa',
-                    );
-
-                    // Obtener el texto correspondiente al estado actual
-                    $stateText = isset($stateTexts[$pollState]) ? $stateTexts[$pollState] : $pollState;
                     
                     // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-                    echo "<tr><td>$pollId - $question</td><td><span class='poll-state $class'>$stateText</span></td><td><span class='optionText'>$optionText</span></td></tr>";
+                    echo "<tr><td>$pollId - $question</td><td><span class='optionText'>$optionText</span></td></tr>";
                 }
 
                 echo "</tbody>";
@@ -123,7 +99,6 @@ include 'db_connection.php';
             $poll_ID = $pollInvitation->fetchColumn();
 
             if ($poll_ID){
-                // Consulta para recuperar preguntas basadas en el user_id
                 $pollInvitationStmt = $pdo->prepare("SELECT poll_id, question, start_date, end_date, poll_state FROM poll WHERE poll_id = ?");
                 $pollInvitationStmt->execute([$poll_ID]);
                 
