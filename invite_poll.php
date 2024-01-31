@@ -65,6 +65,8 @@ if(isset($_POST['emails'])) {
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':token', $token, PDO::PARAM_STR);
         $stmt->execute();
+        custom_log('Inserción de datos', "Se han insertado los datos de la invitación en la base de datos");
+
 
         // Crear una nueva instancia de PHPMailer
         $mail = new PHPMailer();
