@@ -24,7 +24,7 @@ if(isset($_GET['token'])) {
 
             // Redirigir al usuario a la página de inicio de sesión
             $_SESSION['justVerified'] = true;
-            header("Location: login.php");
+            header("Location: https://aws21.ieti.site/login.php");
             exit;
         }
     } else {

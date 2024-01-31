@@ -47,7 +47,7 @@ if(!empty($_POST)){
         $_SESSION['error'] = 'El correo electrónico ya existe';
         custom_log("Intento de registro fallido", "Correo electrónico: $email ya existe");
 
-        header('Location: RegisterPruebas.php');
+        header('Location: https://aws21.ieti.site/register.php');
         exit;
     }
 

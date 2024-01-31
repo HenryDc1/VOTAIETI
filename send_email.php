@@ -32,7 +32,7 @@ foreach($emails as $email) {
     $mail->SetFrom($senderEmail, "VOTAIETI");
     $mail->Subject = 'Invitacion para votar en una encuesta';
     $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
-    $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='http://localhost:3000/accept_invitation.php?token=" . $email['token'] . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
+    $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='https://aws21.ieti.site/accept_invitation.php?token=" . $email['token'] . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
 
     if($mail->send()) {
         // Eliminar el correo electrónico de la tabla SEND_EMAIL
@@ -44,6 +44,6 @@ foreach($emails as $email) {
         echo 'Message could not be sent.';
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     }
-    header  ('Location: dashboard.php');    
+    header  ('Location: https://aws21.ieti.site/dashboard.php');    
 }
 ?>
