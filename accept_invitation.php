@@ -1,7 +1,7 @@
 <?php
 // Start the session
 session_start();
-
+include 'log_function.php';
 include 'db_connection.php'; 
 
 if(isset($_GET['token'])) {
@@ -26,6 +26,7 @@ if(isset($_GET['token'])) {
         if ($stmt->rowCount() > 0) {
             // The user has already voted, redirect to error page
             header("Location: errores/error403.php");
+            custom_log('PERMISO DENEGADO', "Se ha intentado acceder de nuevo al enlace una vez votado");
             exit;
         }
 
@@ -33,6 +34,7 @@ if(isset($_GET['token'])) {
         $sql = "UPDATE invitation SET token_accepted = 1 WHERE token = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$token]);
+        custom_log('INVITACION ACEPTADA', "Se ha aceptado la invitación con éxito");
 
         // Redirect the user to the poll page in the Poll folder
         header("Location: Poll/poll" . $invitation['poll_id'] . ".php");

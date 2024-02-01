@@ -1,9 +1,11 @@
 <?php
-
+include 'log_function.php';
 session_start(); // Iniciar la sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
     header('Location: errores/error403.php');
+    custom_log('ACCESO DENEGADO', "Se ha intentado acceder a la página de listado de votos sin iniciar sesión");
+
     exit;
 }
 // Incluir el archivo de conexión
@@ -24,8 +26,10 @@ include 'db_connection.php';
     <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
     <title>Panel de control | Votos — Votaieti</title>
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="../styles + scripts/script.js"></script> 
+    <script src="js/script.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 
@@ -66,12 +70,12 @@ include 'db_connection.php';
                 $pollStmt->bindParam(':UserID', $userId);
                 $pollStmt->bindParam(':PollID', $poll_ID);
                 $pollStmt->execute();
-
+                echo "<br>";
                 // Mostrar las preguntas y el estado de la encuesta
-                echo "<h1>Encuestas Realizadas</h1>";
+                echo "<h1>Encuestas realizadas</h1>";
                 echo "<div id='polls_done'>";
                 echo "<table>";
-                echo "<thead><tr><th class='question-column'>Pregunta</th><th class='option-text'>Opcion Seleccionada</th></tr></thead>";
+                echo "<thead><tr><th class='columnQuestion'>Pregunta</th><th class='textOption'>Opcion Seleccionada</th></tr></thead>";
 
 
                 echo "<tbody>";
@@ -83,7 +87,7 @@ include 'db_connection.php';
 
                     
                     // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-                    echo "<tr><td> $question</td><td><span class='optionText'>$optionText</span></td></tr>";
+                    echo "<tr><td> $question</td><td><span class='textOption complete'>$optionText</span><span class='textOption more'>Spoiler</span></td></tr>";
                 }
 
                 echo "</tbody>";
@@ -101,18 +105,20 @@ include 'db_connection.php';
             $poll_ID = $pollInvitation->fetchColumn();
 
             if ($poll_ID){
-                $pollInvitationStmt = $pdo->prepare("SELECT poll_id, question, poll_state FROM poll WHERE poll_id = ?");
+                $pollInvitationStmt = $pdo->prepare("SELECT poll_id, question, start_date, end_date, poll_state FROM poll WHERE poll_id = ?");
                 $pollInvitationStmt->execute([$poll_ID]);
-                
+                echo "<h1>Encuestas pendientes</h1>";
                 echo "<div id='polls_invitation'>";
                 echo "<table>";
-                echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th></tr></thead>";
+                echo "<thead><tr><th class='columnQuestion'>Pregunta</th><th class='state-column'>Estado</th></tr></thead>";
     
                 echo "<tbody>";
                 while ($row = $pollInvitationStmt->fetch(PDO::FETCH_ASSOC)) {
                     $question = $row['question'];
                     $pollState = $row['poll_state'];
                     $pollId = $row['poll_id'];
+                    $start_date = $row['start_date'];
+                    $end_date = $row['end_date'];
 
 
                     // Añadir clases CSS basadas en el valor de pollState
@@ -140,7 +146,7 @@ include 'db_connection.php';
                     $stateText = isset($stateTexts[$pollState]) ? $stateTexts[$pollState] : $pollState;
 
                     // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-                    echo "<tr><td>$pollId - $question</td><td><span class='poll-state $class'>$stateText</span></td></tr>";
+                    echo "<tr><td>$pollId - $question</td><td><span class='state-poll $class'>$stateText</span></td></tr>";
                 }
                 echo "</tbody>";
                 echo "</table>";
@@ -149,13 +155,13 @@ include 'db_connection.php';
                 // Cerrar la consulta preparada
                 $pollStmt->closeCursor();
             } else {
-                echo "No se encontró el poll_id para el correo electrónico proporcionado.";
+               // echo "No se encontró el poll_id para el correo electrónico proporcionado.";
             }
         } else {
-            echo "No se encontró el user_id para el correo electrónico proporcionado.";
+           // echo "No se encontró el user_id para el correo electrónico proporcionado.";
         }
     } else {
-        echo "La variable de sesión 'email' no está definida.";
+       // echo "La variable de sesión 'email' no está definida.";
     }
     ?>
     </div>

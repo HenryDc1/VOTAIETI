@@ -5,12 +5,12 @@ include 'log_function.php';
 if (!isset($_SESSION['email'])) {
     // Redirigir al usuario a la página de inicio de sesión
     header('Location: errores/error403.php');
-    custom_log('Error 403', "El usuario $email ha intentado acceder a la página create_poll.php sin iniciar sesión");
+    custom_log('ERROR 403', "El usuario $email ha intentado acceder a la página create_poll.php sin iniciar sesión");
 
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'aws21', 'P@ssw0rd');
 
 echo '<script src="js/script.js"></script>';
 
@@ -51,11 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES['questionImage']['tmp_name'], $uploadDir . $filename)) {
             // Si el archivo se movió con éxito, guardar la ruta en la base de datos
             $imagePath = $uploadDir . $filename;
-            custom_log('Subida Imagen', "Se ha guarado la imagen en el directorio uploads con el nombre $filename");
+            custom_log('IMAGEN SUBIDA', "Se ha guarado la imagen en el directorio uploads con el nombre $filename");
 
-        } else {
-            echo 'Hubo un error al mover el archivo al directorio de destino.';
-        }
+        } 
     } 
 
     // Obtener el email de la sesión
@@ -89,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $pdo->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, path_image) 
     VALUES (?, ?, ?, ?, ?, NULL, NULL, ?)");
     $stmt->execute([$question, $userId, $startDate, $endDate, $pollState, $imagePath]);
-    custom_log('Creacion de encuesta', "Se ha creado una encuesta correctamente");
+    custom_log('CREACION ENCUESTA', "Se ha creado una encuesta correctamente");
 
 
     $pollId = $pdo->lastInsertId();
@@ -114,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Verificar si el archivo ya existe
                     if (!file_exists($target_file)) {
                         // Verificar el tamaño del archivo
-                        if ($_FILES["optionImage$i"]["size"] < 500000) {
+                        if ($_FILES["optionImage$i"]["size"] < 1000000) {
                             // Permitir ciertos formatos de archivo
                             if($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg" || $imageFileType == "gif" ) {
                                 // Intentar mover el archivo subido al directorio de destino
@@ -124,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 }
                             } else {
                                 $_SESSION['error'] = "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
-                                custom_log('Error subida imagen', "El usuario $email ha intentado subir un fichero no valido");
+                                custom_log('ERROR SUBIDA IMAGEN', "El usuario $email ha intentado subir un fichero no valido");
 
                                 header('Location: create_poll.php');
                                 $target_file = NULL;
@@ -283,7 +281,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
             // Añadir las opciones a la encuesta
-            $phpContent .= '<form method="post" action="../proces_votes.php" class="options">';
+            $phpContent .= '<form method="post" action="http://localhost:3000/proces_votes.php" class="options">';
             $phpContent .= '<input type="hidden" name="poll_id" value="' . $pollId . '">';
 
             // Obtener todas las opciones de la encuesta de la base de datos
@@ -440,6 +438,12 @@ $(document).ready(function() {
                     $('#pollForm').append('<div class="datosCreatePoll" id="datesDiv"><input type="date" id="startDate" name="startDate" min="' + today + '" required><label for="startDate">Fecha de Inicio y Finalización:</label><input type="date" id="endDate" name="endDate" required><label for="endDate"></label></div>');
                     $('#pollForm').append('<button class="btnCreatePoll"type="submit" id="submitBtn">Crear Encuesta</button>');
                     datesAdded = true;
+
+                    // Asegurarse de que la fecha de finalización no sea menor que la fecha de inicio
+                    $('#startDate').on('change', function() {
+                        var startDate = $(this).val();
+                        $('#endDate').attr('min', startDate);
+                    });
                 }
             }
         });

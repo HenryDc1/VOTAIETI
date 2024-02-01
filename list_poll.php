@@ -1,8 +1,12 @@
 <?php
+
 session_start(); // Iniciar la sesión
+include 'log_function.php';
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
     header('Location: errores/error403.php');
+    custom_log('Error 403', "Se ha intentado acceder a la página de listado de encuestas sin iniciar sesión");
+
     exit;
 }
 // Incluir el archivo de conexión
@@ -46,6 +50,8 @@ include 'db_connection.php';
     <?php   
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
+        custom_log('ENCUESTAS LISTADAS', "Se ha listado las encuestas del usuario $email");
+
 
         // Consulta para obtener el user_id
         $selectStmt = $pdo->prepare("SELECT user_id FROM users WHERE email = ?");
@@ -111,8 +117,7 @@ include 'db_connection.php';
              $visibilityText = isset($visibilityTexts[$questionVisibility]) ? $visibilityTexts[$questionVisibility] : $questionVisibility;
 
              // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-             echo "<tr><td>$question</td><td><span class='poll-state $class'>$stateText</span></td><td><select class='question-visibility'><option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option><option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option><option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option></select></td><td><select class='options-visibility'><option value='public'>Publica</option><option value='private'>Privada</option><option value='hidden'>Oculta</option></select></td><td><form method='POST' action='invite_poll.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Invitar</button></form></td><td><button onclick=\"location.href='details_page.php'\">Detalles</button></td></tr>";
-
+             echo "<tr><td>$question</td><td><span class='poll-state $class'>$stateText</span></td><td><select class='question-visibility'><option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option><option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option><option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option></select></td><td><select class='options-visibility'><option value='public'>Publica</option><option value='private'>Privada</option><option value='hidden'>Oculta</option></select></td><td><form method='POST' action='invite_poll.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Invitar</button></form></td><td><form method='POST' action='details_page.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Detalles</button></form></td></tr>";
 
 
             }
@@ -123,6 +128,9 @@ include 'db_connection.php';
             $pollStmt->closeCursor();
         } else {
             echo "No se encontró el user_id para el correo electrónico proporcionado.";
+            custom_log('ERROR LISTAR ENCUESTAS', "No se encontró el user_id para el correo electrónico proporcionado");
+
+            header('Location: dashboard.php');
         }
     } else {
         echo "La variable de sesión 'email' no está definida.";

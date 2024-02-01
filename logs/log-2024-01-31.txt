@@ -28,3 +28,20 @@
 [2024-01-31 18:02:13] Invitación Enviada: Invitación enviada correctamente a asoldadopalomino.cf@iesesteveterradas.cat
 [2024-01-31 18:03:26] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
 [2024-01-31 18:03:41] Invitación Enviada: Invitación enviada correctamente a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-01-31 18:39:19] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-31 18:39:51] Usuario creado: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34671123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-01-31 18:40:13] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-31 18:40:15] Treminos y Condiciones aceptadas: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha aceptado los terminos y condiciones
+[2024-01-31 18:40:34] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-31 18:40:34] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-01-31 18:56:16] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 19:01:22] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 19:07:25] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 19:10:43] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
