@@ -13,6 +13,7 @@
         <title>Error 404 — Votaieti</title>
         <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
         <link rel="stylesheet" href="../styles.css">
+        <?php include '..header.php'; ?>
     </head>
     <body class="bodyError404">
         <div class="contenedorHeader">

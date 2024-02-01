@@ -719,6 +719,44 @@ input:valid+label {
     color: #2B2D42;
 }
 
+
+
+/* ---------------------------------------------------- */
+/* TERMINOS Y CONDICIONES DEL DASHBOARD */
+
+#termsPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#termsPopup form {
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    background: white;
+    border: 2px solid rgba(43, 45, 66, 0.9)
+}
+
+#termsPopup label {
+    font-size: 16px;
+    text-align: center; /* Justifica el texto */
+
+}
+
+
+
+
+
+
+
 /* ---------------------------------------------------- */
 /* ERROR403.PHP*/
 .bodyError403 {
@@ -805,7 +843,7 @@ input:valid+label {
 
 .datosCreatePoll input:focus,
 input:valid {
-    border-bottom-color: #EDF2F4;
+    border-bottom-color: #8D99AE;
 }
 
 #numeroOpciones {
@@ -858,6 +896,30 @@ input:valid+label {
     background-position: 0%;
     color: white;
 }
+
+/* Botón de añadir y quitar opción */
+#addOption, #removeOption {
+    background-color: #607D8B; /* Color de fondo azul gris */
+    border: 2px solid white; /* Borde blanco */
+    color: white; /* Color del texto */
+    padding: 8px 15px; /* Espaciado interno más pequeño */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin decoración de texto */
+    display: inline-block;
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    margin: 4px 2px; /* Margen */
+    cursor: pointer; /* Cambia el cursor a un puntero cuando se pasa por encima */
+    border-radius: 3px; /* Borde redondeado */
+}
+
+#removeOption {
+    background-color: #607D8B; /* Color de fondo azul gris */
+}
+
+
+
+
+
 
 /* ---------------------------------------------------- */
 /* LIST_POLL.PHP */
@@ -934,7 +996,54 @@ td:nth-child(2) {
 
 
 
+/* ---------------------------------------------------- */
+/* INVITE_POLL.PHP */
 
+
+.inviteContainer {
+    margin: 50px auto; /* Esto agrega espacio alrededor y centra el contenedor */
+    width: 50%; /* Esto define el ancho del contenedor */
+    box-sizing: border-box; /* Esto asegura que el padding y el borde se incluyan en el ancho total del contenedor */
+    margin-bottom: 150px;
+    margin-top: 150px;
+}
+
+
+.inviteContainer p {
+    text-align: justify;
+    font-size: 18px; /* Cambia el tamaño de la fuente */
+    color: #333; /* Cambia el color del texto */
+    margin-bottom: 20px; /* Agrega espacio debajo del párrafo */
+    line-height: 1.6; /* Cambia el espacio entre las líneas de texto */
+}
+#emails {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+
+.submit-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #EF233C 50%, #D80032 50%);
+    background-size: 200% 200%;
+    background-position: 100%;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: #EDF2F4;
+    cursor: pointer;
+    transition: background-position 1s, color 1s;
+}
+.submit-button:hover {
+    background-position: 0%;
+    color: white;
+}
 
 /* ---------------------------------------------------- */
 /* FOOTER.PHP */
@@ -1001,4 +1110,112 @@ footer a {
 footer a:hover {
     color: white;
     opacity: 1;
+}
+
+
+
+
+/* ---------------------------------------------------- */
+/* SHOWVOTES.PHP */
+
+.listVotesContainer {
+    width: 80%; /* Ajusta el ancho de la tabla al 80% del contenedor */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+}
+
+.listVotesContainer table {
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+    margin-bottom: 50px;
+}
+
+.columnQuestion{
+    width: 60%; /* Ajusta el ancho de la columna de la pregunta */
+    text-align: center;
+}
+
+.textOption {
+    width: 40%; /* Ajusta el ancho de la columna de la opciÃ³n */
+    text-align: center;
+}
+
+.state-poll {
+    width: 40%; /* Ajusta el ancho de la columna de la estado */
+    text-align: center;
+}
+
+.state-poll.not-started {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color:orange ;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.state-poll.finished {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color:red;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.state-poll.active {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color: green ;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+.more {
+    cursor: pointer;
+    background-color: #ccf;
+    margin-left: 30px;
+}
+
+.complete {
+    display: none;
+}
+
+ /* ---------------------------------------------------- /
+/ details_page.PHP */
+#chart_div{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.contenedorPreguntaChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 120px 0 100px 0;
+    justify-content: center;
+    height: 100vh;
+}
+
+.pregunta {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#chart_div {
+    width: 80%;
+    margin: auto;
+}
+#imgDetailsPage{
+    width: 200px;
+    height: 200px; 
+    justify-content: center;
+    align-items: center;
+}
+#divImgDetailsPage{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#divH1{
+    width: 900px;
 }

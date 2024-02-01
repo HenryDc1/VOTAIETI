@@ -1,0 +1,47 @@
+[2024-01-31 16:52:49] Usuario creado: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34671123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-01-31 16:53:26] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-31 16:53:29] Treminos y Condiciones aceptadas: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha aceptado los terminos y condiciones
+[2024-01-31 16:54:08] Subida Imagen: Se ha guarado la imagen en el directorio uploads con el nombre 65ba6d204dd23.png
+[2024-01-31 16:54:08] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-31 16:54:08] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-01-31 16:54:52] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-31 16:54:52] Encuesta Creada: Se ha creado el archivo poll2.php con exito
+[2024-01-31 16:55:15] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:19:14] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:21:22] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-31 17:21:22] Encuesta Creada: Se ha creado el archivo poll3.php con exito
+[2024-01-31 17:21:46] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:36:25] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-31 17:36:25] Encuesta Creada: Se ha creado el archivo poll4.php con exito
+[2024-01-31 17:36:44] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:39:23] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:43:44] Permiso Denegado: Se ha itnentado acceder a la página de invitación sin iniciar sesión
+[2024-01-31 17:47:11] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:51:27] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:52:17] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:56:27] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 17:59:49] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:01:03] Invitación Enviada: Invitación enviada correctamente a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-01-31 18:01:37] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:01:56] Invitación Enviada: Invitación enviada correctamente a amestrevizcaino.cf@iesesteveterradsa.cat
+[2024-01-31 18:01:56] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:02:13] Invitación Enviada: Invitación enviada correctamente a asoldadopalomino.cf@iesesteveterradas.cat
+[2024-01-31 18:03:26] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:03:41] Invitación Enviada: Invitación enviada correctamente a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-01-31 18:39:19] Sessión Cerrada: El usuario ha cerrado la sesión con exito
+[2024-01-31 18:39:51] Usuario creado: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34671123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-01-31 18:40:13] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-01-31 18:40:15] Treminos y Condiciones aceptadas: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha aceptado los terminos y condiciones
+[2024-01-31 18:40:34] Creacion de encuesta: Se ha creado una encuesta correctamente
+[2024-01-31 18:40:34] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-01-31 18:56:16] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 18:58:08] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 19:01:22] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 19:07:25] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
+[2024-01-31 19:10:43] Inserción de datos: Se han insertado los datos de la invitación en la base de datos
