@@ -5,7 +5,7 @@ include 'log_function.php';
 if (!isset($_SESSION['email'])) {
     // Redirigir al usuario a la página de inicio de sesión
     header('Location: errores/error403.php');
-    custom_log('Error 403', "El usuario $email ha intentado acceder a la página create_poll.php sin iniciar sesión");
+    custom_log('ERROR 403', "El usuario $email ha intentado acceder a la página create_poll.php sin iniciar sesión");
 
     exit();
 }

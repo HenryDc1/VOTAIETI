@@ -34,7 +34,7 @@ if ($user) {
 
 // Almacena el mensaje de éxito en una variable de sesión
 $_SESSION['message'] = "Su voto ha sido enviado con éxito.";
-custom_log('Voto Envviado', "Se ha enviado el voto con éxito");
+custom_log('VOTO REALIZADO', "Se ha enviado el voto con éxito");
 
 
 // Redirige al usuario a index.php

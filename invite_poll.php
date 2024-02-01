@@ -11,7 +11,7 @@ include 'log_function.php';
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
     header('Location: errores/error403.php');
-    custom_log('Permiso Denegado', "Se ha itnentado acceder a la página de invitación sin iniciar sesión");
+    custom_log('PERMISO DENEGADO', "Se ha intentado acceder a la página de invitación sin iniciar sesión");
 
     exit;
 }

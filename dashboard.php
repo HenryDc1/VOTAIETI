@@ -17,7 +17,7 @@ $conditions_accepted = $fila['conditions_accepted'];
 // Verifica si el usuario ha iniciado sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
-    custom_log('Error 403', "Se ha intentado acceder a la página de dashboard sin registrarse o iniciar sesión");
+    custom_log('ERROR 403', "Se ha intentado acceder a la página de dashboard sin registrarse o iniciar sesión");
 
     header('Location: errores/error403.php');
     exit;

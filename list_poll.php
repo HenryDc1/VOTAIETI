@@ -50,7 +50,7 @@ include 'db_connection.php';
     <?php   
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
-        custom_log('Listar Encuestas', "Se ha listado las encuestas del usuario $email");
+        custom_log('ENCUESTAS LISTADAS', "Se ha listado las encuestas del usuario $email");
 
 
         // Consulta para obtener el user_id
@@ -128,7 +128,7 @@ include 'db_connection.php';
             $pollStmt->closeCursor();
         } else {
             echo "No se encontró el user_id para el correo electrónico proporcionado.";
-            custom_log('Error list_poll.php', "No se encontró el user_id para el correo electrónico proporcionado");
+            custom_log('ERROR list_poll.php', "No se encontró el user_id para el correo electrónico proporcionado");
 
             header('Location: https://aws21.ieti.site/dashboard.php');
         }
