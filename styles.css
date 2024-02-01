@@ -1219,31 +1219,3 @@ footer a:hover {
 #divH1{
     width: 900px;
 }
-
-.state-column {
-    width: 40%; /* Ajusta el ancho de la columna de la estado */
-}
-
-.poll-state.not-started {
-    color: rgb(255, 255, 255);
-    border:solid rgb(255, 255, 255) 2px;
-    background-color:orange ;
-    padding: 0.25rem;
-    border-radius: 9999px;
-}
-
-.poll-state.finished {
-    color: rgb(255, 255, 255);
-    border:solid rgb(255, 255, 255) 2px;
-    background-color:red;
-    padding: 0.25rem;
-    border-radius: 9999px;
-}
-
-.poll-state.active {
-    color: rgb(255, 255, 255);
-    border:solid rgb(255, 255, 255) 2px;
-    background-color: green ;
-    padding: 0.25rem;
-    border-radius: 9999px;
-}
