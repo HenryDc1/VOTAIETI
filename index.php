@@ -17,14 +17,23 @@
         <script src="../styles + scripts/script.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+        
     </head>
     <body class="bodyIndex">
         <?php
-
+        
         session_start();
-        $link = "register.php";
+        if (isset($_SESSION['message'])) {
+            echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>";
+            echo "<script src='js/script.js'></script>";
+            echo "<script type='text/javascript'>showSuccesPopup('" . $_SESSION['message'] . "');</script>";
+            // Borra el mensaje después de mostrarlo
+            unset($_SESSION['message']);
+        }
+        $link = "
+        https://aws21.ieti.site/register.php";
         if(isset($_SESSION['email'])) {
-            $link = "dashboard.php";
+            $link = "https://aws21.ieti.site/dashboard.php";
         }
             /* include 'db_connection.php';
 
@@ -89,7 +98,7 @@
             <div class="textoFinal">
                 <h2>¡Únete a Votaieti y sé parte del cambio!</h2>    
                 <p>En Votaieti, creemos en el poder de tu voz. Tu opinión importa y puede marcar la diferencia. Regístrate ahora y forma parte de una comunidad comprometida con el cambio positivo.</p>
-                <a id="buttonFinalIndex" href="https://aws21.ieti.site/<?php echo $link; ?>">Comienza a crear</a>
+                <a id="buttonFinalIndex" href="<?php echo $link; ?>">Comienza a crear</a>
             </div>
         </div>
 

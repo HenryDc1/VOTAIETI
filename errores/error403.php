@@ -12,7 +12,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
         <title>Error 403 — Votaieti</title>
-        <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
+        <link rel="shortcut icon" href="logosinfondo.png" />
         <link rel="stylesheet" href="../styles.css">
     </head>
     
