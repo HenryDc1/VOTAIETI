@@ -9,7 +9,7 @@ include 'log_function.php';
 
 // Correo electrónico del remitente (hardcodeado)
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "";
+$passwordEmail = "ArnauMestre169";
 
 // Muestra el mensaje de error si existe
 if (isset($_SESSION['error'])) {
@@ -104,7 +104,7 @@ if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    echo 'Message has been sent';
+    //echo 'Message has been sent';
 }
    
     
@@ -172,7 +172,7 @@ var countrySelectHTML = '<?= $countrySelectHTML ?>';
         
         <div class="containerRegister">
 
-            <form class="creacuentaRegister" action="https://aws21.ieti.site/register.php" method="post">
+            <form class="creacuentaRegister" action="register.php" method="post">
                 <h1>REGÍSTRATE</h1>
                 <img class="logoLogin" src="logosinfondo.png" alt="">
 
