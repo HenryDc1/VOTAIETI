@@ -10,7 +10,7 @@
         </div>
         
         <div class="footer-section2"><strong>Alejandro Soldado</strong><br>
-            <a href="mailto:cmoyanoherrerias.cf@iesesteveterradas.cat">cmoyanoherrerias.cf@iesesteveterradas.cat</a><br>
+            <a href="mailto:cmoyanoherrerias.cf@iesesteveterradas.cat">asoldadopalomino.cf@iesesteveterradas.cat</a><br>
             <a href="https://github.com/cl6mh7">GitHub</a> |
             <a href="https://instagram.com">Instagram</a> | 
             <a href="https://twitter.com">Twitter</a> | 
@@ -30,7 +30,7 @@
         <div class="linea-horizontal"></div>
         
         <div class="footer-section">
-        <a href="index.php"><img class="logoimgFooter" src="/imgs/logo.png" alt="" ></a>
+        <a href="https://aws21.ieti.site/index.php"><img class="logoimgFooter" src="/imgs/logo.png" alt="" ></a>
             <p><a href="https://github.com/cl6mh7/VOTA_Projecte/tree/prod"></a></p>
             <p><a href="https://www.iesesteveterradas.cat">IES Institut Esteve Terradas i Illa</a><br>&copy; 2024. VOTAIETI</p>
         </div>

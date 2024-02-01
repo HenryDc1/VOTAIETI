@@ -16,6 +16,8 @@ CREATE TABLE users (
     token_accepted BOOLEAN NOT NULL,
     conditions_accepted BOOLEAN NOT NULL
 );
+
+
 CREATE TABLE poll (
     poll_id INT AUTO_INCREMENT PRIMARY KEY,
     question VARCHAR(255) NOT NULL,
@@ -69,6 +71,13 @@ CREATE TABLE invitation (
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
     
 );
+
+CREATE TABLE SEND_EMAIL (
+    id INT AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE IF NOT EXISTS pais (
   id int(11) NOT NULL AUTO_INCREMENT,
   paisnombre varchar(250) COLLATE utf8_unicode_ci NOT NULL,
@@ -294,3 +303,5 @@ INSERT INTO pais (id, paisnombre, paisprefijo) VALUES
 (243, 'Yemen', '+967'),
 (246, 'Puerto Rico', '+1787');
 -- Continúa con las demás filas según sea necesario
+
+

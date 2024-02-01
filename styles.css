@@ -896,29 +896,6 @@ input:valid+label {
     background-position: 0%;
     color: white;
 }
-input[type="file"] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    outline: none;
-    border: none;
-    font-size: inherit;
-
-    background: none;
-    cursor: pointer;
-    /* Añadir estilos personalizados */
-    /* ... */
-}/* Estilos para ocultar el texto en el input file */
-.input-file {
-    display: none;
-}
-
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
 
 /* Botón de añadir y quitar opción */
 #addOption, #removeOption {
@@ -983,17 +960,11 @@ input[type="file"] {
 
 
 .question-column {
-    width: 40%;
+    width: 60%;
 }
 
 .state-column {
-    width: 20%;
-}
-.visibility-question-column {
-    width: 20%;
-}
-.visibility-results-column {
-    width: 20%;
+    width: 40%;
 }
 /* Estilos generales de la tabla */
 table {
@@ -1018,71 +989,13 @@ tr {
 th:first-child {
     font-weight: bold;
 }
-td:nth-child(2),
-td:nth-child(3),
-td:nth-child(4) {
+td:nth-child(2) {
     text-align: center;
 }
 /* Otros estilos CSS existentes */
 
-/* ---------------------------------------------------- */
-/* details_page.PHP */
-#chart_div{
-    margin-top: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-.contenedorPreguntaChart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 120px 0 100px 0;
-    justify-content: center;
-    height: 100vh;
-}
-
-.pregunta {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-#chart_div {
-    width: 80%;
-    margin: auto;
-}
-#imgDetailsPage{
-    width: 200px;
-    height: 200px; 
-    justify-content: center;
-    align-items: center;
-}
-#divImgDetailsPage{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#divH1{
-    width: 900px;
-}
-/* ---------------------------------------------------- */
-/* INVITE_POLL.PHP */
 
 
-<<<<<<< HEAD
-.inviteContainer {
-    margin: 50px auto; /* Esto agrega espacio alrededor y centra el contenedor */
-    width: 50%; /* Esto define el ancho del contenedor */
-    box-sizing: border-box; /* Esto asegura que el padding y el borde se incluyan en el ancho total del contenedor */
-    margin-bottom: 150px;
-    margin-top: 150px;
-}
-
-
-=======
 /* ---------------------------------------------------- */
 /* INVITE_POLL.PHP */
 
@@ -1096,7 +1009,6 @@ td:nth-child(4) {
 }
 
 
->>>>>>> Int
 .inviteContainer p {
     text-align: justify;
     font-size: 18px; /* Cambia el tamaño de la fuente */
@@ -1202,3 +1114,108 @@ footer a:hover {
 
 
 
+
+/* ---------------------------------------------------- */
+/* SHOWVOTES.PHP */
+
+.listVotesContainer {
+    width: 80%; /* Ajusta el ancho de la tabla al 80% del contenedor */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+}
+
+.listVotesContainer table {
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+    margin-bottom: 50px;
+}
+
+.columnQuestion{
+    width: 60%; /* Ajusta el ancho de la columna de la pregunta */
+    text-align: center;
+}
+
+.textOption {
+    width: 40%; /* Ajusta el ancho de la columna de la opciÃ³n */
+    text-align: center;
+}
+
+.state-poll {
+    width: 40%; /* Ajusta el ancho de la columna de la estado */
+    text-align: center;
+}
+
+.state-poll.not-started {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color:orange ;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.state-poll.finished {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color:red;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.state-poll.active {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color: green ;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+.more {
+    cursor: pointer;
+    background-color: #ccf;
+    margin-left: 30px;
+}
+
+.complete {
+    display: none;
+}
+
+ /* ---------------------------------------------------- /
+/ details_page.PHP */
+#chart_div{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.contenedorPreguntaChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 120px 0 100px 0;
+    justify-content: center;
+    height: 100vh;
+}
+
+.pregunta {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#chart_div {
+    width: 80%;
+    margin: auto;
+}
+#imgDetailsPage{
+    width: 200px;
+    height: 200px; 
+    justify-content: center;
+    align-items: center;
+}
+#divImgDetailsPage{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#divH1{
+    width: 900px;
+}

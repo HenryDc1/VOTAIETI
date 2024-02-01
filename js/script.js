@@ -62,7 +62,6 @@ function showErrorPopup(message) {
   });
 }
 
-<<<<<<< HEAD
 
 function showSuccesPopup(message) {
   // Crear la ventana flotante
@@ -89,5 +88,18 @@ function showSuccesPopup(message) {
       successPopup.remove();
   });
 }
-=======
->>>>>>> Int
+
+
+$(document).ready(function() {
+  $(".more").on("click", function() {
+    // cambiar la visibilidad de complete
+    $(".complete").toggle();
+
+    // cambiar el texto del boton dependiendo del texto actual
+    if ($(this).text() == "Ocultar") {
+      $(this).text("Spoiler");
+    } else {
+      $(this).text("Ocultar");
+    }
+  });
+});
