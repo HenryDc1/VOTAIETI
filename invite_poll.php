@@ -53,7 +53,7 @@ if(isset($_POST['emails'])) {
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':token', $token, PDO::PARAM_STR);
         $stmt->execute();
-        custom_log('Inserción de datos', "Se han insertado los datos de la invitación en la base de datos");
+        custom_log('INSERCIÓN DE DATOS', "Se han insertado los datos de la invitación en la base de datos");
 
         // Insertar el correo electrónico en la tabla SEND_EMAIL
         $query = "INSERT INTO SEND_EMAIL (email) VALUES (:email)";

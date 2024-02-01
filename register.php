@@ -47,7 +47,7 @@ if(!empty($_POST)){
         $_SESSION['error'] = 'El correo electrónico ya existe';
         custom_log("REGISTRO FALLIDO", "Correo electrónico: $email ya existe");
 
-        header('Location: https://aws21.ieti.site/register.php');
+        header('Location: register.php');
         exit;
     }
 
@@ -58,7 +58,7 @@ if(!empty($_POST)){
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El número de teléfono ya existe';
         custom_log("REGISTRO FALLIDO", "Número de teléfono: $telephone ya existe");
-        header('Location: https://aws21.ieti.site/register.php');
+        header('Location: register.php');
         exit;
     }
 
@@ -96,7 +96,7 @@ if(!empty($_POST)){
    
    $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
    
-   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="https://aws21.ieti.site/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
+   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
    
 
 // Enviar el correo electrónico

@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES['questionImage']['tmp_name'], $uploadDir . $filename)) {
             // Si el archivo se movió con éxito, guardar la ruta en la base de datos
             $imagePath = $uploadDir . $filename;
-            custom_log('Subida Imagen', "Se ha guarado la imagen en el directorio uploads con el nombre $filename");
+            custom_log('IMAGEN SUBIDA', "Se ha guarado la imagen en el directorio uploads con el nombre $filename");
 
         } 
     } 
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $pdo->prepare("INSERT INTO poll (question, user_id, start_date, end_date, poll_state, question_visibility, results_visibility, path_image) 
     VALUES (?, ?, ?, ?, ?, NULL, NULL, ?)");
     $stmt->execute([$question, $userId, $startDate, $endDate, $pollState, $imagePath]);
-    custom_log('Creacion de encuesta', "Se ha creado una encuesta correctamente");
+    custom_log('CREACION ENCUESTA', "Se ha creado una encuesta correctamente");
 
 
     $pollId = $pdo->lastInsertId();
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Verificar si el archivo ya existe
                     if (!file_exists($target_file)) {
                         // Verificar el tamaño del archivo
-                        if ($_FILES["optionImage$i"]["size"] < 500000) {
+                        if ($_FILES["optionImage$i"]["size"] < 900000) {
                             // Permitir ciertos formatos de archivo
                             if($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg" || $imageFileType == "gif" ) {
                                 // Intentar mover el archivo subido al directorio de destino
@@ -281,7 +281,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
             // Añadir las opciones a la encuesta
-            $phpContent .= '<form method="post" action="https://aws21.ieti.site/proces_votes.php" class="options">';
+            $phpContent .= '<form method="post" action="http://localhost:3000/proces_votes.php" class="options">';
             $phpContent .= '<input type="hidden" name="poll_id" value="' . $pollId . '">';
 
             // Obtener todas las opciones de la encuesta de la base de datos

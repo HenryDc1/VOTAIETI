@@ -128,9 +128,9 @@ include 'db_connection.php';
             $pollStmt->closeCursor();
         } else {
             echo "No se encontró el user_id para el correo electrónico proporcionado.";
-            custom_log('ERROR list_poll.php', "No se encontró el user_id para el correo electrónico proporcionado");
+            custom_log('ERROR LISTAR ENCUESTAS', "No se encontró el user_id para el correo electrónico proporcionado");
 
-            header('Location: https://aws21.ieti.site/dashboard.php');
+            header('Location: dashboard.php');
         }
     } else {
         echo "La variable de sesión 'email' no está definida.";
