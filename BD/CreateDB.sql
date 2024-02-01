@@ -67,9 +67,9 @@ CREATE TABLE invitation (
     sent_date DATETIME,
     token varchar(255),
     token_accepted BOOLEAN NOT NULL,
+    blocked TINYINT(1) NOT NULL,
     FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email),
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
-    
 );
 
 CREATE TABLE SEND_EMAIL (

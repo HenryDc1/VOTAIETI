@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Verificar si el archivo ya existe
                     if (!file_exists($target_file)) {
                         // Verificar el tamaño del archivo
-                        if ($_FILES["optionImage$i"]["size"] < 900000) {
+                        if ($_FILES["optionImage$i"]["size"] < 1000000) {
                             // Permitir ciertos formatos de archivo
                             if($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg" || $imageFileType == "gif" ) {
                                 // Intentar mover el archivo subido al directorio de destino
@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 }
                             } else {
                                 $_SESSION['error'] = "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
-                                custom_log('Error subida imagen', "El usuario $email ha intentado subir un fichero no valido");
+                                custom_log('ERROR SUBIDA IMAGEN', "El usuario $email ha intentado subir un fichero no valido");
 
                                 header('Location: create_poll.php');
                                 $target_file = NULL;
