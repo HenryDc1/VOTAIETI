@@ -41,7 +41,7 @@ include 'db_connection.php';
     </div>
 
     <div class="dashboardContenedor">
-    <div class="listPollContainer">
+    <div class="listVotesContainer">
     <?php   
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
@@ -68,7 +68,7 @@ include 'db_connection.php';
                 $pollStmt->execute();
 
                 // Mostrar las preguntas y el estado de la encuesta
-                echo "<h1>Mis encuestas</h1>";
+                echo "<h1>Encuestas Realizadas</h1>";
                 echo "<div id='polls_done'>";
                 echo "<table>";
                 echo "<thead><tr><th class='question-column'>Pregunta</th><th class='option-text'>Opcion Seleccionada</th></tr></thead>";
@@ -101,7 +101,7 @@ include 'db_connection.php';
             $poll_ID = $pollInvitation->fetchColumn();
 
             if ($poll_ID){
-                $pollInvitationStmt = $pdo->prepare("SELECT poll_id, question, start_date, end_date, poll_state FROM poll WHERE poll_id = ?");
+                $pollInvitationStmt = $pdo->prepare("SELECT poll_id, question, poll_state FROM poll WHERE poll_id = ?");
                 $pollInvitationStmt->execute([$poll_ID]);
                 
                 echo "<div id='polls_invitation'>";
@@ -113,8 +113,6 @@ include 'db_connection.php';
                     $question = $row['question'];
                     $pollState = $row['poll_state'];
                     $pollId = $row['poll_id'];
-                    $start_date = $row['start_date'];
-                    $end_date = $row['end_date'];
 
 
                     // Añadir clases CSS basadas en el valor de pollState
