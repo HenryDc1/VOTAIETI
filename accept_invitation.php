@@ -8,11 +8,19 @@ if(isset($_GET['token'])) {
     $token = $_GET['token'];
 
     // Search for the token in the invitation table
-    $sql = "SELECT poll_id, guest_email FROM invitation WHERE token = ?";
+    $sql = "SELECT poll_id, guest_email, blocked FROM invitation WHERE token = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$token]);
     if ($stmt->rowCount() > 0) {
         $invitation = $stmt->fetch();
+
+        // Check if the invitation is blocked
+        if ($invitation['blocked']) {
+            // The invitation is blocked, redirect to error page
+            header("Location: errores/error403.php");
+            custom_log('PERMISO DENEGADO', "Se ha intentado acceder a una encuesta bloqueada");
+            exit;
+        }
 
         // Save the guest_email in a variable
         $guest_email = $invitation['guest_email'];

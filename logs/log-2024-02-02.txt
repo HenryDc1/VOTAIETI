@@ -1,0 +1,14 @@
+[2024-02-02 07:42:54] REGISTRO: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesestevterradas.cat, Teléfono: +34670123123, País: España, Ciudad: cccc, Código postal: 12345
+[2024-02-02 07:44:34] Login fallido: El usuario amestrevizcaino.cf@iesestevterradas.cat intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-02-02 07:44:40] Login fallido: El usuario amestrevizcaino.cf@iesestevterradas.cat intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-02-02 07:45:07] Login fallido: El usuario amestrevizcaino.cf@iesestevterradas.cat intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-02-02 07:45:20] Login exitoso: El usuario amestrevizcaino.cf@iesestevterradas.cat ha iniciado sesión correctamente
+[2024-02-02 07:45:22] TERMINOS Y CONDICIONES: El usuario amestrevizcaino.cf@iesestevterradas.cat ha aceptado los terminos y condiciones
+[2024-02-02 07:45:45] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-02 07:45:45] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-02-02 07:45:48] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat
+[2024-02-02 07:48:10] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat
+[2024-02-02 07:48:12] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat
+[2024-02-02 07:48:15] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat
+[2024-02-02 07:55:20] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat
+[2024-02-02 07:55:22] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat

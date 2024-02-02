@@ -71,7 +71,7 @@ if(!isset($_SESSION['email'])) {
             
             <div class="circulosDashboard">
                 <div id="creaEncuesta">
-                    <a href="http://localhost:3000/create_poll.php">
+                    <a href="create_poll.php">
                         <div class="imagenConTexto">
                             <img src="../imgs/aura.jpg" alt="La imagen que me has enviado es un fondo de pantalla abstracto y colorido. Los colores se mezclan suavemente entre sí, creando un efecto visual atractivo. Predominan los tonos de rosa y amarillo en el centro, mientras que hay matices de azul y morado que se mezclan en los bordes. La imagen no tiene objetos o elementos definidos; es puramente una exhibición de color. El efecto general es vibrante, cálido y visualmente estimulante.">
                             <p><strong>Crea tu encuesta</strong></p>
@@ -100,7 +100,7 @@ if(!isset($_SESSION['email'])) {
                 </div>
 
                 <div class="verVotos">
-                    <a href="http://localhost:3000/showVotes.php">
+                    <a href="showVotes.php">
                         <div class="imagenConTexto">
                             <img src="../imgs/aura3.jpg" alt="La imagen que me has enviado es un fondo abstracto con un degradado suave y fluido. Los colores predominantes son tonos de rosa, rojo y naranja que se mezclan armoniosamente. No hay objetos o elementos distintivos en la imagen; es puramente una mezcla colorida y etérea de tonos cálidos. La textura parece suave, sin líneas duras o bordes definidos, creando una sensación calmante.">
                             <p><strong>Ver mis votos</strong></p>
@@ -110,7 +110,7 @@ if(!isset($_SESSION['email'])) {
                 </div>
 
                 <div class="listarEncuestas">
-                    <a href="https://aws21.ieti.site/list_poll.php">
+                    <a href="list_poll.php">
                         <div class="imagenConTexto">
                             <img src="../imgs/aura5.jpg" alt="">
                             <p><strong>Listar encuestas</strong></p>

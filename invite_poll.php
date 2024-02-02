@@ -41,13 +41,13 @@ if(isset($_POST['emails'])) {
         $token = bin2hex(random_bytes(16));
 
         // Insertar el correo electrónico del invitado en la tabla user_guest
-        $query = "INSERT IGNORE INTO user_guest (guest_email) VALUES (:email)";
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
+       // $query = "INSERT IGNORE INTO user_guest (guest_email) VALUES (:email)";
+        //$stmt = $pdo->prepare($query);
+        //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        //$stmt->execute();
 
         // Insertar el token en la tabla de invitaciones
-        $query = "INSERT INTO invitation (poll_id, guest_email, sent_date, token, token_accepted) VALUES (:pollId, :email, NOW(), :token, 0)";
+        $query = "INSERT INTO invitation (poll_id, guest_email, sent_date, token, token_accepted, blocked) VALUES (:pollId, :email, NOW(), :token, 0, 0)";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':pollId', $_SESSION['pollId'], PDO::PARAM_INT);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);

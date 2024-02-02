@@ -1,4 +1,12 @@
+
+
 <?php
+    echo '
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="imgs/TU VOTO CUENTA (1).gif" alt="Banner" style="width: 970px; height: 250px;">
+    </div>';
+
+
     echo '<footer>
         <div class="footer-section1"><strong>Arnau Mestre</strong><br>
             <a href="mailto:amestrevizcaino.cf@iesesteveterradas.cat">amestrevizcaino.cf@iesesteveterradas.cat</a><br>

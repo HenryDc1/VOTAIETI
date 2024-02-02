@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'aws21', 'P@ssw0rd');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
 
 echo '<script src="js/script.js"></script>';
 
@@ -281,7 +281,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
             // Añadir las opciones a la encuesta
-            $phpContent .= '<form method="post" action="http://localhost:3000/proces_votes.php" class="options">';
+            $phpContent .= '<form method="post" action="proces_votes.php" class="options">';
             $phpContent .= '<input type="hidden" name="poll_id" value="' . $pollId . '">';
 
             // Obtener todas las opciones de la encuesta de la base de datos
