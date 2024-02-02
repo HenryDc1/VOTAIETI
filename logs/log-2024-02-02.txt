@@ -12,3 +12,15 @@
 [2024-02-02 07:48:15] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat
 [2024-02-02 07:55:20] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat
 [2024-02-02 07:55:22] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesestevterradas.cat
+[2024-02-02 15:45:26] REGISTRO: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34670123123, País: España, Ciudad: cornella, Código postal: 08940
+[2024-02-02 15:46:15] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-02-02 15:46:18] TERMINOS Y CONDICIONES: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha aceptado los terminos y condiciones
+[2024-02-02 16:17:57] SESION CERRADA: El usuario ha cerrado la sesión con exito
+[2024-02-02 16:18:55] REGISTRO: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34680123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-02-02 16:19:25] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-02-02 16:19:27] TERMINOS Y CONDICIONES: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha aceptado los terminos y condiciones
+[2024-02-02 16:19:51] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-02 16:29:00] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-02 16:29:00] Encuesta Creada: Se ha creado el archivo poll2.php con exito
+[2024-02-02 16:29:03] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-02 16:29:11] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat

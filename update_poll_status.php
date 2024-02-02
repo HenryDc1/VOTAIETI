@@ -17,7 +17,7 @@ if (isset($_POST['poll_id']) && isset($_POST['poll_status'])) {
     $status = $_POST['poll_status'] === 'blocked' ? 1 : 0;
 
     // Actualizar el estado de la encuesta
-    $stmt = $pdo->prepare("UPDATE poll SET blocked = ? WHERE poll_id = ?");
+    $stmt = $pdo->prepare("UPDATE invitation SET blocked = ? WHERE poll_id = ?");
     $stmt->execute([$status, $pollId]);
 
     // Si la encuesta está bloqueada, establecer un mensaje de éxito
