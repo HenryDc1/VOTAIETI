@@ -39,7 +39,6 @@ CREATE TABLE poll_options (
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
 );
 
-
 CREATE TABLE user_vote (
     vote_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
@@ -51,6 +50,7 @@ CREATE TABLE user_vote (
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
    
 );
+
 
 
 CREATE TABLE voted_option (
