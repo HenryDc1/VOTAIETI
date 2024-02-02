@@ -1,4 +1,6 @@
 <?php
+session_start(); // Asegúrate de que esto está al principio de tu archivo
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
@@ -17,6 +19,14 @@ if (isset($_POST['poll_id']) && isset($_POST['poll_status'])) {
     // Actualizar el estado de la encuesta
     $stmt = $pdo->prepare("UPDATE poll SET blocked = ? WHERE poll_id = ?");
     $stmt->execute([$status, $pollId]);
+
+    // Si la encuesta está bloqueada, establecer un mensaje de éxito
+    if ($status === 1) {
+        $_SESSION['success'] = 'La encuesta ha sido bloqueada con éxito.';
+    } else {
+        $_SESSION['success'] = 'La encuesta ha sido desbloqueada con éxito.';
+    }
+
 
     // Si la encuesta está bloqueada, comprobar si hay algún email que no ha votado
     if ($status === 1) {
@@ -51,9 +61,10 @@ if (isset($_POST['poll_id']) && isset($_POST['poll_status'])) {
             }
         }
     }
+    
 
-    // Redirigir de vuelta a la página de la lista de encuestas
-    header("Location: list_poll.php");
-    exit;
+    
 }
+header('Location: list_poll.php');
+exit;
 ?>

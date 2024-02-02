@@ -47,7 +47,7 @@ if(isset($_POST['emails'])) {
         //$stmt->execute();
 
         // Insertar el token en la tabla de invitaciones
-        $query = "INSERT INTO invitation (poll_id, guest_email, sent_date, token, token_accepted) VALUES (:pollId, :email, NOW(), :token, 0)";
+        $query = "INSERT INTO invitation (poll_id, guest_email, sent_date, token, token_accepted, blocked) VALUES (:pollId, :email, NOW(), :token, 0, 0)";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':pollId', $_SESSION['pollId'], PDO::PARAM_INT);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);

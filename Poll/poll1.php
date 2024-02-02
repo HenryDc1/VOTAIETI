@@ -112,4 +112,4 @@
 
             
             
-            <h1 >pregunta</h1><form method="post" action="proces_votes.php" class="options"><input type="hidden" name="poll_id" value="1"><div><input type="radio" id="option1" name="pollOption" value="1"><label for="option1">Opcion 1</label></div><div><input type="radio" id="option2" name="pollOption" value="2"><label for="option2">Opcion 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+            <h1 >preguntaaa</h1><form method="post" action="proces_votes.php" class="options"><input type="hidden" name="poll_id" value="1"><div><input type="radio" id="option1" name="pollOption" value="1"><label for="option1">opcion 1</label></div><div><input type="radio" id="option2" name="pollOption" value="2"><label for="option2">opcion 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>

@@ -17,7 +17,6 @@ CREATE TABLE users (
     conditions_accepted BOOLEAN NOT NULL
 );
 
-
 CREATE TABLE poll (
     poll_id INT AUTO_INCREMENT PRIMARY KEY,
     question VARCHAR(255) NOT NULL,
@@ -43,9 +42,7 @@ CREATE TABLE poll_options (
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
 );
 
-CREATE TABLE user_guest (
-    guest_email VARCHAR(255) PRIMARY KEY
-);
+
 
 CREATE TABLE user_vote (
     vote_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -56,8 +53,8 @@ CREATE TABLE user_vote (
     guest_email VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id),
-    FOREIGN KEY (option_id) REFERENCES poll_options(option_id),
-    FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email)
+    FOREIGN KEY (option_id) REFERENCES poll_options(option_id)
+   
 );
 
 CREATE TABLE invitation (
@@ -68,7 +65,6 @@ CREATE TABLE invitation (
     token varchar(255),
     token_accepted BOOLEAN NOT NULL,
     blocked TINYINT(1) NOT NULL,
-    FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email),
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
 );
 
