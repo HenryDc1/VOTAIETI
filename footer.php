@@ -2,8 +2,8 @@
 
 <?php
     echo '
-    <div style="display: flex; justify-content: center; align-items: center; ">
-        <img src="imgs/promotionalbanner.gif" alt="Banner">
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="imgs/TU VOTO CUENTA (1).gif" alt="Banner" style="width: 970px; height: 250px;">
     </div>';
 
 
