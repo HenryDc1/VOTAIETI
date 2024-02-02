@@ -1,4 +1,12 @@
+
+
 <?php
+    echo '
+    <div style="display: flex; justify-content: center; align-items: center; ">
+        <img src="imgs/bannerindex.gif" alt="Banner">
+    </div>';
+
+
     echo '<footer>
         <div class="footer-section1"><strong>Arnau Mestre</strong><br>
             <a href="mailto:amestrevizcaino.cf@iesesteveterradas.cat">amestrevizcaino.cf@iesesteveterradas.cat</a><br>
