@@ -35,6 +35,7 @@ foreach($emails as $email) {
     $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='https://localhost:3000/accept_invitation.php?token=" . $email['token'] . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
 
     if($mail->send()) {
+        custom_log('CORREO ENVIADO', "Se ha enviado un correo electrónico de invitacion a " . $email['email']);
         // Eliminar el correo electrónico de la tabla SEND_EMAIL
         $query = "DELETE FROM SEND_EMAIL WHERE id = :id";
         $stmt = $pdo->prepare($query);

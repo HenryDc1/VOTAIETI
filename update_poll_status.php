@@ -23,8 +23,10 @@ if (isset($_POST['poll_id']) && isset($_POST['poll_status'])) {
     // Si la encuesta está bloqueada, establecer un mensaje de éxito
     if ($status === 1) {
         $_SESSION['success'] = 'La encuesta ha sido bloqueada con éxito.';
+        custom_log('ENCUESTA BLOQUEADA', "La encuesta con ID: $pollId ha sido bloqueada");
     } else {
         $_SESSION['success'] = 'La encuesta ha sido desbloqueada con éxito.';
+        custom_log('ENCUESTA DESBLOQUEADA', "La encuesta con ID: $pollId ha sido desbloqueada");
     }
 
 
