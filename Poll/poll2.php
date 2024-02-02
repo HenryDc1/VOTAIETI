@@ -112,4 +112,4 @@
 
             
             
-            <h1 >GRDTGRG</h1><form method="post" action="proces_votes.php" class="options"><input type="hidden" name="poll_id" value="2"><div><input type="radio" id="option1" name="pollOption" value="1"><label for="option1">SFDFSDFSDF</label></div><div><input type="radio" id="option2" name="pollOption" value="2"><label for="option2">DSFSDFSFD</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+            <h1 >rfeferf</h1><form method="post" action="proces_votes.php" class="options"><input type="hidden" name="poll_id" value="2"><div><input type="radio" id="option3" name="pollOption" value="3"><label for="option3">dweddwed</label></div><div><input type="radio" id="option4" name="pollOption" value="4"><label for="option4">dsfsf</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
