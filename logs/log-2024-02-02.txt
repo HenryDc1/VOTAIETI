@@ -1,0 +1,63 @@
+[2024-02-02 15:29:23] INICIO DE SESIÓN FALLIDO: El usuario henydoudoc@gmail.com intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-02-02 15:32:08] INICIO DE SESIÓN FALLIDO: El usuario henydoudoc@gmail.com intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos
+[2024-02-02 15:32:09] INICIO DE SESIÓN CORRECTO: El usuario pruebafinal@gmail.com ha iniciado sesión correctamente
+[2024-02-02 15:33:46] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:41:22] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-02 15:41:22] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-02-02 15:41:39] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:48:20] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:48:33] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:48:47] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:52:15] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:55:09] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:55:47] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:57:02] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:58:21] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 15:58:51] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:01:01] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:02:10] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:02:33] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:02:59] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:03:16] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:04:23] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:06:14] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:09:48] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:11:23] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:13:57] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:22:14] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:24:08] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:28:18] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:31:36] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:33:45] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:35:10] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:36:48] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:39:06] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:39:55] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:41:10] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:49:23] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:50:21] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:52:51] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:55:24] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:56:36] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:57:15] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 16:57:40] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:06:04] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:06:48] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:07:09] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:07:51] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:37:25] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:42:53] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:43:32] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:46:06] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 17:49:52] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 18:22:31] Error 403: Se ha intentado acceder a la página de listado de encuestas sin iniciar sesión
+[2024-02-02 18:22:36] Error 403: Se ha intentado acceder a la página de listado de encuestas sin iniciar sesión
+[2024-02-02 18:22:50] INICIO DE SESIÓN CORRECTO: El usuario pruebafinal@gmail.com ha iniciado sesión correctamente
+[2024-02-02 18:23:03] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 18:23:39] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 18:24:38] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 18:24:59] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 18:25:20] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 18:36:37] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 18:38:06] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com
+[2024-02-02 18:39:29] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario pruebafinal@gmail.com

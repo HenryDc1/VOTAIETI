@@ -30,8 +30,10 @@ include 'db_connection.php';
     <title>Listado de encuestas — Votaieti</title>
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
     <link rel="stylesheet" href="styles.css">
-    <script src="../styles + scripts/script.js"></script> 
+    <script src="/js/script.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 
 <body class="bodyDashboard">
@@ -113,13 +115,60 @@ include 'db_connection.php';
                 // Obtener el texto correspondiente al estado actual
                 $stateText = isset($stateTexts[$pollState]) ? $stateTexts[$pollState] : $pollState;
 
-               // Obtener el texto correspondiente a la visibilidad actual
-             $visibilityText = isset($visibilityTexts[$questionVisibility]) ? $visibilityTexts[$questionVisibility] : $questionVisibility;
+                $visibilityText = isset($visibilityTexts[$questionVisibility]) ? $visibilityTexts[$questionVisibility] : $questionVisibility;
 
-             // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-             echo "<tr><td>$question</td><td><span class='poll-state $class'>$stateText</span></td><td><select class='question-visibility'><option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option><option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option><option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option></select></td><td><select class='options-visibility'><option value='public'>Publica</option><option value='private'>Privada</option><option value='hidden'>Oculta</option></select></td><td><form method='POST' action='invite_poll.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Invitar</button></form></td><td><form method='POST' action='details_page.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Detalles</button></form></td></tr>";
-
-
+                // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
+                
+                echo "<tr>
+                <td>$question</td>
+                <td><span class='poll-state $class'>$stateText</span></td>
+                <td>
+                    <select class='question-visibility' onchange='updateSelects(this)'>
+                        <option value='public' " . ($questionVisibility == 'public' ? 'selected' : '') . ">Publica</option>
+                        <option value='private' " . ($questionVisibility == 'private' ? 'selected' : '') . ">Privada</option>
+                        <option value='hidden' " . ($questionVisibility == 'hidden' ? 'selected' : '') . ">Oculta</option>
+                    </select>
+                </td>
+                <td>
+                    <select class='options-visibility' onchange='updateSelects(this)' " . ($questionVisibility == 'private' ? 'disabled' : '') . ">
+                        <option value='public' " . ($optionsVisibility == 'public' ? 'selected' : '') . ">Publica</option>
+                        <option value='private' " . ($optionsVisibility == 'private' ? 'selected' : '') . ">Privada</option>
+                        <option value='hidden' " . ($optionsVisibility == 'hidden' ? 'selected' : '') . ">Oculta</option>
+                    </select>
+                </td>
+                <td>
+                    <form method='POST' action='invite_poll.php'>
+                        <input type='hidden' name='poll_id' value='$pollId'>
+                        <button type='submit'>Invitar</button>
+                    </form>
+                </td>
+                <td>
+                    <form method='POST' action='details_page.php'>
+                        <input type='hidden' name='poll_id' value='$pollId'>
+                        <button type='submit'>Detalles</button>
+                    </form>
+                </td>
+            </tr>";
+        //Script para controlar la visibilidad de la pregunta y la respuesta
+        echo "<script>
+        function updateSelects(select) {
+            var questionVisibility = document.querySelector('.question-visibility');
+            var optionsVisibility = document.querySelector('.options-visibility');
+    
+            if (questionVisibility.value === 'public') {
+                optionsVisibility.disabled = false;
+            } else if (questionVisibility.value === 'private' && optionsVisibility.value !== 'private' && optionsVisibility.value !== 'hidden') {
+                optionsVisibility.disabled = true;
+                showErrorPopup('Si la visibilidad de la  pregunta és privada, la visibilidad de la  respuesta solo puede ser privada u oculta. Selecciona una de esas opciones.');
+            } else if (questionVisibility.value === 'hidden' && optionsVisibility.value !== 'hidden') {
+                optionsVisibility.disabled = true;
+                showErrorPopup('Una pregunta con visibilidad oculta solo puede tener respuestas con visibilidad oculta. Por favor, selecciona Oculta para la respuesta.');
+            } else {
+                optionsVisibility.disabled = false;
+            }
+        }
+    </script>";
+      
             }
             echo "</tbody>";
             echo "</table>";

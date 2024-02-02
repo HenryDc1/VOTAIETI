@@ -70,22 +70,22 @@
                 <h2>Tu elección, nuestro compromiso global</h2>
             </div>
 
-            <div class="circulosExplicativos">
-                <div>
-                    <img src="../imgs/votarHombre.jpeg" alt="La imagen muestra a una persona señalando una tarjeta que tiene impresa otra foto de alguien, delante de una bandera estadounidense. En la tarjeta hay un cuadro marcado junto a la palabra “VOTING”. La persona lleva puesto un pin azul con letras blancas que dicen “9DD” en su pecho. El individuo viste formalmente y lleva puesta una banda roja sobre el hombro. Dado que la imagen parece estar relacionada con la votación, es posible que la persona esté involucrada en algún tipo de campaña política o actividad relacionada con la votación. Sin embargo, no tengo información adicional sobre el contexto o la situación de la imagen.">
-                    <p>Crea y diseña tus propias encuestas</p>
-                </div>
+                <div class="circulosExplicativos">
+                    <div>
+                        <img src="../imgs/votarHombre.jpeg" alt="La imagen muestra a una persona señalando una tarjeta que tiene impresa otra foto de alguien, delante de una bandera estadounidense. En la tarjeta hay un cuadro marcado junto a la palabra “VOTING”. La persona lleva puesto un pin azul con letras blancas que dicen “9DD” en su pecho. El individuo viste formalmente y lleva puesta una banda roja sobre el hombro. Dado que la imagen parece estar relacionada con la votación, es posible que la persona esté involucrada en algún tipo de campaña política o actividad relacionada con la votación. Sin embargo, no tengo información adicional sobre el contexto o la situación de la imagen.">
+                        <p>Crea y diseña tus propias encuestas</p>
+                    </div>
 
-                <div>
-                    <img src="../imgs/votarMujeres.jpeg" alt="Hay un grupo de personas. Cada persona levanta un dedo, lo que puede indicar silencio o atención. La figura central viste un abrigo de color claro adornado con un emblema de flor roja bordado en el lado izquierdo. Las otras personas están vestidas con ropa diferente, lo que sugiere diversidad, pero sus características y detalles de ropa específicos no son distinguibles debido al borroso. El fondo es neutral y no proporciona contexto adicional sobre el entorno o la situación.">
-                    <p>Registra tu voto en encuestas creadas por usuarios</p>
-                </div>
+                    <div>
+                        <img src="../imgs/votarMujeres.jpeg" alt="Hay un grupo de personas. Cada persona levanta un dedo, lo que puede indicar silencio o atención. La figura central viste un abrigo de color claro adornado con un emblema de flor roja bordado en el lado izquierdo. Las otras personas están vestidas con ropa diferente, lo que sugiere diversidad, pero sus características y detalles de ropa específicos no son distinguibles debido al borroso. El fondo es neutral y no proporciona contexto adicional sobre el entorno o la situación.">
+                        <p>Registra tu voto en encuestas creadas por usuarios</p>
+                    </div>
 
-                <div>
-                    <img src="../imgs/votarMujeres1.jpeg" alt="La imagen muestra a una persona en primer plano, sosteniendo un papel con una marca de verificación y levantando un dedo. El rostro de la persona en primer plano, así como los de las personas en el fondo, están pixelados para ocultar sus identidades. Las personas del fondo también sostienen papeles con marcas de verificación. Todos parecen estar participando en algún tipo de votación o aprobación, indicado por las marcas de verificación. La imagen tiene un tono serio y formal.">
-                    <p>Tu voto, completamente seguro</p>
+                    <div>
+                        <img src="../imgs/votarMujeres1.jpeg" alt="La imagen muestra a una persona en primer plano, sosteniendo un papel con una marca de verificación y levantando un dedo. El rostro de la persona en primer plano, así como los de las personas en el fondo, están pixelados para ocultar sus identidades. Las personas del fondo también sostienen papeles con marcas de verificación. Todos parecen estar participando en algún tipo de votación o aprobación, indicado por las marcas de verificación. La imagen tiene un tono serio y formal.">
+                        <p>Tu voto, completamente seguro</p>
+                    </div>
                 </div>
-            </div>
 
             <div class="contenedorInfo">
                 <img class="imgExplicativo" src="../imgs/votosUrnas.jpg" alt="La imagen muestra una mano insertando una papeleta en una urna de votación. La mano y la urna están silueteadas contra un fondo blanco brillante. La urna es rectangular y está colocada sobre una superficie plana. No hay detalles visibles en la mano o la urna debido a que están silueteadas, pero se puede ver un reloj pulsera en la muñeca de la persona. El ambiente general transmite el acto cívico del voto.">

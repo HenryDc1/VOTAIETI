@@ -141,10 +141,33 @@ a {
 .circulosExplicativos img {
     width: 200px;
     height: 200px;
-    border: 1px solid transparent;
+    border: 4px solid transparent;
     border-radius: 100%;
     margin-top: 150px;
+    animation: balanceoInfinito 2s infinite alternate; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
+    animation: cambioColorInfinito 3s infinite alternate; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
 }
+
+@keyframes cambioColorInfinito {
+    from {
+        background-color: rgba(43, 45, 66, 0.9);
+        color: #EDF2F4;; /* Color inicial (puedes ajustar el color) */
+    }
+    to {
+        background-color: #EF233C; /* Color final (puedes ajustar el color) */
+    }
+    
+}
+@keyframes balanceoInfinito {
+    from {
+        transform: rotate(-5deg);
+    }
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+
 
 .circulosExplicativos p {
     margin: 10px 0 150px 0;
