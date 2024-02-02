@@ -3,7 +3,7 @@
 <?php
     echo '
     <div style="display: flex; justify-content: center; align-items: center; ">
-        <img src="imgs/bannerindex.gif" alt="Banner">
+        <img src="imgs/promotionalbanner.gif" alt="Banner">
     </div>';
 
 
