@@ -39,7 +39,6 @@ CREATE TABLE poll_options (
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
 );
 
-
 CREATE TABLE user_vote (
     vote_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
@@ -301,6 +300,3 @@ INSERT INTO pais (id, paisnombre, paisprefijo) VALUES
 (242, 'Sáhara Occidental', '+212'),
 (243, 'Yemen', '+967'),
 (246, 'Puerto Rico', '+1787');
--- Continúa con las demás filas según sea necesario
-
-

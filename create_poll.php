@@ -10,13 +10,13 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
 
 echo '<script src="js/script.js"></script>';
 
 // Verificar la conexión
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$pdo) {
+    die("Connection failed: " . $pdo->errorInfo());
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 
     // Preparar la consulta para insertar las opciones en la tabla poll_options
-    $stmt = $pdo->prepare("INSERT INTO poll_options (poll_id, option_text, start_date, end_date, path_image) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO poll_options (poll_id, option_text,path_image) VALUES (?, ?, ?)");
 
         for ($i = 1; $i <= $numOptions; $i++) {
             $option = $_POST["option$i"];
@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 }
 
-                $stmt->execute([$pollId, $option, $startDate, $endDate, $target_file]);
+                $stmt->execute([$pollId, $option, $target_file]);
             }
         }
 
