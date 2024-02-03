@@ -74,13 +74,16 @@
                     <input class="inputLoginPHP" type="password" id="password" name="password" required>
                     <label for="password">Contraseña</label>
                 </div>
-                
 
-                <a href="register.php" id="tienescuentaBotonLogin" type="submit">¿No tienes cuenta?</a>        
-                <button id="siguienteBotonLogin" type="submit">Siguiente</button>        
-            </form>
-        </div>
-        
+                <a href="forgot_password.php" id="forgotPassword">¿Has olvidado la contraseña?</a>
+                <br><br>
+
+                <div class="datosUsuarioLogin">
+                    <a href="register.php" id="tienescuentaBotonLogin" type="submit">¿No tienes cuenta?</a>        
+                    <button id="siguienteBotonLogin" type="submit">Siguiente</button>        
+                </div>
+                </form>
+                </div>
 
         <?php include 'footer.php'; ?>
         <?php if (isset($error_message)) echo $error_message; ?>
