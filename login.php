@@ -3,6 +3,14 @@
     include 'db_connection.php';
     require 'log_function.php';
 
+    // Mostrar el mensaje si está presente en la sesión
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+
+        // Eliminar el mensaje de la sesión
+        unset($_SESSION['message']);
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
         $contraseña = $_POST["password"];
@@ -21,19 +29,19 @@
         if ($fila) {
             if ($fila['token_accepted'] == 0) {
                 $error_message = "<script type='text/javascript'>$(document).ready(function() { showErrorPopup('Todavía no has validado el email. Revisa la bandeja de entrada'); });</script>";
-                custom_log('Login fallido', "El usuario $email intentó iniciar sesión pero no ha validado el email");
+                custom_log('INCIO DE SESION FALLIDO', "El usuario $email intentó iniciar sesión pero no ha validado el email");
 
             } else {
                 $_SESSION['email'] = $email;
                 $_SESSION['user_name'] = $fila['user_name'];
                 echo '<script type="text/javascript">window.location = "dashboard.php";</script>';
-                custom_log('Login exitoso', "El usuario $email ha iniciado sesión correctamente");
+                custom_log('INCIO DE SESION EXITOSO', "El usuario $email ha iniciado sesión correctamente");
 
                 exit;
             }
         } else {
             $error_message = "<script type='text/javascript'>$(document).ready(function() { showErrorPopup('Correo electrónico o contraseña incorrectos'); });</script>";
-            custom_log('Login fallido', "El usuario $email intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos");
+            custom_log('INCIO DE SESION FALLIDO', "El usuario $email intentó iniciar sesión pero el correo electrónico o la contraseña son incorrectos");
 
         }   
         unset($pdo);
@@ -75,7 +83,7 @@
                     <label for="password">Contraseña</label>
                 </div>
 
-                <a href="forgot_password.php" id="forgotPassword">¿Has olvidado la contraseña?</a>
+                <a href="send_email_password.php" id="forgotPassword">¿Has olvidado la contraseña?</a>
                 <br><br>
 
                 <div class="datosUsuarioLogin">
@@ -87,5 +95,7 @@
 
         <?php include 'footer.php'; ?>
         <?php if (isset($error_message)) echo $error_message; ?>
+        <?php if (isset($message)) echo "<script type='text/javascript'>showSuccessPopup('$message');</script>"; ?>
+
     </body>
 </html>
