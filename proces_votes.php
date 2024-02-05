@@ -12,24 +12,44 @@ if (!isset($_SESSION['guest_email']) || empty($_SESSION['guest_email'])) {
     exit;
 }
 
-
 $pollId = $_POST['poll_id']; // Obtiene el id de la encuesta
 $pollOption = $_POST['pollOption']; // Obtiene la opción seleccionada de la encuesta
 $guestEmail = $_SESSION['guest_email']; // Obtiene el correo electrónico del invitado de la sesión
+
+if (isset($_POST['password'])){
+    $pwd = $_POST['password'];
+} else {
+    $pwd = $_POST['config'];
+}
 
 // Comprueba si el correo electrónico del invitado existe en la tabla de usuarios
 $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email = ?");
 $stmt->execute([$guestEmail]);
 $user = $stmt->fetch();
 
+$stmtCount = $pdo->prepare("SELECT COUNT(*) FROM user_vote");
+$stmtCount->execute([$guestEmail]);
+$count = $stmt->fetch();
+
 if ($user) {
     // El usuario está registrado, guarda su voto como 'registered'
-    $stmt = $pdo->prepare("INSERT INTO user_vote (user_id, poll_id, option_id, user_type, guest_email) VALUES (?, ?, ?, 'registered',?)");
-    $stmt->execute([$user['user_id'], $pollId, $pollOption,$guestEmail]);
+    $stmt = $pdo->prepare("INSERT INTO user_vote (user_id, poll_id, user_type, guest_email, hash_id) VALUES (?,?,'registered',?,?)");
+    $stmt->execute([$user['user_id'],$pollId,$guestEmail,$count+1]);
+
+    //Encriptacion de la contraseña e insercion en la tabla voted_option
+    $hash = openssl_encrypt($count, 'AES-128-CBC', $pwd);
+    $stmt = $pdo->prepare("INSERT INTO voted_option (option_id,hash) VALUES (?,?)");
+    $stmt->execute([$pollOption,$hash]);
+
 } else {
     // El usuario es un invitado, guarda su voto como 'guest'
-    $stmt = $pdo->prepare("INSERT INTO user_vote (guest_email, poll_id, option_id, user_type) VALUES (?, ?, ?, 'guest')");
-    $stmt->execute([$guestEmail, $pollId, $pollOption]);
+    $stmt = $pdo->prepare("INSERT INTO user_vote (guest_email, poll_id, user_type, hash_id) VALUES (?, ?, 'guest', ?)");
+    $stmt->execute([$guestEmail,$pollId,$count+1]);
+
+    //Encriptacion de la contraseña e insercion en la tabla voted_option
+    $hash = openssl_encrypt($count, 'AES-128-CBC', $pwd);
+    $stmt = $pdo->prepare("INSERT INTO voted_option (option_id,hash) VALUES (?,?)");
+    $stmt->execute([$pollOption,$hash]);
 }
 
 // Almacena el mensaje de éxito en una variable de sesión

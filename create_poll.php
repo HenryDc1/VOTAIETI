@@ -1,5 +1,6 @@
 <?php
 session_start(); // Iniciar la sesión
+include 'db_connection.php';
 include 'log_function.php';
 // Verificar si la sesión 'email' está establecida
 if (!isset($_SESSION['email'])) {
@@ -10,7 +11,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
+//$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
 
 echo '<script src="js/script.js"></script>';
 
@@ -257,7 +258,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
              <body class="bodyVota">
             <div class="contenedorHeader">
-                <?php include "../header.php"; ?>
+                <?php include "../header.php"; 
+                include "db_connection.php";?>
             </div>
 
             <div class="contenedor">
@@ -268,10 +270,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="vota">
             <?php  session_start();
-            $guest_email = $_SESSION["guest_email"]; ?>
+                $guest_email = $_SESSION["guest_email"]; 
+            ?>
 
-            
-            
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
            
            
@@ -281,7 +282,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
             // Añadir las opciones a la encuesta
-            $phpContent .= '<form method="post" action="../proces_votes.php" class="options">';
+            $phpContent .= '<form method="post" action="proces_votes.php" class="options">';
             $phpContent .= '<input type="hidden" name="poll_id" value="' . $pollId . '">';
 
             // Obtener todas las opciones de la encuesta de la base de datos
@@ -298,6 +299,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $phpContent .= '<br><br><img src="/' . $option['path_image'] . '" alt="Imagen de la opción ' . $option['option_id'] . '">';
                 }
             }
+            $phpContent .= '
+                // Obtener todas las opciones de la encuesta de la base de datos
+                $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+                $stmt->execute([$guest_email]);
+                $row = $stmt->fetch();
+                if ($row) {
+                    <input type="password" name="pwd">
+                } else {
+                    <input type="password" name="config" value="B!nari0">
+                }
+                ';
             $phpContent .= '<div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form>';
             $phpContent .= '</div>';
             $phpContent .= '<div class="contenedorFooter">';
@@ -449,9 +461,6 @@ $(document).ready(function() {
         });
     }
 });
-    </script>
-
-    <script>
         
         $(document).ready(function() {
            var error = "<?php echo $_SESSION['error']; ?>";

@@ -120,7 +120,7 @@ if(!isset($_SESSION['email'])) {
                 </div>
 
                 <div class="cambiarContraseña">
-                    <a href="">
+                    <a href="changePassword.php">
                         <div class="imagenConTexto">
                             <img src="../imgs/aura5.jpg" alt="">
                             <p><strong>Cambiar contraseña</strong></p>
