@@ -1,6 +1,8 @@
 
         <!DOCTYPE html>
         <html lang="en">
+       
+        
         <head>
             <link rel="stylesheet" href="../styles.css">
             <meta charset="UTF-8">
@@ -51,7 +53,7 @@
 
             
             img {
-                width: 200px;
+                width: 300px;
                 height: 200px;
                 padding-top: 10px;
             }
@@ -87,9 +89,12 @@
                 cursor: pointer;
                 transition: background-position 1s, color 1s;
             }
+            .vota button {
+                align-self: center;
+            }
             </style>
             </head>
-       
+            
              <body class="bodyVota">
             <div class="contenedorHeader">
                 <?php include "../header.php"; ?>
@@ -102,8 +107,9 @@
             </div>
 
             <div class="vota">
-            
+            <?php  session_start();
+            $guest_email = $_SESSION["guest_email"]; ?>
 
-
             
-            <h1 >asasasd</h1><div class="vota"><div class="options"><div><input type="checkbox" id="option1" name="option1"><label for="option1">adasdasd</label></div><div><input type="checkbox" id="option2" name="option2"><label for="option2">asdasdasd</label></div></div><button type="submit" id="botonEnviar">Enviar</button></div></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>
+            
+            <h1 >Enceussta 1</h1><form method="post" action="proces_votes.php" class="options"><input type="hidden" name="poll_id" value="1"><div><input type="radio" id="option1" name="pollOption" value="1"><label for="option1">Ocpion 1</label></div><div><input type="radio" id="option2" name="pollOption" value="2"><label for="option2">Opcion 2</label></div><div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form></div><div class="contenedorFooter"><?php include "../footer.php"; ?></div>

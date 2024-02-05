@@ -29,6 +29,7 @@ if(isset($_GET['token'])) {
         }
     } else {
         echo "Token inválido.";
+        header ("Location: errores/error404.php");
     }
 } else {
     echo "Token no proporcionado.";

@@ -141,10 +141,33 @@ a {
 .circulosExplicativos img {
     width: 200px;
     height: 200px;
-    border: 1px solid transparent;
+    border: 4px solid transparent;
     border-radius: 100%;
     margin-top: 150px;
+    animation: balanceoInfinito 2s infinite alternate; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
+    animation: cambioColorInfinito 3s infinite alternate; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
 }
+
+@keyframes cambioColorInfinito {
+    from {
+        background-color: rgba(43, 45, 66, 0.9);
+        color: #EDF2F4;; /* Color inicial (puedes ajustar el color) */
+    }
+    to {
+        background-color: #EF233C; /* Color final (puedes ajustar el color) */
+    }
+    
+}
+@keyframes balanceoInfinito {
+    from {
+        transform: rotate(-5deg);
+    }
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+
 
 .circulosExplicativos p {
     margin: 10px 0 150px 0;
@@ -1114,3 +1137,117 @@ footer a:hover {
 
 
 
+
+/* ---------------------------------------------------- */
+/* SHOWVOTES.PHP */
+
+.listVotesContainer {
+    width: 80%; /* Ajusta el ancho de la tabla al 80% del contenedor */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+}
+
+.listVotesContainer table {
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+    margin-bottom: 50px;
+}
+
+.columnQuestion{
+    width: 60%; /* Ajusta el ancho de la columna de la pregunta */
+    text-align: center;
+}
+
+.textOption {
+    width: 40%; /* Ajusta el ancho de la columna de la opciÃ³n */
+    text-align: center;
+}
+
+.state-poll {
+    width: 40%; /* Ajusta el ancho de la columna de la estado */
+    text-align: center;
+}
+
+.state-poll.not-started {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color:orange ;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.state-poll.finished {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color:red;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.state-poll.active {
+    color: rgb(255, 255, 255);
+    border:solid rgb(255, 255, 255) 2px;
+    background-color: green ;
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+.more {
+    cursor: pointer;
+    background-color: #ccf;
+    margin-left: 30px;
+}
+
+.complete {
+    display: none;
+}
+
+ /* ---------------------------------------------------- /
+/ details_page.PHP */
+#chart_div{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.contenedorPreguntaChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 120px 0 100px 0;
+    justify-content: center;
+    height: 100vh;
+}
+
+.pregunta {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#chart_div {
+    width: 80%;
+    margin: auto;
+}
+#imgDetailsPage{
+    width: 200px;
+    height: 200px; 
+    justify-content: center;
+    align-items: center;
+}
+#divImgDetailsPage{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#divH1{
+    width: 900px;
+}
+
+
+#forgotPassword {
+    color: white;
+}
+
+#forgotPassword:hover {
+    color: rgb(114, 165, 207);
+}

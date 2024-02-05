@@ -9,7 +9,7 @@ include 'log_function.php';
 
 // Correo electrónico del remitente (hardcodeado)
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "ArnauMestre169";
+$passwordEmail = "";
 
 // Muestra el mensaje de error si existe
 if (isset($_SESSION['error'])) {
@@ -45,9 +45,9 @@ if(!empty($_POST)){
     $stmt->execute([$email]);
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El correo electrónico ya existe';
-        custom_log("Intento de registro fallido", "Correo electrónico: $email ya existe");
+        custom_log("REGISTRO FALLIDO", "Correo electrónico: $email ya existe");
 
-        header('Location: RegisterPruebas.php');
+        header('Location: register.php');
         exit;
     }
 
@@ -57,8 +57,8 @@ if(!empty($_POST)){
     $stmt->execute([$telephone]);
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El número de teléfono ya existe';
-        custom_log("Intento de registro fallido", "Número de teléfono: $telephone ya existe");
-        header('Location: RegisterPruebas.php');
+        custom_log("REGISTRO FALLIDO", "Número de teléfono: $telephone ya existe");
+        header('Location: register.php');
         exit;
     }
 
@@ -72,7 +72,7 @@ if(!empty($_POST)){
     $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode, $token]);
 
     // Registrar la creación del usuario
-    custom_log("Usuario creado", "Nombre de usuario: $username, Correo electrónico: $email, Teléfono: $telephone, País: $country, Ciudad: $city, Código postal: $zipcode");
+    custom_log("REGISTRO", "Nombre de usuario: $username, Correo electrónico: $email, Teléfono: $telephone, País: $country, Ciudad: $city, Código postal: $zipcode");
 
 
    // Crear una nueva instancia de PHPMailer
@@ -104,7 +104,7 @@ if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    echo 'Message has been sent';
+    //echo 'Message has been sent';
 }
    
     

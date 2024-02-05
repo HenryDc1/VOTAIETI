@@ -62,3 +62,44 @@ function showErrorPopup(message) {
   });
 }
 
+
+function showSuccesPopup(message) {
+  // Crear la ventana flotante
+  var successPopup = $('<div/>', {
+      id: 'successPopup',
+      text: message,
+      style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
+  });
+
+  // Crear el botón 'X'
+  var closeButton = $('<button/>', {
+      text: 'X',
+      style: 'position: absolute; top: 0; right: 0; background-color: transparent; color: white; border: none; font-size: 20px; cursor: pointer;'
+  });
+
+  // Añadir el botón 'X' a la ventana flotante
+  successPopup.append(closeButton);
+
+  // Añadir la ventana flotante al cuerpo del documento
+  $('body').append(successPopup);
+
+  // Manejador de eventos para el botón 'X'
+  closeButton.click(function () {
+      successPopup.remove();
+  });
+}
+
+
+$(document).ready(function() {
+  $(".more").on("click", function() {
+    // cambiar la visibilidad de complete
+    $(".complete").toggle();
+
+    // cambiar el texto del boton dependiendo del texto actual
+    if ($(this).text() == "Ocultar") {
+      $(this).text("Spoiler");
+    } else {
+      $(this).text("Ocultar");
+    }
+  });
+});

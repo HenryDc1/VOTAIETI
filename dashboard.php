@@ -1,7 +1,7 @@
 
 <?php
 session_start(); // Inicia una nueva sesión o reanuda la existente
-
+include 'log_function.php';
 include 'db_connection.php';
 
 $email = $_SESSION['email'];
@@ -17,7 +17,7 @@ $conditions_accepted = $fila['conditions_accepted'];
 // Verifica si el usuario ha iniciado sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
-    custom_log('Error 403', "Se ha intentado acceder a la página de dashboard sin registrarse o iniciar sesión");
+    custom_log('ERROR 403', "Se ha intentado acceder a la página de dashboard sin registrarse o iniciar sesión");
 
     header('Location: errores/error403.php');
     exit;
@@ -96,13 +96,13 @@ if(!isset($_SESSION['email'])) {
                 <div id="invitarAmigos">
                     <div class="imagenConTexto">
                         <img src="../imgs/aura2.jpg" alt="La imagen que me has enviado es un fondo abstracto con un suave degradado de colores. Los colores predominantes son tonos de rosa, rojo y naranja que se mezclan armoniosamente. No hay objetos o elementos distintivos en la imagen; es puramente una mezcla colorida y etérea de tonos cálidos. La textura parece suave, sin líneas duras o bordes definidos, creando una sensación calmante.">
-                        <p><strong>Invita a tus amigos a votar</strong></p>
+                        <p><strong>Encuestas publicas</strong></p>
                         <p><em>Haz que tus amigos se unan a la fiesta de opiniones</em></p>
                     </div>
                 </div>
 
                 <div class="verVotos">
-                    <a href="#paginaVerVotos">
+                    <a href="showVotes.php">
                         <div class="imagenConTexto">
                             <img src="../imgs/aura3.jpg" alt="La imagen que me has enviado es un fondo abstracto con un degradado suave y fluido. Los colores predominantes son tonos de rosa, rojo y naranja que se mezclan armoniosamente. No hay objetos o elementos distintivos en la imagen; es puramente una mezcla colorida y etérea de tonos cálidos. La textura parece suave, sin líneas duras o bordes definidos, creando una sensación calmante.">
                             <p><strong>Ver mis votos</strong></p>
@@ -117,6 +117,16 @@ if(!isset($_SESSION['email'])) {
                             <img src="../imgs/aura5.jpg" alt="">
                             <p><strong>Listar encuestas</strong></p>
                             <p><em>Visita de nuevo tus encuestas creadas</em></p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="cambiarContraseña">
+                    <a href="">
+                        <div class="imagenConTexto">
+                            <img src="../imgs/aura5.jpg" alt="">
+                            <p><strong>Cambiar contraseña</strong></p>
+                            <p><em>Cambia la contraseña de tu usuario</em></p>
                         </div>
                     </a>
                 </div>
