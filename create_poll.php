@@ -1,6 +1,10 @@
 <?php
 session_start(); // Iniciar la sesión
+include 'db_connection.php';
 include 'log_function.php';
+
+$guestEmail = $_SESSION["guest_email"];
+
 // Verificar si la sesión 'email' está establecida
 if (!isset($_SESSION['email'])) {
     // Redirigir al usuario a la página de inicio de sesión
@@ -10,7 +14,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
+//$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
 
 echo '<script src="js/script.js"></script>';
 
@@ -155,20 +159,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
         
-        $guestEmail = $_SESSION["guest_email"];
+      
      
        
         $phpContent .= '
-        <!DOCTYPE html>
-        <html lang="en">
-       
-        
-        <head>
-            <link rel="stylesheet" href="../styles.css">
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Encuesta ' . $pollId . '</title>
-            <style>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <link rel="stylesheet" href="../styles.css">
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Encuesta ' . $pollId . '</title>
+                <style>
             .bodyVota {
                 margin: 0;
                 padding: 0;
@@ -257,7 +259,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
              <body class="bodyVota">
             <div class="contenedorHeader">
-                <?php include "../header.php"; ?>
+                <?php include "../header.php"; 
+                include "db_connection.php";?>
             </div>
 
             <div class="contenedor">
@@ -267,11 +270,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="vota">
-            <?php  session_start();
-            $guest_email = $_SESSION["guest_email"]; ?>
+            <?php  
+                include "db_connection.php";
+                session_start();
+                $guest_email = $_SESSION["guest_email"]; 
+                
 
-            
-            
+                
+            ?>
+            <p>Correo electrónico del invitado: ' . $guestEmail . '</p>
+
+
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
            
            
@@ -298,6 +307,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $phpContent .= '<br><br><img src="/' . $option['path_image'] . '" alt="Imagen de la opción ' . $option['option_id'] . '">';
                 }
             }
+            
+          
             $phpContent .= '<div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form>';
             $phpContent .= '</div>';
             $phpContent .= '<div class="contenedorFooter">';
@@ -449,9 +460,6 @@ $(document).ready(function() {
         });
     }
 });
-    </script>
-
-    <script>
         
         $(document).ready(function() {
            var error = "<?php echo $_SESSION['error']; ?>";
