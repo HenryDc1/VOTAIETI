@@ -118,6 +118,16 @@ if(!isset($_SESSION['email'])) {
                         </div>
                     </a>
                 </div>
+
+                <div class="cambiarContraseña">
+                    <a href="">
+                        <div class="imagenConTexto">
+                            <img src="../imgs/aura5.jpg" alt="">
+                            <p><strong>Cambiar contraseña</strong></p>
+                            <p><em>Cambia la contraseña de tu usuario</em></p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
 
