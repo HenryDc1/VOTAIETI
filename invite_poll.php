@@ -38,32 +38,33 @@ if(isset($_POST['emails'])) {
     });
 
     foreach($emails as $email) {
-        // Generar un token único
-        $token = bin2hex(random_bytes(16));
-
-        // Insertar el correo electrónico del invitado en la tabla user_guest
-       // $query = "INSERT IGNORE INTO user_guest (guest_email) VALUES (:email)";
-        //$stmt = $pdo->prepare($query);
-        //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        //$stmt->execute();
-
-        // Insertar el token en la tabla de invitaciones
-        $query = "INSERT INTO invitation (poll_id, guest_email, sent_date, token, token_accepted, blocked) VALUES (:pollId, :email, NOW(), :token, 0, 0)";
-        
+        // Verificar si ya se ha enviado una invitación para esta encuesta a este correo electrónico
+        $query = "SELECT * FROM invitation WHERE poll_id = :pollId AND guest_email = :email";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':pollId', $_SESSION['pollId'], PDO::PARAM_INT);
-
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':token', $token, PDO::PARAM_STR);
-        $stmt->execute();
-        custom_log('INSERCIÓN DE DATOS', "Se han insertado los datos de la invitación en la base de datos");
-
-        // Insertar el correo electrónico en la tabla SEND_EMAIL
-        $query = "INSERT INTO SEND_EMAIL (email) VALUES (:email)";
-        $stmt = $pdo->prepare($query);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
-        
+        $existingInvitation = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if (!$existingInvitation) {
+            // Generar un token único
+            $token = bin2hex(random_bytes(16));
+    
+            // Insertar el token en la tabla de invitaciones
+            $query = "INSERT INTO invitation (poll_id, guest_email, sent_date, token, token_accepted, blocked) VALUES (:pollId, :email, NOW(), :token, 0, 0)";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(':pollId', $_SESSION['pollId'], PDO::PARAM_INT);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+            $stmt->execute();
+            custom_log('INSERCIÓN DE DATOS', "Se han insertado los datos de la invitación en la base de datos");
+    
+            // Insertar el correo electrónico en la tabla SEND_EMAIL
+            $query = "INSERT INTO SEND_EMAIL (email) VALUES (:email)";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+        }
     }
     header('Location: send_email.php');
 }

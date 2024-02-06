@@ -11,6 +11,11 @@
         unset($_SESSION['message']);
     }
 
+    if (isset($_SESSION['succes'])) {
+        echo "<script type='text/javascript'>showSuccesPopup('" . $_SESSION['succes'] . "');</script>";
+        unset($_SESSION['succes']);
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST["email"];
         $contraseña = $_POST["password"];
@@ -47,9 +52,7 @@
         unset($pdo);
         unset($query);
     }
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
