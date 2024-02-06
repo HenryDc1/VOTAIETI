@@ -6,7 +6,7 @@ require "vendor/autoload.php";
 include 'db_connection.php'; // Incluir el archivo de conexión
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "ArnauMestre169";
+$passwordEmail = "";
 
 // Seleccionar los primeros 5 correos electrónicos de la tabla SEND_EMAIL
 $query = "SELECT e.*, i.token FROM SEND_EMAIL e INNER JOIN invitation i ON e.email = i.guest_email LIMIT 5";

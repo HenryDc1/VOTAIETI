@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'P@ssw0rd');
+$pdo = new PDO('mysql:host=localhost;dbname=VOTE', 'root', 'root');
 
 echo '<script src="js/script.js"></script>';
 

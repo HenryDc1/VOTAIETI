@@ -10,11 +10,14 @@ include 'db_connection.php'; // Incluye la conexión a la base de datos
 
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "ArnauMestre169;";
+$passwordEmail = "";
 
-if (isset($_POST['poll_id']) && isset($_POST['poll_status'])) {
+
+if (isset($_POST['poll_id']) && isset($_POST['status'])) {
     $pollId = $_POST['poll_id'];
-    $status = $_POST['poll_status'] === 'blocked' ? 1 : 0;
+    $status = $_POST['status'] === 'block' ? 1 : 0;
+    echo "Poll ID: " . $pollId . "<br>";
+    echo "Status: " . $status . "<br>";
 
     // Actualizar el estado de la encuesta
     $stmt = $pdo->prepare("UPDATE invitation SET blocked = ? WHERE poll_id = ?");
@@ -36,6 +39,12 @@ if ($status === 1) {
     $stmt->execute([$pollId, $pollId]);
     $emails = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+     // Actualizar 'token_accepted' a TRUE (1)
+     $stmt = $pdo->prepare("UPDATE invitation SET token_accepted = 1 WHERE poll_id = ? AND token_accepted = 0 AND guest_email NOT IN (SELECT guest_email FROM user_vote WHERE poll_id = ?)");
+     $stmt->execute([$pollId, $pollId]);
+
+
+
     // Enviar un correo electrónico a los usuarios que no han votado y que no han aceptado el token
     foreach ($emails as $email) {
         // Crear una nueva instancia de PHPMailer
@@ -55,11 +64,13 @@ if ($status === 1) {
         $mail->SetFrom($senderEmail, "VOTAIETI");
         $mail->Subject = 'Encuesta bloqueada';
         $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
-        $mail->MsgHTML("La encuesta a la que fuiste invitado ha sido bloqueada por su administrador. No podrás participar en esta encuesta. Para más información, por favor contacta al administrador de la encuesta. Gracias por tu comprensión.<br><img src='cid:logo_img'>");
+        $mail->MsgHTML("La encuesta número " . $pollId . " a la que fuiste invitado anteriormente, ha sido bloqueada por su administrador. No podrás participar en esta encuesta. Para más información, por favor contacta al administrador de la encuesta. Gracias por tu comprensión.<br><img src='cid:logo_img'>");
     
         if(!$mail->send()) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
+            echo 'Message could not be sent.<br>';
+            echo 'Mailer Error: ' . $mail->ErrorInfo . '<br>';
+        } else {
+            echo 'Message has been sent<br>';
         }
     }
 }
