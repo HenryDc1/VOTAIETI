@@ -37,8 +37,8 @@ include 'db_connection.php';
     <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
     <meta property="og:image" content="../imgs/votaietilogo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
-    <title>Listado de encuestas — Votaieti</title>
+    <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
+    <title>Panel de control — Votaieti</title>
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

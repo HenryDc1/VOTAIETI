@@ -18,7 +18,7 @@
         </div>
         
         <div class="footer-section2"><strong>Alejandro Soldado</strong><br>
-            <a href="mailto:cmoyanoherrerias.cf@iesesteveterradas.cat">asoldadopalomino.cf@iesesteveterradas.cat</a><br>
+            <a href="mailto:asoldadopalomino.cf@iesesteveterradas.cat">asoldadopalomino.cf@iesesteveterradas.cat</a><br>
             <a href="https://github.com/cl6mh7">GitHub</a> |
             <a href="https://instagram.com">Instagram</a> | 
             <a href="https://twitter.com">Twitter</a> | 
