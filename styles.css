@@ -137,33 +137,30 @@ a {
     text-align: center;
     width: 200px;
 }
-
 .circulosExplicativos img {
     width: 200px;
     height: 200px;
     border: 4px solid transparent;
     border-radius: 100%;
     margin-top: 150px;
-    animation: balanceoInfinito 2s infinite alternate; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
-    animation: cambioColorInfinito 3s infinite alternate; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
+    animation: cambioColorInfinito 3s infinite alternate, glow 3s infinite alternate;
 }
 
 @keyframes cambioColorInfinito {
     from {
-        background-color: rgba(43, 45, 66, 0.9);
-        color: #EDF2F4;; /* Color inicial (puedes ajustar el color) */
+        border-color: rgba(43, 45, 66, 0.9);
     }
     to {
-        background-color: #EF233C; /* Color final (puedes ajustar el color) */
+        border-color: #EF233C;
     }
-    
 }
-@keyframes balanceoInfinito {
+
+@keyframes glow {
     from {
-        transform: rotate(-5deg);
+        box-shadow: 0 0 5px rgba(43, 45, 66, 0.9), 0 0 10px rgba(43, 45, 66, 0.9);
     }
     to {
-        transform: rotate(5deg);
+        box-shadow: 0 0 5px #EF233C, 0 0 10px #EF233C;
     }
 }
 
