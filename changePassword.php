@@ -16,18 +16,26 @@
 
             if ($user) {
                 // El usuario existe, actualizar la contraseña
-                $hashed_password = hash('sha256', $password);
-                $sql = "UPDATE users SET password = ? WHERE token = ?";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute([$hashed_password, $token]);
+                $sqlUpdateUser = "UPDATE users SET password = SHA2(?, 256) WHERE password = SHA2(?, 256)";
+                $stmtUpdateUser = $pdo->prepare($sqlUpdateUser);
+                $stmtUpdateUser->execute([$password, $changePassword]);
                 $_SESSION['message'] = "Contraseña actualizada con éxito.";
                 custom_log('CONTRASEÑA RESTABLECIDA', "El usuario $email ha restablecido la contraseña.");
+
+                $sqlSelectVotes = "SELECT option_id, hash FROM voted_option WHERE hash IN (SELECT CONCAT(uv.hash_id, ?) AS hash FROM user_vote uv WHERE uv.user_id = ?)";
+                $sqlSelectVotes = $pdo->prepare($sqlUpdateUser);
+                $sqlSelectVotes->execute([$changePassword, $user['user_id']]);
+                $votes = $stmtSelectVotes->fetch();
+                
+                foreach ($votes as $vote) {
+                    
+                }
 
                 // Redirigir a login.php
                 header("Location: login.php");
                 exit;
             } else {
-                // Las contraseñas no coinciden
+                // No hay ningun usario con esa contraseña
                 $message = "Vuelve a intentarlo.";
             }
         } else {
