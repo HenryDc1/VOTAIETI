@@ -28,7 +28,13 @@
                 $votes = $stmtSelectVotes->fetch();
                 
                 foreach ($votes as $vote) {
-                    
+                    $hashDecrypt = openssl_decrypt($vote['hash'], 'AES-128-CBC', $changePassword);
+                    $idHash = substr($hashDecrypt, 0, 1);
+                    $hash = openssl_encrypt($idHash, 'AES-128-CBC', $password);
+
+                    $sqlUpdateVote = "UPDATE voted_option SET hash = ? WHERE hash = ?";
+                    $sqlUpdateVote = $pdo->prepare($sqlUpdateVote);
+                    $sqlUpdateVote->execute([$hash, $vote['hash']]);
                 }
 
                 // Redirigir a login.php
