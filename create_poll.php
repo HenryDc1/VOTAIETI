@@ -273,7 +273,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
-           
+            $phpContent .= '<p>Guest Email: ' . htmlspecialchars($_SESSION['guest_email']) . '</p>';
+
            
             // Si la encuesta tiene una imagen, añádela
             if ($imagePath) {
@@ -306,7 +307,7 @@ $userExists = $stmt->fetchColumn();
 
 if ($userExists) {
     // Si el usuario existe, agregar un campo de entrada para la contraseña
-    $phpContent .= '<input type="password" name="password" placeholder="Introduce tu contraseña">';
+    $phpContent .= '<input type="password" name="pwd" placeholder="Introduce tu contraseña">';
 }
 
 $phpContent .= '<div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form>';

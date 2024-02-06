@@ -1,0 +1,84 @@
+[2024-02-06 15:52:47] SESION CERRADA: El usuario ha cerrado la sesión con exito
+[2024-02-06 15:52:55] INCIO DE SESION EXITOSO: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-02-06 15:53:20] SESION CERRADA: El usuario ha cerrado la sesión con exito
+[2024-02-06 15:53:50] REGISTRO: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34670123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-02-06 15:56:45] REGISTRO: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34670123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-02-06 15:57:05] INCIO DE SESION EXITOSO: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-02-06 15:57:08] TERMINOS Y CONDICIONES: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha aceptado los terminos y condiciones
+[2024-02-06 15:57:41] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-06 15:57:41] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-02-06 15:57:44] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:02:10] SESION CERRADA: El usuario ha cerrado la sesión con exito
+[2024-02-06 16:02:39] REGISTRO: Nombre de usuario: Arnau, Correo electrónico: amestrevizcaino.cf@iesesteveterradas.cat, Teléfono: +34670123123, País: España, Ciudad: cornella, Código postal: 12345
+[2024-02-06 16:03:01] INCIO DE SESION EXITOSO: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
+[2024-02-06 16:03:04] TERMINOS Y CONDICIONES: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha aceptado los terminos y condiciones
+[2024-02-06 16:03:07] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:03:33] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-06 16:03:33] Encuesta Creada: Se ha creado el archivo poll1.php con exito
+[2024-02-06 16:11:33] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:11:51] INSERCIÓN DE DATOS: Se han insertado los datos de la invitación en la base de datos
+[2024-02-06 16:11:55] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:12:14] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 16:14:36] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-06 16:14:36] Encuesta Creada: Se ha creado el archivo poll2.php con exito
+[2024-02-06 16:14:40] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:14:54] INSERCIÓN DE DATOS: Se han insertado los datos de la invitación en la base de datos
+[2024-02-06 16:14:58] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:15:00] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:15:13] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 16:16:03] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:16:07] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:42:09] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-06 16:42:09] Encuesta Creada: Se ha creado el archivo poll3.php con exito
+[2024-02-06 16:42:13] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:42:31] INSERCIÓN DE DATOS: Se han insertado los datos de la invitación en la base de datos
+[2024-02-06 16:42:36] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:42:40] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:42:43] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:42:53] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 16:46:51] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-06 16:46:51] Encuesta Creada: Se ha creado el archivo poll4.php con exito
+[2024-02-06 16:47:07] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:47:28] INSERCIÓN DE DATOS: Se han insertado los datos de la invitación en la base de datos
+[2024-02-06 16:47:31] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:47:34] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:47:35] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:47:38] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:47:48] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 16:54:05] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-06 16:54:05] Encuesta Creada: Se ha creado el archivo poll5.php con exito
+[2024-02-06 16:54:11] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:54:32] INSERCIÓN DE DATOS: Se han insertado los datos de la invitación en la base de datos
+[2024-02-06 16:54:37] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:54:39] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:54:40] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:54:42] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:54:44] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:55:07] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 16:55:25] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 17:01:12] CREACION ENCUESTA: Se ha creado una encuesta correctamente
+[2024-02-06 17:01:12] Encuesta Creada: Se ha creado el archivo poll6.php con exito
+[2024-02-06 17:01:15] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:01:31] INSERCIÓN DE DATOS: Se han insertado los datos de la invitación en la base de datos
+[2024-02-06 17:01:36] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:01:40] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:01:43] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:01:49] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:01:53] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:01:56] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:02:06] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 17:02:12] ESTADO VOTO: Se ha enviado el voto con éxito
+[2024-02-06 17:03:32] ENCUESTAS LISTADAS: Se ha listado las encuestas del usuario amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:03:50] INSERCIÓN DE DATOS: Se han insertado los datos de la invitación en la base de datos
+[2024-02-06 17:03:55] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:03:58] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:04:01] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:04:02] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:04:05] CORREO ENVIADO: Se ha enviado un correo electrónico de invitacion a amestrevizcaino.cf@iesesteveterradas.cat
+[2024-02-06 17:04:14] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 17:04:25] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 17:04:35] PERMISO DENEGADO: Se ha intentado acceder de nuevo al enlace una vez votado
+[2024-02-06 17:04:39] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 17:04:47] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 17:04:53] INVITACION ACEPTADA: Se ha aceptado la invitación con éxito
+[2024-02-06 17:05:27] ESTADO VOTO: Se ha enviado el voto con éxito
