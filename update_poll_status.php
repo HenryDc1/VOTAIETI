@@ -1,12 +1,20 @@
-<?php
-session_start(); // Asegúrate de que esto está al principio de tu archivo
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-require 'vendor/autoload.php';
+<?php
 
 include 'log_function.php';
 include 'db_connection.php'; // Incluye la conexión a la base de datos
+
+session_start(); // Asegúrate de que esto está al principio de tu archivo
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    // The script is being accessed directly, redirect to the error page
+    header('Location: errores/error403.php');
+    custom_log('ACCESO DENEGADO', "Se ha intentado acceder a la página de actualización de estado de encuesta sin permiso");
+
+    exit;
+}
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
 
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
