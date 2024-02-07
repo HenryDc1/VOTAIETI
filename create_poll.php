@@ -307,7 +307,8 @@ $userExists = $stmt->fetchColumn();
 
 if ($userExists) {
     // Si el usuario existe, agregar un campo de entrada para la contraseña
-    $phpContent .= '<input type="password" name="pwd" placeholder="Introduce tu contraseña">';
+    $phpContent .= '<div style="display: flex; justify-content: center;"><input type="password" name="pwd" placeholder="Introduce tu contraseña"></div>';
+
 }
 
 $phpContent .= '<div style="grid-column: span 2;"><button type="submit" id="botonEnviar">Enviar</button></div></form>';
