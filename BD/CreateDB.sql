@@ -69,6 +69,8 @@ CREATE TABLE invitation (
     token varchar(255),
     token_accepted BOOLEAN NOT NULL,
     blocked TINYINT(1) NOT NULL,
+
+    
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
 );
 
