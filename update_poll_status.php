@@ -69,8 +69,11 @@ if ($status === 1) {
         if(!$mail->send()) {
             echo 'Message could not be sent.<br>';
             echo 'Mailer Error: ' . $mail->ErrorInfo . '<br>';
+
         } else {
             echo 'Message has been sent<br>';
+            custom_log('CORREO ENVIADO', "Se ha enviado el correo de bloqueo de encuesta a " . $email['guest_email'] . " con éxito.");
+
         }
     }
 }
