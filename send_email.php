@@ -45,6 +45,6 @@ foreach($emails as $email) {
         echo 'Message could not be sent.';
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     }
-    header  ('Location: dashboard.php');    
+    header  ('Location: https://aws21.ieti.site/dashboard.php');    
 }
 ?>
