@@ -9,7 +9,7 @@ include 'log_function.php';
 
 // Correo electrónico del remitente (hardcodeado)
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "";
+$passwordEmail = "ArnauMestre169";
 
 // Muestra el mensaje de error si existe
 if (isset($_SESSION['error'])) {
@@ -45,9 +45,9 @@ if(!empty($_POST)){
     $stmt->execute([$email]);
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El correo electrónico ya existe';
-        custom_log("Intento de registro fallido", "Correo electrónico: $email ya existe");
+        custom_log("REGISTRO FALLIDO", "Correo electrónico: $email ya existe");
 
-        header('Location: https://aws21.ieti.site/register.php');
+        header('Location: register.php');
         exit;
     }
 
@@ -57,8 +57,8 @@ if(!empty($_POST)){
     $stmt->execute([$telephone]);
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El número de teléfono ya existe';
-        custom_log("Intento de registro fallido", "Número de teléfono: $telephone ya existe");
-        header('Location: https://aws21.ieti.site/register.php');
+        custom_log("REGISTRO FALLIDO", "Número de teléfono: $telephone ya existe");
+        header('Location: register.php');
         exit;
     }
 
@@ -72,7 +72,7 @@ if(!empty($_POST)){
     $stmt->execute([$username, $email, $password, $telephone, $country, $city, $zipcode, $token]);
 
     // Registrar la creación del usuario
-    custom_log("Usuario creado", "Nombre de usuario: $username, Correo electrónico: $email, Teléfono: $telephone, País: $country, Ciudad: $city, Código postal: $zipcode");
+    custom_log("REGISTRO", "Nombre de usuario: $username, Correo electrónico: $email, Teléfono: $telephone, País: $country, Ciudad: $city, Código postal: $zipcode");
 
 
    // Crear una nueva instancia de PHPMailer
@@ -96,7 +96,7 @@ if(!empty($_POST)){
    
    $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
    
-   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="https://aws21.ieti.site/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
+   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
    
 
 // Enviar el correo electrónico
@@ -104,7 +104,7 @@ if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    echo 'Message has been sent';
+    //echo 'Message has been sent';
 }
    
     
@@ -172,7 +172,7 @@ var countrySelectHTML = '<?= $countrySelectHTML ?>';
         
         <div class="containerRegister">
 
-            <form class="creacuentaRegister" action="https://aws21.ieti.site/register.php" method="post">
+            <form class="creacuentaRegister" action="register.php" method="post">
                 <h1>REGÍSTRATE</h1>
                 <img class="logoLogin" src="logosinfondo.png" alt="">
 

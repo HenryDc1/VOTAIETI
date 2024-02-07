@@ -1,7 +1,6 @@
-
-
 CREATE DATABASE VOTE;
 USE VOTE;
+
 
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,7 +27,6 @@ CREATE TABLE poll (
     question_visibility ENUM('public','private','hidden') ,
     results_visibility ENUM('public','private','hidden') ,
     path_image varchar(255) DEFAULT NULL,
-    
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
@@ -37,28 +35,31 @@ CREATE TABLE poll_options (
     option_id INT AUTO_INCREMENT PRIMARY KEY,
     option_text TEXT NOT NULL,
     poll_id INT NOT NULL,
-    start_date DATETIME,
-    end_date DATETIME,
-    path_image varchar(255) ,
+    path_image varchar(255),
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
-);
-
-CREATE TABLE user_guest (
-    guest_email VARCHAR(255) PRIMARY KEY
 );
 
 CREATE TABLE user_vote (
     vote_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     poll_id INT NOT null,
-    option_id INT,
     user_type ENUM('registered', 'guest') NOT NULL,
     guest_email VARCHAR(255),
+    hash_id INT,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (poll_id) REFERENCES poll(poll_id),
-    FOREIGN KEY (option_id) REFERENCES poll_options(option_id),
-    FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email)
+    FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
+   
 );
+
+
+
+CREATE TABLE voted_option (
+    option_id INT,
+    hash VARCHAR(255) NOT NULL,
+    FOREIGN KEY (option_id) REFERENCES poll_options(option_id)
+);
+
+
 
 CREATE TABLE invitation (
     invitation_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,10 +68,10 @@ CREATE TABLE invitation (
     sent_date DATETIME,
     token varchar(255),
     token_accepted BOOLEAN NOT NULL,
-    FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email),
+    blocked TINYINT(1) NOT NULL,
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
-    
 );
+
 
 CREATE TABLE SEND_EMAIL (
     id INT AUTO_INCREMENT,
@@ -78,13 +79,15 @@ CREATE TABLE SEND_EMAIL (
     PRIMARY KEY(id)
 );
 
+select * from invitation;
+
+
 CREATE TABLE IF NOT EXISTS pais (
   id int(11) NOT NULL AUTO_INCREMENT,
   paisnombre varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   paisprefijo varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=247 ;
-
 
 
 INSERT INTO pais (id, paisnombre, paisprefijo) VALUES
@@ -302,6 +305,3 @@ INSERT INTO pais (id, paisnombre, paisprefijo) VALUES
 (242, 'Sáhara Occidental', '+212'),
 (243, 'Yemen', '+967'),
 (246, 'Puerto Rico', '+1787');
--- Continúa con las demás filas según sea necesario
-
-

@@ -8,7 +8,7 @@ session_unset();
 
 // Destruye la sesión
 session_destroy();
-custom_log('Sessión Cerrada', "El usuario ha cerrado la sesión con exito");
+custom_log('SESION CERRADA', "El usuario con correo electrónico: {$_SESSION['guest_email']} ha cerrado la sesión con éxito");
 
 // Redirige a la página de inicio (o a donde desees)
 header('Location: index.php');

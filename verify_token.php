@@ -24,11 +24,12 @@ if(isset($_GET['token'])) {
 
             // Redirigir al usuario a la página de inicio de sesión
             $_SESSION['justVerified'] = true;
-            header("Location: https://aws21.ieti.site/login.php");
+            header("Location: login.php");
             exit;
         }
     } else {
         echo "Token inválido.";
+        header ("Location: errores/error404.php");
     }
 } else {
     echo "Token no proporcionado.";
