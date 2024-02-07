@@ -273,7 +273,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             
             <h1 >' . htmlspecialchars($pollData['question']) . '</h1>';
-            $phpContent .= '<p>Guest Email: ' . htmlspecialchars($_SESSION['guest_email']) . '</p>';
+            //$phpContent .= '<p>Guest Email: ' . htmlspecialchars($_SESSION['guest_email']) . '</p>';
 
            
             // Si la encuesta tiene una imagen, añádela
