@@ -44,7 +44,7 @@ include 'db_connection.php';
 
     <link rel="stylesheet" href="styles.css">
     <script src="../styles + scripts/script.js"></script> 
-    <script src="script.js"></script>
+    <script src="/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 
@@ -159,5 +159,16 @@ include 'db_connection.php';
     <div class="contenedorFooter">
         <?php include 'footer.php'; ?>
     </div>
+
+    <?php if(isset($_SESSION['success'])): ?>
+    <script>
+        $(document).ready(function() {
+            showSuccesPopup("<?php echo $_SESSION['success']; ?>");
+        });
+    </script>
+        <?php 
+            unset($_SESSION['success']); // Limpiar la variable de sesión después de mostrar el mensaje
+        endif; 
+        ?>
 </body>
 </html>

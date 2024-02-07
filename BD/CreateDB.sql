@@ -57,7 +57,6 @@ CREATE TABLE voted_option {
     hash VARCHAR(255) NOT NULL
 }
 
-
 CREATE TABLE invitation (
     invitation_id INT AUTO_INCREMENT PRIMARY KEY,
     poll_id INT NOT NULL,
@@ -75,6 +74,8 @@ CREATE TABLE SEND_EMAIL (
     email VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
+
+select * from invitation;
 
 
 CREATE TABLE IF NOT EXISTS pais (

@@ -4,6 +4,7 @@
     require 'log_function.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_SESSION['email'];
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
         if ($password == $confirm_password) {
@@ -19,13 +20,13 @@
                 $sqlUpdateUser = "UPDATE users SET password = SHA2(?, 256) WHERE password = SHA2(?, 256)";
                 $stmtUpdateUser = $pdo->prepare($sqlUpdateUser);
                 $stmtUpdateUser->execute([$password, $changePassword]);
-                $_SESSION['message'] = "Contraseña actualizada con éxito.";
+                $_SESSION['succes'] = "Contraseña actualizada con éxito.";
                 custom_log('CONTRASEÑA RESTABLECIDA', "El usuario $email ha restablecido la contraseña.");
 
                 $sqlSelectVotes = "SELECT option_id, hash FROM voted_option WHERE hash IN (SELECT CONCAT(uv.hash_id, ?) AS hash FROM user_vote uv WHERE uv.user_id = ?)";
                 $sqlSelectVotes = $pdo->prepare($sqlUpdateUser);
                 $sqlSelectVotes->execute([$changePassword, $user['user_id']]);
-                $votes = $stmtSelectVotes->fetch();
+                $votes = $sqlSelectVotes->fetch();
                 
                 foreach ($votes as $vote) {
                     $hashDecrypt = openssl_decrypt($vote['hash'], 'AES-128-CBC', $changePassword);
@@ -38,6 +39,9 @@
                 }
 
                 // Redirigir a login.php
+                // Destruir la sesión
+                    session_unset();
+                    session_destroy();
                 header("Location: login.php");
                 exit;
             } else {
@@ -91,61 +95,66 @@
         <?php include 'footer.php'; ?>
 
         <script>
-           $(document).ready(function() {
-                // Función para verificar la contraseña
-                function checkPassword(password) {
-                    // Debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un carácter especial
-                    var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-                    return regex.test(password);
-                }
+    $(document).ready(function() {
+        // Función para verificar la contraseña
+        function checkPassword(password) {
+            // Debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un carácter especial
+            var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            return regex.test(password);
+        }
 
-                // Evitar que el formulario se envíe cuando se presiona Enter
-                $(window).keydown(function(e) {
-                    if (e.keyCode == 13) {
-                        e.preventDefault();
-                        return false;
-                    }
-                });
+        // Función para mostrar los mensajes de error
+        function showErrorPopup(message) {
+            alert(message);
+        }
 
-                // Cuando se presiona la tecla Tab en el campo de contraseña
-                $('#past_Password').on('keydown', function(e) {
-                    if (e.keyCode == 9) { // 9 es Tab
-                        if (checkPassword($(this).val())) {
-                            // Si la contraseña es válida, agregar el campo de confirmación de contraseña
-                            $('#password').html('<input class="inputLoginPHP" type="password" id="password" name="password" required><label for="password">Confirmar Contraseña</label>');
-                        } else {
-                            // Si la contraseña no es válida, mostrar un mensaje de error
-                            showErrorPopup('La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un carácter especial.');
-                        }
-                    }
-                });
+        // Evitar que el formulario se envíe cuando se presiona Enter
+        $('.iniciasesionLogin').on('keydown', function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
 
-                // Cuando se presiona la tecla Tab en el campo de contraseña
-                $('#password').on('keydown', function(e) {
-                    if (e.keyCode == 9) { // 9 es Tab
-                        if (checkPassword($(this).val())) {
-                            // Si la contraseña es válida, agregar el campo de confirmación de contraseña
-                            $('#confirm_password_div').html('<input class="inputLoginPHP" type="password" id="confirm_password" name="confirm_password" required><label for="confirm_password">Confirmar Contraseña</label>');
-                        } else {
-                            // Si la contraseña no es válida, mostrar un mensaje de error
-                            showErrorPopup('La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un carácter especial.');
-                        }
-                    }
-                });
+        // Cuando se presiona la tecla Enter o Tab en el campo de contraseña
+$('#past_Password').on('keyup', function(e) {
+    if (e.keyCode == 13 || e.keyCode == 9) { // 13 es Enter, 9 es Tab
+        if (checkPassword($(this).val())) {
+            // Si la contraseña es válida, agregar el campo de confirmación de contraseña
+            $('#password_div').html('<input class="inputLoginPHP" type="password" id="password" name="password" required><label for="password">Nueva Contraseña</label>');
+        } else {
+            // Si la contraseña no es válida, mostrar un mensaje de error
+            showErrorPopup('La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un carácter especial.');
+        }
+    }
+});
 
-                // Cuando se presiona la tecla Tab en el campo de confirmación de contraseña
-                $(document).on('keydown', '#confirm_password', function(e) {
-                    if (e.keyCode == 9) { // 9 es Tab
-                        if ($(this).val() == $('#password').val()) {
-                            // Si las contraseñas coinciden, agregar el botón de envío
-                            $('#submit_button_div').html('<button id="siguienteBotonLogin" type="submit">Restablecer Contraseña</button>');
-                        } else {
-                            // Si las contraseñas no coinciden, mostrar un mensaje de error
-                            showErrorPopup('Las contraseñas no coinciden.');
-                        }
-                    }
-                });
-            });
-        </script>
+// Cuando se presiona la tecla Enter o Tab en el campo de contraseña
+$(document).on('keyup', '#password', function(e) {
+    if (e.keyCode == 13 || e.keyCode == 9) { // 13 es Enter, 9 es Tab
+        if (checkPassword($(this).val())) {
+            // Si la contraseña es válida, agregar el campo de confirmación de contraseña
+            $('#confirm_password_div').html('<input class="inputLoginPHP" type="password" id="confirm_password" name="confirm_password" required><label for="confirm_password">Confirmar Contraseña</label>');
+        } else {
+            // Si la contraseña no es válida, mostrar un mensaje de error
+            showErrorPopup('La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un carácter especial.');
+        }
+    }
+});
+
+// Cuando se presiona la tecla Enter o Tab en el campo de confirmación de contraseña
+$(document).on('keyup', '#confirm_password', function(e) {
+    if (e.keyCode == 13 || e.keyCode == 9) { // 13 es Enter, 9 es Tab
+        if ($(this).val() == $('#password').val()) {
+            // Si las contraseñas coinciden, agregar el botón de envío
+            $('#submit_button_div').html('<button id="siguienteBotonLogin" type="submit">Restablecer Contraseña</button>');
+        } else {
+            // Si las contraseñas no coinciden, mostrar un mensaje de error
+            showErrorPopup('Las contraseñas no coinciden.');
+        }
+    }
+});
+    });
+</script>
     </body>
 </html>

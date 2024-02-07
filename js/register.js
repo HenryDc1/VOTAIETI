@@ -388,7 +388,7 @@ function showSuccesPopup(message) {
     var errorPopup = $('<div/>', {
         id: 'errorPopup',
         text: message,
-        style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #f44336; color: white; padding: 20px; border-radius: 5px;'
+        style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
     });
 
     // Crear el botón "X"
