@@ -64,7 +64,7 @@ if ($user) {
 
 // Store the success message in a session variable
 $_SESSION['message'] = "Su voto ha sido enviado con éxito.";
-custom_log('ESTADO VOTO', "Se ha enviado el voto con éxito");
+custom_log('ESTADO VOTO', "Se ha enviado el voto con éxito del usuario $guestEmail en la encuesta $pollId.");
 
 // Redirect the user to index.php
 header("Location: index.php");
