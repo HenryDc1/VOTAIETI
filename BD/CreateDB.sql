@@ -47,15 +47,19 @@ CREATE TABLE user_vote (
     guest_email VARCHAR(255),
     hash_id INT,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (poll_id) REFERENCES poll(poll_id),
-    FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email)
+    FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
+   
 );
 
 
-CREATE TABLE voted_option {
+
+CREATE TABLE voted_option (
     option_id INT,
-    hash VARCHAR(255) NOT NULL
-}
+    hash VARCHAR(255) NOT NULL,
+    FOREIGN KEY (option_id) REFERENCES poll_options(option_id)
+);
+
+
 
 CREATE TABLE invitation (
     invitation_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -64,7 +68,7 @@ CREATE TABLE invitation (
     sent_date DATETIME,
     token varchar(255),
     token_accepted BOOLEAN NOT NULL,
-    FOREIGN KEY (guest_email) REFERENCES user_guest(guest_email),
+    blocked TINYINT(1) NOT NULL,
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
 );
 

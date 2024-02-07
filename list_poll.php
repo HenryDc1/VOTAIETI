@@ -130,12 +130,78 @@ include 'db_connection.php';
                // Obtener el texto correspondiente a la visibilidad actual
              $visibilityText = isset($visibilityTexts[$questionVisibility]) ? $visibilityTexts[$questionVisibility] : $questionVisibility;
 
-             // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-             echo "<tr><td>$question</td><td><span class='poll-state $class'>$stateText</span></td><td><select class='question-visibility'><option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option><option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option><option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option></select></td><td><select class='options-visibility'><option value='public'>Publica</option><option value='private'>Privada</option><option value='hidden'>Oculta</option></select></td>
-             <td><form method='POST' action='update_poll_status.php'>
-             <input type='hidden' name='poll_id' value='$pollId'><select name='status'><option value='block'>Bloquear</option><option value='unblock'>Desbloquear</option> </select>
-             <input type='submit' value='Actualizar'></form></td><td><form method='POST' action='invite_poll.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Invitar</button></form></td><td><form method='POST' action='details_page.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Detalles</button></form></td></tr>";
+             echo "<tr>
+    <td>$question</td>
+    <td><span class='poll-state $class'>$stateText</span></td>
+    <td>
+        <select class='question-visibility' onchange='updateSelects(this)'>
+            <option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option>
+            <option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option>
+            <option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option>
+        </select>
+    </td>
+    <td>
+        <select class='options-visibility' onchange='updateSelects(this)'>
+            <option value='public'>Publica</option>
+            <option value='private'>Privada</option>
+            <option value='hidden'>Oculta</option>
+        </select>
+    </td>
+    <td>
+        <form method='POST' action='update_poll_status.php'>
+            <input type='hidden' name='poll_id' value='$pollId'>
+            <select name='status'>
+                <option value='block'>Bloquear</option>
+                <option value='unblock'>Desbloquear</option>
+            </select>
+            <input type='submit' value='Actualizar'>
+        </form>
+    </td>
+    <td>
+        <form method='POST' action='invite_poll.php'>
+            <input type='hidden' name='poll_id' value='$pollId'>
+            <button type='submit'>Invitar</button>
+        </form>
+    </td>
+    <td>
+        <form method='POST' action='details_page.php'>
+            <input type='hidden' name='poll_id' value='$pollId'>
+            <button type='submit'>Detalles</button>
+        </form>
+    </td>
+</tr>";
 
+echo "<script>
+    function updateSelects(select) {
+        var row = select.closest('tr');
+        var questionVisibility = row.querySelector('.question-visibility').value;
+        var optionsVisibility = row.querySelector('.options-visibility');
+
+        optionsVisibility.disabled = false;
+
+        if (questionVisibility === 'private') {
+            row.querySelectorAll('.options-visibility option').forEach(option => {
+                if (option.value !== 'private' && option.value !== 'hidden') {
+                    option.style.display = 'none';
+                } else {
+                    option.style.display = 'block';
+                }
+            });
+        } else if (questionVisibility === 'hidden') {
+            row.querySelectorAll('.options-visibility option').forEach(option => {
+                if (option.value !== 'hidden') {
+                    option.style.display = 'none';
+                } else {
+                    option.style.display = 'block';
+                }
+            });
+        } else {
+            row.querySelectorAll('.options-visibility option').forEach(option => {
+                option.style.display = 'block';
+            });
+        }
+    }
+</script>";
 
             }
             echo "</tbody>";

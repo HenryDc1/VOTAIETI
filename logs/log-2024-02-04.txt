@@ -1,2 +1,0 @@
-[2024-02-04 18:25:12] Login exitoso: El usuario amestrevizcaino.cf@iesesteveterradas.cat ha iniciado sesión correctamente
-[2024-02-04 18:28:50] SESION CERRADA: El usuario ha cerrado la sesión con exito

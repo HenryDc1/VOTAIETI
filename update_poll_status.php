@@ -18,7 +18,7 @@ require 'vendor/autoload.php';
 
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "";
+$passwordEmail = "ArnauMestre169";
 
 
 if (isset($_POST['poll_id']) && isset($_POST['status'])) {
