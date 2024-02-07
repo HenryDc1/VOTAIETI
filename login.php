@@ -39,7 +39,7 @@
             } else {
                 $_SESSION['email'] = $email;
                 $_SESSION['user_name'] = $fila['user_name'];
-                echo '<script type="text/javascript">window.location = "dashboard.php";</script>';
+                echo '<script type="text/javascript">window.location = "https://aws21.ieti.site/dashboard.php";</script>';
                 custom_log('INCIO DE SESION EXITOSO', "El usuario $email ha iniciado sesión correctamente");
 
                 exit;
@@ -86,11 +86,11 @@
                     <label for="password">Contraseña</label>
                 </div>
 
-                <a href="send_email_password.php" id="forgotPassword">¿Has olvidado la contraseña?</a>
+                <a href="https://aws21.ieti.site/send_email_password.php" id="forgotPassword">¿Has olvidado la contraseña?</a>
                 <br><br>
 
                 <div class="datosUsuarioLogin">
-                    <a href="register.php" id="tienescuentaBotonLogin" type="submit">¿No tienes cuenta?</a>        
+                    <a href="https://aws21.ieti.site/register.php" id="tienescuentaBotonLogin" type="submit">¿No tienes cuenta?</a>        
                     <button id="siguienteBotonLogin" type="submit">Siguiente</button>        
                 </div>
                 </form>

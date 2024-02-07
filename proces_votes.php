@@ -67,6 +67,6 @@ $_SESSION['message'] = "Su voto ha sido enviado con éxito.";
 custom_log('ESTADO VOTO', "Se ha enviado el voto con éxito del usuario $guestEmail en la encuesta $pollId.");
 
 // Redirect the user to index.php
-header("Location: index.php");
+header("Location: https://aws21.ieti.site/index.php");
 exit;
 ?>

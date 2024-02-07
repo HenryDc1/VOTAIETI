@@ -47,7 +47,7 @@ if(!empty($_POST)){
         $_SESSION['error'] = 'El correo electrónico ya existe';
         custom_log("REGISTRO FALLIDO", "Correo electrónico: $email ya existe");
 
-        header('Location: register.php');
+        header('Location: https://aws21.ieti.site/register.php');
         exit;
     }
 
@@ -58,7 +58,7 @@ if(!empty($_POST)){
     if ($stmt->rowCount() > 0) {
         $_SESSION['error'] = 'El número de teléfono ya existe';
         custom_log("REGISTRO FALLIDO", "Número de teléfono: $telephone ya existe");
-        header('Location: register.php');
+        header('Location: https://aws21.ieti.site/register.php');
         exit;
     }
 
@@ -172,7 +172,7 @@ var countrySelectHTML = '<?= $countrySelectHTML ?>';
         
         <div class="containerRegister">
 
-            <form class="creacuentaRegister" action="register.php" method="post">
+            <form class="creacuentaRegister" action="https://aws21.ieti.site/register.php" method="post">
                 <h1>REGÍSTRATE</h1>
                 <img class="logoLogin" src="logosinfondo.png" alt="">
 

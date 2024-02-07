@@ -42,7 +42,7 @@
             $mail->AddAddress($email);
             $mail->SetFrom($senderEmail, "VOTAIETI");
             $mail->Subject = 'Recuperación de contraseña';
-            $mail->MsgHTML("Por favor, haga clic en el siguiente enlace para recuperar su contraseña: <a href='http://localhost:3000/forgot_password.php?token=" . $token . "'>Restablecer contraseña</a>");
+            $mail->MsgHTML("Por favor, haga clic en el siguiente enlace para recuperar su contraseña: <a href='https://aws21.ieti.site/forgot_password.php?token=" . $token . "'>Restablecer contraseña</a>");
             $message = '';
 
             if($mail->send()) {
@@ -57,7 +57,7 @@
         } else {
             // El correo electrónico no existe en la base de datos
             // Redirigir al usuario a la página de registro
-            header("Location: register.php");
+            header("Location: https://aws21.ieti.site/register.php");
             exit;
         }
     }

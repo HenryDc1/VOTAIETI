@@ -148,7 +148,7 @@ include 'db_connection.php';
         </select>
     </td>
     <td>
-        <form method='POST' action='update_poll_status.php'>
+        <form method='POST' action='https://aws21.ieti.site/update_poll_status.php'>
             <input type='hidden' name='poll_id' value='$pollId'>
             <select name='status'>
                 <option value='block'>Bloquear</option>
@@ -158,13 +158,13 @@ include 'db_connection.php';
         </form>
     </td>
     <td>
-        <form method='POST' action='invite_poll.php'>
+        <form method='POST' action='https://aws21.ieti.site/invite_poll.php'>
             <input type='hidden' name='poll_id' value='$pollId'>
             <button type='submit'>Invitar</button>
         </form>
     </td>
     <td>
-        <form method='POST' action='details_page.php'>
+        <form method='POST' action='https://aws21.ieti.site/details_page.php'>
             <input type='hidden' name='poll_id' value='$pollId'>
             <button type='submit'>Detalles</button>
         </form>
@@ -213,7 +213,7 @@ echo "<script>
             echo "No se encontró el user_id para el correo electrónico proporcionado.";
             custom_log('ERROR LISTAR ENCUESTAS', "No se encontró el user_id para el correo electrónico proporcionado");
 
-            header('Location: dashboard.php');
+            header('Location: https://aws21.ieti.site/dashboard.php');
         }
     } else {
         echo "La variable de sesión 'email' no está definida.";

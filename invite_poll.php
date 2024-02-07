@@ -66,7 +66,7 @@ if(isset($_POST['emails'])) {
             $stmt->execute();
         }
     }
-    header('Location: send_email.php');
+    header('Location: https://aws21.ieti.site/send_email.php');
 }
 ?>
 
@@ -105,7 +105,7 @@ if(isset($_POST['emails'])) {
     <div class="inviteContainer">
            
         <p>Invita a tus amigos a participar en la encuesta. Solo necesitas introducir sus direcciones de correo electrónico, separadas por comas. Cada destinatario recibirá un enlace para votar en la encuesta seleccionada. Ten en cuenta que los correos electrónicos se enviarán en paquetes de 5 cada 5 minutos para evitar el spam. Nosotros nos encargaremos del resto.</p>     
-        <form action="invite_poll.php" method="post">
+        <form action="https://aws21.ieti.site/invite_poll.php" method="post">
                 <input type="hidden" name="poll_id" value="<?php echo $_SESSION['pollId']; ?>">
                 <label for="emails">Correos electrónicos (separados por comas):</label>
                 <textarea id="emails" name="emails" rows="10"></textarea>

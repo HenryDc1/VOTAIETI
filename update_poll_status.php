@@ -88,6 +88,6 @@ if ($status === 1) {
 
     
 }
-header('Location: list_poll.php');
+header('Location: https://aws21.ieti.site/list_poll.php');
 exit;
 ?>

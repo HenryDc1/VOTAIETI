@@ -28,7 +28,7 @@
 
 
                  // Redirigir a login.php
-                 header("Location: login.php");
+                 header("Location: https://aws21.ieti.site/login.php");
                  exit;
             } else {
                 // El usuario no existe

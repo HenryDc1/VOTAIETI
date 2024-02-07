@@ -42,7 +42,7 @@
                 // Destruir la sesión
                     session_unset();
                     session_destroy();
-                header("Location: login.php");
+                header("Location: https://aws21.ieti.site/login.php");
                 exit;
             } else {
                 // No hay ningun usario con esa contraseña

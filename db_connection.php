@@ -4,7 +4,7 @@ $countries = [];
 try {
     $hostname = "localhost";
     $dbname = "VOTE";
-    $username = "root";
+    $username = "aws21";
     $password = "P@ssw0rd";
 
     $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);

@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         custom_log('TERMINOS Y CONDICIONES', "El usuario $email ha aceptado los terminos y condiciones");
 
 
-        header('Location: dashboard.php');
+        header('Location: https://aws21.ieti.site/dashboard.php');
         exit;
     }
 }
