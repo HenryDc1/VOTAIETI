@@ -96,7 +96,7 @@ if(!empty($_POST)){
    
    $mail->AddEmbeddedImage('votaietilogo.png', 'logo_img');
    
-   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://localhost:3000/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
+   $mail->MsgHTML('Por favor, verifica tu correo electrónico haciendo clic en el siguiente enlace: <a href="https://aws21.ieti.site/verify_token.php?token=' . $token . '">Verificar correo electrónico</a><br><img src="cid:logo_img">');
    
 
 // Enviar el correo electrónico
