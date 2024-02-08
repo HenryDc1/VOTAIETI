@@ -5,8 +5,8 @@
     require "vendor/autoload.php";
     include 'db_connection.php'; // Incluir el archivo de conexión
 
-    $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-    $passwordEmail = "ArnauMestre169";
+    $senderEmail = "";
+    $passwordEmail = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];

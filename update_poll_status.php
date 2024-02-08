@@ -17,8 +17,8 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 
-$senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "ArnauMestre169";
+$senderEmail = "";
+$passwordEmail = "";
 
 
 if (isset($_POST['poll_id']) && isset($_POST['status'])) {
