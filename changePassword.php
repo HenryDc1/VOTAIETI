@@ -77,7 +77,7 @@
             <img class="logoLogin" src="imgs/logosinfondo.png" alt="">
             <div class="datosUsuarioLogin">
                 <input class="inputLoginPHP" type="password" id="past_Password" name="past_Password" required>  
-                <label for="past_Password">Contraseña Antigua</label>  
+                <label for="past_Password">Contraseña Actual</label>  
             </div>
 
             <div class="datosUsuarioLogin" id="password_div"></div>
