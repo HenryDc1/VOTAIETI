@@ -9,7 +9,7 @@
         <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
         <meta property="og:image" content="../imgs/votaietilogo.png">
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
+        <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
         <title>Error 404 — Votaieti</title>
         <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
         <link rel="stylesheet" href="../styles.css">
@@ -23,7 +23,7 @@
         <div class="containerError404">
             <img src="/errores/error404.gif" alt="">
             <p>¡Ups! La página que buscas no se ha encontrado.<br>¿Estás seguro de que existe?</p>
-            <a id="volverButton" href="../index.php">Vuelve al inicio</a>
+            <a id="volverButton" href="https://aws21.ieti.site/index.php">Vuelve al inicio</a>
         </div>
         
         <div class="contenedorFooter">

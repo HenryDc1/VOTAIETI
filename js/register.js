@@ -299,6 +299,7 @@ $(document).ready(function() {
     });
 
 
+
     // Cuando el campo de CONFIRM PASSWORD está vacío, borra de abajo 
     form.on('input', '#confirmPassword', function() {
         if (!$(this).val()) {
@@ -358,27 +359,53 @@ $(document).ready(function() {
 
 
 function showErrorPopup(message) {
+  // Crear la ventana flotante
+  var errorPopup = $('<div/>', {
+      id: 'errorPopup',
+      text: message,
+      style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #f44336; color: white; padding: 20px; border-radius: 5px;'
+  });
+
+  // Crear el botón "X"
+  var closeButton = $('<button/>', {
+      text: 'X',
+      style: 'position: absolute; top: 0; right: 0; background-color: transparent; color: white; border: none; font-size: 20px; cursor: pointer;'
+  });
+
+  // Añadir el botón "X" a la ventana flotante
+  errorPopup.append(closeButton);
+
+  // Añadir la ventana flotante al cuerpo del documento
+  $('body').append(errorPopup);
+
+  // Manejador de eventos para el botón "X"
+  closeButton.click(function() {
+      errorPopup.remove();
+  });
+}
+
+function showSuccesPopup(message) {
     // Crear la ventana flotante
     var errorPopup = $('<div/>', {
         id: 'errorPopup',
         text: message,
-        style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: #f44336; color: white; padding: 20px; border-radius: 5px;'
+        style: 'position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); background-color: green; color: white; padding: 20px; border-radius: 5px;'
     });
-  
+
     // Crear el botón "X"
     var closeButton = $('<button/>', {
         text: 'X',
         style: 'position: absolute; top: 0; right: 0; background-color: transparent; color: white; border: none; font-size: 20px; cursor: pointer;'
     });
-  
+
     // Añadir el botón "X" a la ventana flotante
     errorPopup.append(closeButton);
-  
+
     // Añadir la ventana flotante al cuerpo del documento
     $('body').append(errorPopup);
-  
+
     // Manejador de eventos para el botón "X"
     closeButton.click(function() {
         errorPopup.remove();
     });
-  }
+}

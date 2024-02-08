@@ -137,14 +137,34 @@ a {
     text-align: center;
     width: 200px;
 }
-
 .circulosExplicativos img {
     width: 200px;
     height: 200px;
-    border: 1px solid transparent;
+    border: 4px solid transparent;
     border-radius: 100%;
     margin-top: 150px;
+    animation: cambioColorInfinito 3s infinite alternate, glow 3s infinite alternate;
 }
+
+@keyframes cambioColorInfinito {
+    from {
+        border-color: rgba(43, 45, 66, 0.9);
+    }
+    to {
+        border-color: #EF233C;
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(43, 45, 66, 0.9), 0 0 10px rgba(43, 45, 66, 0.9);
+    }
+    to {
+        box-shadow: 0 0 5px #EF233C, 0 0 10px #EF233C;
+    }
+}
+
+
 
 .circulosExplicativos p {
     margin: 10px 0 150px 0;
@@ -1218,4 +1238,13 @@ footer a:hover {
 }
 #divH1{
     width: 900px;
+}
+
+
+#forgotPassword {
+    color: white;
+}
+
+#forgotPassword:hover {
+    color: rgb(114, 165, 207);
 }

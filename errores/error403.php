@@ -10,7 +10,7 @@
         <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
         <meta property="og:image" content="../imgs/votaietilogo.png">
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
+        <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
         <title>Error 403 — Votaieti</title>
         <link rel="shortcut icon" href="logosinfondo.png" />
         <link rel="stylesheet" href="../styles.css">
@@ -24,7 +24,7 @@
         <div class="containerError403">
             <img src="/errores/error403.gif" alt="">
             <p>¡Ups! No tienes permiso para acceder a esta página.<br>¿Qué intentabas hacer?</p>
-            <a id="volverButton" href="../index.php">Vuelve al inicio</a>
+            <a id="volverButton" href="https://aws21.ieti.site/index.php">Vuelve al inicio</a>
         </div>
         
         <div class="contenedorFooter">

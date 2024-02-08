@@ -1,4 +1,3 @@
-
 <?php
 session_start(); // Inicia una nueva sesión o reanuda la existente
 include 'log_function.php';
@@ -17,13 +16,12 @@ $conditions_accepted = $fila['conditions_accepted'];
 // Verifica si el usuario ha iniciado sesión
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
-    custom_log('Error 403', "Se ha intentado acceder a la página de dashboard sin registrarse o iniciar sesión");
+    custom_log('ERROR 403', "Se ha intentado acceder a la página de dashboard sin registrarse o iniciar sesión");
 
     header('Location: errores/error403.php');
     exit;
 }
-?> 
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -35,7 +33,7 @@ if(!isset($_SESSION['email'])) {
         <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
         <meta property="og:image" content="../imgs/votaietilogo.png">
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
+        <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
         <title>Panel de control — Votaieti</title>
         <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
         <link rel="stylesheet" href="styles.css">
@@ -52,7 +50,7 @@ if(!isset($_SESSION['email'])) {
         <!-- SI NO SE ACEPTAN LAS CONDICIONES NO PODRA ACER USO DEL DASBOARD  -->
         <?php if (!$conditions_accepted): ?>
         <div id="termsPopup">
-            <form method="post" action="accept_terms.php">
+            <form method="post" action="https://aws21.ieti.site/accept_terms.php">
                 <h2>Aceptación de Condiciones para la Página Web Votaieti:</h2>
                 <label for="acceptTerms">Al utilizar Votaieti, aceptas nuestra política de privacidad y seguridad. Comprometidos con tu confidencialidad, no compartimos tus datos sin consentimiento. Utiliza la plataforma de manera ética y legal, respetando derechos de propiedad intelectual. Aceptas recibir comunicaciones relacionadas con la plataforma. Nos reservamos el derecho de terminar cuentas por violaciones o actividades perjudiciales. ¡Gracias por ser parte de Votaieti!</label>
                 <br><br>
@@ -117,6 +115,16 @@ if(!isset($_SESSION['email'])) {
                             <img src="../imgs/aura5.jpg" alt="">
                             <p><strong>Listar encuestas</strong></p>
                             <p><em>Visita de nuevo tus encuestas creadas</em></p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="cambiarContraseña">
+                    <a href="https://aws21.ieti.site/changePassword.php">
+                        <div class="imagenConTexto">
+                            <img src="../imgs/aura5.jpg" alt="">
+                            <p><strong>Cambiar contraseña</strong></p>
+                            <p><em>Cambia la contraseña de tu usuario</em></p>
                         </div>
                     </a>
                 </div>

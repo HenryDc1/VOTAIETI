@@ -1,6 +1,17 @@
 <?php
 
 session_start(); // Iniciar la sesión
+
+
+if (isset($_SESSION['success'])) {
+    echo '<script type="text/javascript">';
+    echo 'showSuccessPopup("' . $_SESSION['success'] . '");';
+    echo '</script>';
+    unset($_SESSION['success']); // Borrar el mensaje de éxito de la sesión
+}
+
+
+
 include 'log_function.php';
 if(!isset($_SESSION['email'])) {
     // Si el usuario no ha iniciado sesión, redirige a la página de error
@@ -26,11 +37,14 @@ include 'db_connection.php';
     <meta property="og:description" content="Plataforma de votación en línea comprometida con la privacidad y seguridad de los usuarios. Regístrate ahora y participa en encuestas y elecciones de manera segura.">
     <meta property="og:image" content="../imgs/votaietilogo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="author" content="Arnau Mestre, Claudia Moyano i Henry Doudo">
-    <title>Listado de encuestas — Votaieti</title>
+    <meta name="author" content="Arnau Mestre, Alejandro Soldado i Henry Doudo">
+    <title>Panel de control — Votaieti</title>
     <link rel="shortcut icon" href="../imgs/logosinfondo.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
     <script src="../styles + scripts/script.js"></script> 
+    <script src="/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 
@@ -50,7 +64,7 @@ include 'db_connection.php';
     <?php   
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
-        custom_log('Listar Encuestas', "Se ha listado las encuestas del usuario $email");
+        custom_log('ENCUESTAS LISTADAS', "Se ha listado las encuestas del usuario $email");
 
 
         // Consulta para obtener el user_id
@@ -68,7 +82,7 @@ include 'db_connection.php';
             // Mostrar las preguntas y el estado de la encuesta
             echo "<h1>Mis encuestas</h1>";
             echo "<table>";
-            echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th><th class='visibility-column'>Visibilidad Pregunta</th><th class='options-column'>Visibilidad Opciones</th><th class='invite-column'>Invitar</th><th class='details-column'>Detalles</th></tr></thead>";
+            echo "<thead><tr><th class='question-column'>Pregunta</th><th class='state-column'>Estado</th><th class='visibility-column'>Visibilidad Pregunta</th><th class='options-column'>Visibilidad Opciones</th><th class='block-column'>Bloquear/Desbloquear</th><th class='invite-column'>Invitar</th><th class='details-column'>Detalles</th></tr></thead>";
 
 
             echo "<tbody>";
@@ -116,9 +130,78 @@ include 'db_connection.php';
                // Obtener el texto correspondiente a la visibilidad actual
              $visibilityText = isset($visibilityTexts[$questionVisibility]) ? $visibilityTexts[$questionVisibility] : $questionVisibility;
 
-             // Mostrar la pregunta, el estado y la visibilidad de la encuesta en una fila de la tabla
-             echo "<tr><td>$question</td><td><span class='poll-state $class'>$stateText</span></td><td><select class='question-visibility'><option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option><option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option><option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option></select></td><td><select class='options-visibility'><option value='public'>Publica</option><option value='private'>Privada</option><option value='hidden'>Oculta</option></select></td><td><form method='POST' action='invite_poll.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Invitar</button></form></td><td><form method='POST' action='details_page.php'><input type='hidden' name='poll_id' value='$pollId'><button type='submit'>Detalles</button></form></td></tr>";
+             echo "<tr>
+    <td>$question</td>
+    <td><span class='poll-state $class'>$stateText</span></td>
+    <td>
+        <select class='question-visibility' onchange='updateSelects(this)'>
+            <option value='public'".($questionVisibility=='public'?'selected':'').">Publica</option>
+            <option value='private'".($questionVisibility=='private'?'selected':'').">Privada</option>
+            <option value='hidden'".($questionVisibility=='hidden'?'selected':'').">Oculta</option>
+        </select>
+    </td>
+    <td>
+        <select class='options-visibility' onchange='updateSelects(this)'>
+            <option value='public'>Publica</option>
+            <option value='private'>Privada</option>
+            <option value='hidden'>Oculta</option>
+        </select>
+    </td>
+    <td>
+        <form method='POST' action='https://aws21.ieti.site/update_poll_status.php'>
+            <input type='hidden' name='poll_id' value='$pollId'>
+            <select name='status'>
+                <option value='block'>Bloquear</option>
+                <option value='unblock'>Desbloquear</option>
+            </select>
+            <input type='submit' value='Actualizar'>
+        </form>
+    </td>
+    <td>
+        <form method='POST' action='https://aws21.ieti.site/invite_poll.php'>
+            <input type='hidden' name='poll_id' value='$pollId'>
+            <button type='submit'>Invitar</button>
+        </form>
+    </td>
+    <td>
+        <form method='POST' action='https://aws21.ieti.site/details_page.php'>
+            <input type='hidden' name='poll_id' value='$pollId'>
+            <button type='submit'>Detalles</button>
+        </form>
+    </td>
+</tr>";
 
+echo "<script>
+    function updateSelects(select) {
+        var row = select.closest('tr');
+        var questionVisibility = row.querySelector('.question-visibility').value;
+        var optionsVisibility = row.querySelector('.options-visibility');
+
+        optionsVisibility.disabled = false;
+
+        if (questionVisibility === 'private') {
+            row.querySelectorAll('.options-visibility option').forEach(option => {
+                if (option.value !== 'private' && option.value !== 'hidden') {
+                    option.style.display = 'none';
+                } else {
+                    option.style.display = 'block';
+                }
+            });
+        } else if (questionVisibility === 'hidden') {
+            row.querySelectorAll('.options-visibility option').forEach(option => {
+                if (option.value !== 'hidden') {
+                    option.style.display = 'none';
+                } else {
+                    option.style.display = 'block';
+                }
+            });
+        } else {
+            row.querySelectorAll('.options-visibility option').forEach(option => {
+                option.style.display = 'block';
+            });
+        }
+    }
+</script>";
 
             }
             echo "</tbody>";
@@ -128,7 +211,7 @@ include 'db_connection.php';
             $pollStmt->closeCursor();
         } else {
             echo "No se encontró el user_id para el correo electrónico proporcionado.";
-            custom_log('Error list_poll.php', "No se encontró el user_id para el correo electrónico proporcionado");
+            custom_log('ERROR LISTAR ENCUESTAS', "No se encontró el user_id para el correo electrónico proporcionado");
 
             header('Location: https://aws21.ieti.site/dashboard.php');
         }
@@ -142,5 +225,16 @@ include 'db_connection.php';
     <div class="contenedorFooter">
         <?php include 'footer.php'; ?>
     </div>
+
+    <?php if(isset($_SESSION['success'])): ?>
+    <script>
+        $(document).ready(function() {
+            showSuccesPopup("<?php echo $_SESSION['success']; ?>");
+        });
+    </script>
+        <?php 
+            unset($_SESSION['success']); // Limpiar la variable de sesión después de mostrar el mensaje
+        endif; 
+        ?>
 </body>
 </html>

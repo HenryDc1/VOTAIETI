@@ -1,12 +1,12 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+include 'log_function.php';
 require "vendor/autoload.php";
 include 'db_connection.php'; // Incluir el archivo de conexión
 
 $senderEmail = "amestrevizcaino.cf@iesesteveterradas.cat";
-$passwordEmail = "";
+$passwordEmail = "ArnauMestre169";
 
 // Seleccionar los primeros 5 correos electrónicos de la tabla SEND_EMAIL
 $query = "SELECT e.*, i.token FROM SEND_EMAIL e INNER JOIN invitation i ON e.email = i.guest_email LIMIT 5";
@@ -35,6 +35,7 @@ foreach($emails as $email) {
     $mail->MsgHTML("Has sido invitado a participar en una encuesta en la plataforma VOTAIETI. Para votar, por favor haz clic en el siguiente enlace: <a href='https://aws21.ieti.site/accept_invitation.php?token=" . $email['token'] . "'>Acceder a la encuesta</a>. Tu voto es completamente anónimo. Gracias por tu participación.<br><img src='cid:logo_img'>");
 
     if($mail->send()) {
+        custom_log('CORREO ENVIADO', "Se ha enviado un correo electrónico de invitacion a " . $email['email']);
         // Eliminar el correo electrónico de la tabla SEND_EMAIL
         $query = "DELETE FROM SEND_EMAIL WHERE id = :id";
         $stmt = $pdo->prepare($query);
