@@ -23,7 +23,7 @@
         <div class="containerError404">
             <img src="/errores/error404.gif" alt="">
             <p>¡Ups! La página que buscas no se ha encontrado.<br>¿Estás seguro de que existe?</p>
-            <a id="volverButton" href="../index.php">Vuelve al inicio</a>
+            <a id="volverButton" href="https://aws21.ieti.site/index.php">Vuelve al inicio</a>
         </div>
         
         <div class="contenedorFooter">
