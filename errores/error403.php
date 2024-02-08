@@ -24,7 +24,7 @@
         <div class="containerError403">
             <img src="/errores/error403.gif" alt="">
             <p>¡Ups! No tienes permiso para acceder a esta página.<br>¿Qué intentabas hacer?</p>
-            <a id="volverButton" href="../index.php">Vuelve al inicio</a>
+            <a id="volverButton" href="https://aws21.ieti.site/index.php">Vuelve al inicio</a>
         </div>
         
         <div class="contenedorFooter">
