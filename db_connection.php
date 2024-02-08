@@ -5,7 +5,7 @@ try {
     $hostname = "localhost";
     $dbname = "VOTE";
     $username = "aws21";
-    $password = "P@ssw0rd";
+    $password = "";
 
     $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
 
