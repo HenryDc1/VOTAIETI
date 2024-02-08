@@ -27,6 +27,7 @@ CREATE TABLE poll (
     question_visibility ENUM('public','private','hidden') ,
     results_visibility ENUM('public','private','hidden') ,
     path_image varchar(255) DEFAULT NULL,
+    
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
@@ -59,8 +60,6 @@ CREATE TABLE voted_option (
     FOREIGN KEY (option_id) REFERENCES poll_options(option_id)
 );
 
-
-
 CREATE TABLE invitation (
     invitation_id INT AUTO_INCREMENT PRIMARY KEY,
     poll_id INT NOT NULL,
@@ -69,9 +68,8 @@ CREATE TABLE invitation (
     token varchar(255),
     token_accepted BOOLEAN NOT NULL,
     blocked TINYINT(1) NOT NULL,
-
-    
     FOREIGN KEY (poll_id) REFERENCES poll(poll_id)
+    
 );
 
 
@@ -80,8 +78,6 @@ CREATE TABLE SEND_EMAIL (
     email VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
-
-select * from invitation;
 
 
 CREATE TABLE IF NOT EXISTS pais (

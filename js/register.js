@@ -299,6 +299,7 @@ $(document).ready(function() {
     });
 
 
+
     // Cuando el campo de CONFIRM PASSWORD está vacío, borra de abajo 
     form.on('input', '#confirmPassword', function() {
         if (!$(this).val()) {
@@ -407,4 +408,4 @@ function showSuccesPopup(message) {
     closeButton.click(function() {
         errorPopup.remove();
     });
-  }
+}
